@@ -12,6 +12,7 @@ GetOwningQuest().SetObjectiveDisplayed(20)
 GetOwningQuest().SetObjectiveDisplayed(21)
 GetOwningQuest().SetObjectiveDisplayed(22)
 elevatorBarrier.DisableNoWait(1)
+LullPingEnable.EnableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -19,3 +20,5 @@ EndFunction
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
 ObjectReference Property elevatorBarrier auto
+
+ObjectReference Property LullPingEnable  Auto  

@@ -10,11 +10,11 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 	Spell akSpell = akSource as Spell
 	;Debug.MessageBox("Fuck you and fuck your maker")
 	if(akSpell == visorProjectile1)
-	if(!doOnce)
-		;Debug.MessageBox("Fuck him too")
-		thingtoEnable.EnableNoWait(1)
-		teartoDisable.DisableNoWait(1)
-		doOnce = true
-	endif
+		if(!doOnce)
+			;Debug.MessageBox("Fuck him too")
+			thingtoEnable.EnableNoWait(true)
+			teartoDisable.DisableNoWait(true)
+			doOnce = true
+		endif
 	endif
 EndEvent
