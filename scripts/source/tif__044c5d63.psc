@@ -9,7 +9,6 @@ Actor akSpeaker = akSpeakerRef as Actor
 getowningquest().setstage(20)
 GetOwningQuest().SetObjectiveDisplayed(20)
 StoneHoleMine.AddToMap(true)
-akSpeaker.MoveToMyEditorLocation()
 ;END CODE
 EndFunction
 ;END FRAGMENT
