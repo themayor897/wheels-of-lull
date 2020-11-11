@@ -1,10 +1,18 @@
-scriptName PF__lull_SecariusTravelToThi_0452BADB extends Package hidden
+;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
+;NEXT FRAGMENT INDEX 6
+Scriptname PF__lull_SecariusTravelToThi_0452BADB Extends Package Hidden
 
-quest property MQ03 auto
-scene property MQ03Scene auto
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5(Actor akActor)
+;BEGIN CODE
+MQ03.SetStage(30)
+MQ03Scene.Start()
+;END CODE
+EndFunction
+;END FRAGMENT
 
-function Fragment_0(Actor akActor)
+;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
-	MQ03.SetStage(30)
-	MQ03Scene.Start()
-endFunction
+Quest Property MQ03  Auto  
+
+Scene Property MQ03Scene  Auto  
