@@ -19,6 +19,7 @@ yagrum.MoveTo(yagrumMarker)
 numinar.MoveTo(numinarMarker)
 numinarDoor.SetLockLevel(255)
 numinarDoor.Lock(true)
+TalkyActivator3.disable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -43,3 +44,5 @@ Actor Property fyr auto
 Actor Property avarri auto
 Actor Property yagrum auto
 Actor Property numinar auto
+
+ObjectReference Property TalkyActivator3  Auto  

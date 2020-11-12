@@ -27,6 +27,7 @@ auto STATE waitingforPlayer
 			masscroft.MoveTo(massMove)
 			MQ03.SetStage(stage03)
 			archeron.EvaluatePackage()
+			masscroft.EvaluatePackage()
 			Game.EnablePlayerControls()
 			
 			if doOnce

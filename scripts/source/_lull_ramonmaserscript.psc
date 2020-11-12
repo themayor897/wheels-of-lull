@@ -21,8 +21,7 @@ ObjectReference Property ramonHandRMarker2 auto
 ObjectReference Property ramonHandRMarker3 auto
 
 ;Speaker
-Topic Property archeronTaunt auto
-Actor Property asArcheron auto
+Scene Property archeronTaunt auto
 Actor Property numinar auto
 ObjectReference Property numinarMarker auto
 
@@ -30,7 +29,7 @@ ObjectReference Property numinarMarker auto
 Event OnCellAttach()
 	Game.DisablePlayerControls()
 	Utility.Wait(2)
-	self.Say(archeronTaunt, asArcheron, true)
+	archeronTaunt.start()
 	numinar.MoveTo(numinarMarker)
 	ramonSkull.EnableNoWait()
 	ramonHandL.EnableNoWait()
