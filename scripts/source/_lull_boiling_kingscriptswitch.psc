@@ -8,6 +8,7 @@ Spell Property effectSpell auto
 GlobalVariable Property kingIsIn auto
 Sound Property kingScream auto
 Actor Property king auto
+Weapon Property ohmsRod auto
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Enchantment akSpell = akSource as Enchantment 
@@ -30,3 +31,12 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 				self.EnableNoWait(1)			
 	endif
 EndEvent
+
+Event OnActivate(ObjectReference akActionRef)
+
+	if game.GetPlayer().GetItemCount(ohmsRod) < 1
+		debug.MessageBox("It looks like you'll need some sort of special staff to activate this, and you feel like you won't find that staff until you help out the Chronographers more.")
+	else
+		debug.MessageBox("It seems like you should shoot this switch with your Rod of Ohm. This is extremely obvious, and you feel like a complete idiot for not realizing it.")
+	endIf
+endEvent

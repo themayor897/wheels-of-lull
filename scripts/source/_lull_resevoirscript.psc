@@ -7,6 +7,7 @@ ObjectReference Property magic4 auto
 ObjectReference Property magic5 auto
 ObjectReference Property waterMagic auto
 ObjectReference Property waterMarker auto
+ObjectReference Property KillTriggerSwap auto
 Quest Property archeronMines auto
 Sound Property waterSound auto
 bool doOnce = false
@@ -25,6 +26,7 @@ Event OnActivate(ObjectReference akActionRef)
 		waterMagic.TranslateToRef(waterMarker, 200)
 		Game.ShakeCamera()
 		waterSound.Play(Game.GetPlayer())
+		KillTriggerSwap.DisableNoWait()
 		doOnce = true
 	endif
 EndEvent

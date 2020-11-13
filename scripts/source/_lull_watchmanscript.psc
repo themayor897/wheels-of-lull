@@ -20,8 +20,19 @@ ObjectReference Property watchmanHelm auto
 ObjectReference Property watchmanGauntlets auto
 ActorBase Property watchMan auto
 ObjectReference Property xMarker auto
+weapon property ohmsRod auto
 
-Sound Property startupSound auto;
+Sound Property startupSound auto
+
+Event OnActivate(ObjectReference akActionRef)
+
+	if game.GetPlayer().GetItemCount(ohmsRod as form) < 1
+		debug.MessageBox("It looks like you'll need some sort of special staff to activate this, and you feel like you won't find that staff until you help out the Chronographers more")
+	else
+		debug.MessageBox("It seems like you should shoot this switch with your Rod of Ohm. This is extremely obvious, and you feel like a complete idiot for not realizing it.")
+	endIf
+endEvent
+
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Enchantment akSpell = akSource as Enchantment 
 	if(akSpell == ohmSpell)
