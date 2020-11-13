@@ -3,11 +3,11 @@ Scriptname _Lull_BottomFirerScript extends ObjectReference
 Spell Property lightSpell auto
 ObjectReference Property target auto
 
-Event OnLoad()
+Event OnCellAttach()
 	RegisterForSingleUpdate(2)
 EndEvent
 
-Event OnUnload()
+Event OnCellDetach()
 	UnregisterForUpdate()
 EndEvent
 
