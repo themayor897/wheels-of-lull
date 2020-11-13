@@ -6,8 +6,8 @@ Scriptname TIF__0429596E Extends TopicInfo Hidden
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
-getOwningQuest().setStage(4)
-akSpeaker.DisableNoWait()
+GetOwningQuest().setStage(4)
+cartWright.DisableNoWait()
 Game.ShakeCamera()
 Utility.Wait(3)
 Game.GetPlayer().MoveTo(CartCell)
@@ -20,3 +20,4 @@ EndFunction
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 ObjectReference Property CartCell auto
+ObjectReference Property cartWright  Auto  

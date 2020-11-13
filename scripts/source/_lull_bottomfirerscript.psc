@@ -2,6 +2,7 @@ Scriptname _Lull_BottomFirerScript extends ObjectReference
 
 Spell Property lightSpell auto
 ObjectReference Property target auto
+ObjectReference Property PlayerRef auto
 
 Event OnCellAttach()
 	RegisterForSingleUpdate(2)
@@ -12,8 +13,10 @@ Event OnCellDetach()
 EndEvent
 
 Event OnUpdate()
-	If (Is3DLoaded())
+	If (PlayerRef.GetParentCell() == self.GetParentCell())
 		lightSpell.Cast(self, target)
-	EndIf
 		RegisterForSingleUpdate(2)
+	Else
+		UnregisterForUpdate()
+	EndIf
 EndEvent

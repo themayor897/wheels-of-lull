@@ -7,10 +7,8 @@ Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 getOwningQuest().setStage(2)
-akSpeaker.DisableNoWait()
 Game.ShakeCamera()
 Utility.Wait(3)
-akSpeaker.EnableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT

@@ -12,7 +12,7 @@ if(Game.GetPlayer().GetItemCount(gemDiamond) >= 1)
 elseif(Game.GetPlayer().GetItemCount(gemDiamondFlawless) >= 1)
     Game.GetPlayer().RemoveItem(gemDiamondFlawless, 1)
 endif
-akSpeaker.DisableNoWait()
+TalkActivator.DisableNoWait()
 GetOwningQuest().SetStage(27)
 ;END CODE
 EndFunction
@@ -21,3 +21,5 @@ EndFunction
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 MiscObject Property gemDiamond auto
 MiscObject Property gemDiamondFlawless auto
+
+ObjectReference Property TalkActivator  Auto  

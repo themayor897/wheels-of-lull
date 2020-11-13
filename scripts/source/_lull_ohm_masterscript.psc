@@ -4,9 +4,11 @@ Enchantment Property ohmSpell auto
 ObjectReference Property disableOrMoveTo auto
 ObjectReference Property enableOrMoveWith auto
 Float Property movementSpeed auto
-Spell Property effectSpell auto
-bool doOnce = false
+weapon property ohmsRod auto
 Int Property eventType auto;
+Spell Property effectSpell auto							   
+
+bool doOnce = false								 
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Enchantment akSpell = akSource as Enchantment 
@@ -25,3 +27,12 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 		endif
 	endif
 EndEvent
+
+Event OnActivate(ObjectReference akActionRef)
+
+	if game.GetPlayer().GetItemCount(ohmsRod) < 1
+		debug.MessageBox("It looks like you'll need some sort of special staff to activate this, and you feel like you won't find that staff until you help out the Chronographers more.")
+	else
+		debug.MessageBox("It seems like you should shoot this switch with your Rod of Ohm. This is extremely obvious, and you feel like a complete idiot for not realizing it.")
+	endIf
+endEvent
