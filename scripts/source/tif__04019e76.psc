@@ -6,6 +6,7 @@ Scriptname TIF__04019E76 Extends TopicInfo Hidden
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
+GetOwningQuest().SetObjectiveCompleted(30)
 GetOwningQuest().CompleteQuest()
 GetOwningQuest().SetStage(35)
 Game.GetPlayer().RemoveItem(visor, 1)
