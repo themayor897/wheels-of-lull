@@ -37,7 +37,7 @@ Event OnActivate(ObjectReference akActionRef)
 		numberActivated = 2
 		return 
 	elseIf numberActivated == 2
-		debug.MessageBox("Despite your persistence, you feel like using this lantern will hold consequences. There's clearly plenty of reasons not to use the lantern, and you feel like you should only use this if you truly are, as the name suggest, a complete idiot. Using the lantern for any other reason would be foolish.")
+		debug.MessageBox("Despite your persistence, you feel like using this lantern will hold consequences. There's clearly plenty of reasons not to use the lantern, and you feel like you should only use this if you truly are, as the name suggests, a complete idiot. Using the lantern for any other reason would be foolish.")
 		numberActivated = 3
 		return 
 	elseIf numberActivated == 3
