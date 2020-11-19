@@ -18,14 +18,21 @@ Event OnEquipped(Actor akActor)
 		endif
   else
 		if(!archeronsMines.IsCompleted())
-			if(archeronsMines.GetStage() >= 2)
+			int bCurrentStage = archeronsMines.getstage()
+			if bCurrentStage == 2
+				archeronsMines.SetObjectiveCompleted(2)
 				archeronsMines.setStage(5)
 				archeronsMines.SetObjectiveDisplayed(5)
 				archeronsMines.SetObjectiveDisplayed(6)
 			endif
-			Game.GetPlayer().PlaceAtMe(teleportFX)
-			Utility.Wait(3)
-			Game.GetPlayer().MoveTo(archeronTeleport)
+			if bCurrentStage >= 2
+				Game.GetPlayer().PlaceAtMe(teleportFX)
+				Utility.Wait(3)
+				Game.GetPlayer().MoveTo(archeronTeleport)
+			endIf
+			if bCurrentStage == 1
+				Debug.MessageBox("You should probably read the note that came with the mysterious ball before you try to use it. After the incident with Uncle Sven last year, you should know better than to grab random balls.")
+			endIf
 		endif
   endIf
 endEvent
