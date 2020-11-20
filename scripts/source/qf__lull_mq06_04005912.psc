@@ -2,24 +2,14 @@
 ;NEXT FRAGMENT INDEX 5
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ06_Yagrum
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Yagrum Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Numinar Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY Location
 ;ALIAS PROPERTY TYPE LocationAlias
 LocationAlias Property Alias_Location Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY LocationCenterMarker
+;BEGIN ALIAS PROPERTY MQ06_Yagrum
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LocationCenterMarker Auto
+ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Fyr
@@ -27,22 +17,22 @@ ReferenceAlias Property Alias_LocationCenterMarker Auto
 ReferenceAlias Property Alias_MQ06_Fyr Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal, portal.GetHeight() - 70.0)
-portal.playAnimation("playAnim02")
-SetStage(5)
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY LocationCenterMarker
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_LocationCenterMarker Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Numinar
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Numinar Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_3
 Function Fragment_3()
 ;BEGIN CODE
 thalmorMarker.EnableNoWait()
 Game.GetPlayer().MoveTo(lullMarker)
+setobjectivedisplayed(10)
 llavados.EquipItem(accelerator, 1)
 llavados.AddItem(dwarvenArrow, 100)
 subori.MoveTo(suboriMarker)
@@ -55,6 +45,17 @@ numinarDoor.SetLockLevel(255)
 numinarDoor.Lock(true)
 lullTalkyActivator3.disable()
 portal.disable()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal, portal.GetHeight() - 70.0)
+portal.playAnimation("playAnim02")
+SetStage(5)
 ;END CODE
 EndFunction
 ;END FRAGMENT
