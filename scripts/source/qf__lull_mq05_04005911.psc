@@ -7,16 +7,6 @@ Scriptname QF__Lull_MQ05_04005911 Extends Quest Hidden
 ReferenceAlias Property Alias__MQ04_Fyr Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ04_Yagrum
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ04_Yagrum Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Location
-;ALIAS PROPERTY TYPE LocationAlias
-LocationAlias Property Alias_Location Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY LocationCenterMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_LocationCenterMarker Auto
@@ -25,6 +15,16 @@ ReferenceAlias Property Alias_LocationCenterMarker Auto
 ;BEGIN ALIAS PROPERTY _MQ04_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ04_Numinar Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY Location
+;ALIAS PROPERTY TYPE LocationAlias
+LocationAlias Property Alias_Location Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ04_Yagrum
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ04_Yagrum Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_0
@@ -38,6 +38,7 @@ Debug.MessageBox("You feel the world start to shift once more.")
 kmyQuest.numinar.moveto(Game.GetPlayer())
 kmyQuest.numinar.PlaceAtMe(kmyQuest.TeleportMarker)
 kmyQuest.numinar.enable()
+kmyQuest.numinar.evaluatepackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
