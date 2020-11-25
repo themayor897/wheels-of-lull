@@ -14,5 +14,4 @@ EndFunction
 ;END FRAGMENT
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
-Book Property instructions auto
-MiscObject Property teleportBall auto
+Quest Property Mines Auto

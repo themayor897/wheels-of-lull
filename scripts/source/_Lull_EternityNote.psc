@@ -13,14 +13,4 @@ Event OnRead()
 		doOnce = true
 	endif
 EndEvent
-
-Event OnContainerChanged(ObjectReference akNewContainer, ObjectReference akOldContainer)
-	if !doOnce2
-		if akNewContainer == Game.GetPlayer()
-			Mines.SetStage(1)
-			Mines.SetObjectiveDisplayed(1)
-			doOnce2 = true
-		endif
-	endif
-EndEvent
 		
