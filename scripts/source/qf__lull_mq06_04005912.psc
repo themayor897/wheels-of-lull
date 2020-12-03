@@ -7,11 +7,6 @@ Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 LocationAlias Property Alias_Location Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Yagrum
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Yagrum Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ06_Fyr
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Fyr Auto
@@ -20,6 +15,11 @@ ReferenceAlias Property Alias_MQ06_Fyr Auto
 ;BEGIN ALIAS PROPERTY LocationCenterMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_LocationCenterMarker Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Yagrum
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Numinar
@@ -53,7 +53,7 @@ EndFunction
 Function Fragment_1()
 ;BEGIN CODE
 portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal, portal.GetHeight() - 70.0)
+lullTalkyActivator3.MoveTo(portal)
 portal.playAnimation("playAnim02")
 SetStage(5)
 ;END CODE
