@@ -45,6 +45,9 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 			wasHit = true
 			numHits += 1
 			if(numHits >= 10)
+				self.StopTranslation()
+				hand1.StopTranslation()
+				hand2.StopTranslation()
 				deathSound.Play(Game.GetPlayer())
 				fxSpell.Cast(self, self)
 				Utility.Wait(1.5)
@@ -58,9 +61,6 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 				self.DisableNoWait()
 				hand1.DisableNoWait()
 				hand2.DisableNoWait()
-				self.StopTranslation()
-				hand1.StopTranslation()
-				hand2.StopTranslation()
 				llavados.MoveTo(llavadosMarker)
 				llavados.EnableNoWait()
 				memory.MoveTo(memoMarker)

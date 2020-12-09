@@ -54,3 +54,4 @@ Event OnUpdate()
 	endif
 EndEvent
 
+Function UnregisterforUpdate() native
