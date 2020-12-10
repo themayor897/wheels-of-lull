@@ -1,16 +1,20 @@
 Scriptname _Lull_Boiling_getbit extends ObjectReference  
 MiscObject Property drillBit auto
+
 Quest Property MQ04 auto
+Quest Property MinesStartup auto
+
 ObjectReference Property doorMarker1 auto
 ObjectReference Property guardsActivate auto
 ObjectReference Property bitModel auto
 ObjectReference Property blackFRF auto
-ObjectReference Property blueFRF auto
+
+
 Event OnActivate(ObjectReference akActivator)
 	Game.GetPlayer().AddItem(drillBit, 1)
 	doorMarker1.DisableNoWait(1) 
 	blackFRF.EnableNoWait()
-	blueFRF.EnableNoWait()
+	MinesStartup.setstage(5)
 	guardsActivate.EnableNoWait(1) 
 	MQ04.SetStage(30)
 	MQ04.SetObjectiveDisplayed(30)
