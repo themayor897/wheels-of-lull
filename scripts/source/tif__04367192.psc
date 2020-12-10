@@ -9,9 +9,13 @@ Actor akSpeaker = akSpeakerRef as Actor
 Game.GetPlayer().AddItem(instructions, 1)
 Game.GetPlayer().AddItem(teleportBall, 1)
 akSpeaker.DisableNoWait(1)
+GetOwningQuest().SetStage(1)
+GetOwningQuest().SetObjectiveDisplayed(1)
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
-Quest Property Mines Auto
+
+MiscObject Property instructions auto
+MiscObject Property teleportBall auto 
