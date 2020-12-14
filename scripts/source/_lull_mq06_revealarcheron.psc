@@ -1,12 +1,20 @@
 Scriptname _Lull_MQ06_RevealArcheron extends ActiveMagicEffect  
+
 Actor Property Fyr auto
 Actor Property Archeron auto
 Actor Property Yagrum auto
 Actor Property Masscroft auto
 
+ObjectReference Property ArcheronMarker auto
+ObjectReference Property MasscroftMarker auto
+
 Event OnEffectStart(Actor Target, Actor Caster)
-	Archeron.MoveTo(Fyr)
+	ArcheronMarker.moveto(Fyr)
 	Fyr.DisableNoWait()
-	Masscroft.MoveTo(Yagrum)
+	Archeron.MoveTo(ArcheronMarker)
+	MasscroftMarker.MoveTo(Yagrum)
 	Yagrum.DisableNoWait()
+	Masscroft.MoveTo(MasscroftMarker)
+	Archeron.evaluatepackage()
+	Masscroft.evaluatepackage()
 EndEvent
