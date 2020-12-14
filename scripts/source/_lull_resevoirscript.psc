@@ -16,6 +16,7 @@ Event OnActivate(ObjectReference akActionRef)
 	if(!doOnce )
 		archeronMines.SetObjectiveCompleted(6)
 		if(archeronMines.IsObjectiveCompleted(5))
+			archeronMines.setstage(7)
 			archeronMines.SetObjectiveDisplayed(7)
 		endif
 		magic1.DisableNoWait()

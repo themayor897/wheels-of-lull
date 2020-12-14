@@ -29,6 +29,7 @@ Event OnDeath(Actor akKiller)
 	steam9.DisableNoWait()
 	archeronMine.SetObjectiveCompleted(5)
 	if(archeronMine.IsObjectiveCompleted(6))
+		archeronMine.SetStage(7)
 		archeronMine.SetObjectiveDisplayed(7)
 	endif
 	lava1.DisableNoWait(1)

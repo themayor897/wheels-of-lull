@@ -12,9 +12,7 @@ Event OnEquipped(Actor akActor)
 		Utility.Wait(3)
 		Game.GetPlayer().MoveTo(lullTeleport)
 		if(archeronsMines.IsObjectiveDisplayed(7))
-			archeronsMines.setStage(7)
-			archeronsMines.SetObjectiveCompleted(7)
-			archeronsMines.CompleteQuest()
+			archeronsMines.setStage(8)
 		endif
   else
 		if(!archeronsMines.IsCompleted())
