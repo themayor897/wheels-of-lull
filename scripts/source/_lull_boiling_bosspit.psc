@@ -15,7 +15,7 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 		if(NumFalls.getvalue() < TotalFalls.getvalue())
 			bossEnemy.MoveToMyEditorLocation()
 			NumFalls.Mod(1.0)
-			bossEnemy.damageav("health", ((bossEnemy.getbaseav("health"))/3))
+			bossEnemy.damageav("health", 250)
 			bossScream.Play(Game.GetPlayer())
 		else
 			bossEnemy.DisableNoWait()
