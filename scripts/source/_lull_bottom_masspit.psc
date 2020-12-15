@@ -3,10 +3,14 @@ Scriptname _Lull_Bottom_Masspit extends ObjectReference
 _Lull_masscroftcombatscript  MCS
 
 Actor Property masscroft auto
+Actor Property PlayerRef auto
 
 ObjectReference Property collisionWall auto
 ObjectReference Property resetMarker auto
 ObjectReference Property grate auto
+ObjectReference Property startMarker auto
+
+Armor Property lull_securityPack auto
 
 Sound Property massScream auto
 Sound Property massDie auto
@@ -23,6 +27,7 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 		if(NumFalls.getvalue() < TotalFalls.getvalue())
 			massScream.Play(Game.GetPlayer())
 			masscroft.MoveTo(resetMarker)
+			masscroft.ForceRemoveRagdollFromWorld()
 			NumFalls.Mod(1.0)
 			masscroft.damageav("health", 300)
 			masscroft.StartCombat(Game.GetPlayer())
@@ -35,5 +40,12 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 			grate.DisableNoWait()
 			collisionWall.DisableNoWait()
 		endif
+	elseif (akActionRef == PlayerRef)
+		if PlayerRef.IsEquipped(lull_securityPack)
+			PlayerRef.MoveTo(startMarker)
+		else 
+			PlayerRef.Kill()
+		endif
 	endif
+
 EndEvent
