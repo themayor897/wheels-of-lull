@@ -7,6 +7,11 @@ Scriptname QF__Lull_MQ07_05005913 Extends Quest Hidden
 ReferenceAlias Property Alias_archeron Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY MQ07_ArcheronTA
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
+;END ALIAS PROPERTY
+
 ;BEGIN FRAGMENT Fragment_1
 Function Fragment_1()
 ;BEGIN CODE
@@ -15,10 +20,11 @@ Game.GetPlayer().MoveTo(moveToRamon)
 archeronFight.Remove()
 Alias_archeron.TryToDisableNoWait()
 ;old ramon master script
-Game.DisablePlayerControls()
-Utility.Wait(2)
-archeronTaunt.start()
 numinar.MoveTo(numinarMarker)
+Game.DisablePlayerControls()
+Utility.Wait(1)
+archeronTaunt.start()
+Utility.Wait(3)
 ramonSkull.EnableNoWait()
 ramonHandL.EnableNoWait()
 ramonHandR.EnableNoWait()
