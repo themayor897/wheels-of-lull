@@ -1,6 +1,4 @@
 Scriptname _Lull_Archeron_FinalBossScript extends ObjectReference  
-;Master
-ObjectReference Property moveToRamon auto
 
 ;For hitting
 Enchantment Property ohmsBlast auto
@@ -106,9 +104,6 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 				explosionFX.Cast(self, Game.GetPlayer())
 				Utility.Wait(0.5)
 				mq07.SetStage(9)
-				Game.GetPlayer().MoveTo(moveToRamon)
-				archeronFight.Remove()
-				archeron.DisableNoWait()
 			else
 				archeronWeak = false
 				archeron.RemoveSpell(purpleFX)
