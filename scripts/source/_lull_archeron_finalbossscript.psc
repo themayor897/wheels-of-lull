@@ -34,6 +34,11 @@ Spell Property purpleFX auto
 Quest Property mq07 auto
 MusicType Property archeronFight auto
 
+;Post Scene
+
+Scene Property AllTheStops auto
+
+
 Event OnCombatStateChanged(Actor akTarget, int aeCombatState)
    if (aeCombatState == 1)
 		if(archeron.GetParentCell() == finalBossCell)
@@ -95,6 +100,7 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 			explosionFX.Cast(self, Game.GetPlayer())
 			archeronHits += 1
 			if(archeronHits >= 5)
+				AllTheStops.start()
 				explosionFX.Cast(self, Game.GetPlayer())
 				Utility.Wait(1.5)
 				explosionFX.Cast(self, Game.GetPlayer())

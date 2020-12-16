@@ -22,9 +22,7 @@ Alias_archeron.TryToDisableNoWait()
 ;old ramon master script
 numinar.MoveTo(numinarMarker)
 Game.DisablePlayerControls()
-Utility.Wait(1)
-archeronTaunt.start()
-Utility.Wait(3)
+Utility.Wait(2)
 ramonSkull.EnableNoWait()
 ramonHandL.EnableNoWait()
 ramonHandR.EnableNoWait()
@@ -60,6 +58,5 @@ ObjectReference Property ramonHandRMarker2 auto
 ObjectReference Property ramonHandRMarker3 auto
 
 ;Speaker
-Scene Property archeronTaunt auto
 Actor Property numinar auto
 ObjectReference Property numinarMarker auto
