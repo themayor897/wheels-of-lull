@@ -60,3 +60,5 @@ ObjectReference Property ramonHandRMarker3 auto
 ;Speaker
 Actor Property numinar auto
 ObjectReference Property numinarMarker auto
+
+Scene Property AllTheStops  Auto  
