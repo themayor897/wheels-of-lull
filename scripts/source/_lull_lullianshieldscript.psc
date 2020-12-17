@@ -1,44 +1,37 @@
 Scriptname _Lull_LullianShieldScript extends ActiveMagicEffect  
 
 Actor selfRef
+Actor Property PlayerRef auto
 Spell  Property ChargeSpell1 Auto
 Sound Property castSound auto
 
 EVENT OnEffectStart(Actor Target, Actor Caster)	
 	selfRef = caster
-	if (selfref == Game.GetPlayer())
-		registerForAnimationEvent(selfRef, "bashRelease")
+	if (selfref == PlayerRef)
+		registerForAnimationEvent(caster, "bashRelease")
 	else
-		registerForAnimationEvent(selfRef, "bashExit")
-		registerForAnimationEvent(selfRef, "bashStop")
+		registerForAnimationEvent(caster, "bashExit")
+		registerForAnimationEvent(caster, "bashStop")
 	endif
 	;debug.trace("Registering for Single Update")
-ENDEVENT
-
-
-
-EVENT OnEffectFinish(Actor Target, Actor Caster)	
-	unregisterForAnimationEvent(selfRef, "bashRelease")
-	unregisterForAnimationEvent(selfRef, "bashExit")
-	unregisterForAnimationEvent(selfRef, "bashStop")
 ENDEVENT
 	
 
 Event OnAnimationEvent(ObjectReference akSource, string EventName)
 	
-	if (selfref == Game.GetPlayer())
+	if (selfref == PlayerRef)
 		if (eventName == "bashRelease")
-			ChargeSpell1.cast(selfRef)
-			castSound.Play(Game.GetPlayer())
+			ChargeSpell1.cast(PlayerRef)
+			castSound.Play(PlayerRef)
 			;debug.Notification("Shield at LEVEL 0")
 		endif
 	else
 		if (eventName == "bashExit") || (eventName == "bashStop")
 			ChargeSpell1.cast(selfRef)
-			castSound.Play(Game.GetPlayer())
+			castSound.Play(PlayerRef)
 			selfRef.SetSubGraphFloatVariable("fToggleBlend", 0)
 			;debug.Notification("Shield at LEVEL 0")
 		endif
 	endif
 		
-endEVENT
+endEVENT 
