@@ -8,7 +8,7 @@ Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 _Lull_MQ01.SetObjectiveCompleted(10)
 Utility.waitgametime(12)
-if (_Lull_MQ01.GetStage() == 20) 
+if (_Lull_MQ01.GetStage() <= 20) 
 _Lull_Actor_Llavados.MoveToMyEditorLocation()
 endif
 ;END CODE
@@ -19,9 +19,9 @@ EndFunction
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
-_Lull_MQ01.setstage(20)
-_Lull_MQ01.SetObjectiveDisplayed(20)
-StoneHoleMine.AddToMap(true)
+_Lull_MQ01.setstage(12)
+_Lull_MQ01.SetObjectiveDisplayed(12)
+StoneHoleMine.AddToMap()
 ;END CODE
 EndFunction
 ;END FRAGMENT

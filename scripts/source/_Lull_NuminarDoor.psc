@@ -5,7 +5,7 @@ Quest Property MQ02 Auto
 Event OnCellAttach()
 
 	If !MQ02.IsStageDone(4)
-		self.lock()
+		self.setlocklevel(255)
 	endif
 	
 endevent
