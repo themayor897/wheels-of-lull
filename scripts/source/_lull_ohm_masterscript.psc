@@ -20,8 +20,6 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 				disableOrMoveTo.DisableNoWait(1)
 			else
 				enableOrMoveWith.TranslateToRef(disableOrMoveTo, movementSpeed)
-				Utility.Wait(0.5)
-				enableOrMoveWith.DisableNoWait(1)
 			endif
 			doOnce = true
 		endif
