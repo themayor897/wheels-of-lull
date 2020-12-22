@@ -8,6 +8,7 @@ Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 GetOwningQuest().SetStage(70)
 GetOwningQuest().CompleteQuest()
+GetOwningQuest().Stop()
 ;END CODE
 EndFunction
 ;END FRAGMENT

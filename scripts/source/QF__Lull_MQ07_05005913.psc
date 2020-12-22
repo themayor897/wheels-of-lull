@@ -16,9 +16,10 @@ ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
 Function Fragment_1()
 ;BEGIN CODE
 ;From Old Archeron Final Boss Script
+archeron.StopCombat()
 Game.GetPlayer().MoveTo(moveToRamon)
 archeronFight.Remove()
-Alias_archeron.TryToDisableNoWait()
+archeron.DisableNoWait()
 ;old ramon master script
 numinar.MoveTo(numinarMarker)
 Game.DisablePlayerControls()
@@ -62,3 +63,5 @@ Actor Property numinar auto
 ObjectReference Property numinarMarker auto
 
 Scene Property AllTheStops  Auto  
+
+Actor Property archeron  Auto  

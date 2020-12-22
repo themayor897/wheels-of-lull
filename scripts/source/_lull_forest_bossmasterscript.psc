@@ -36,6 +36,9 @@ ObjectReference Property playerMarker auto
 MusicType Property bossMusic auto
 Quest Property MQ05 auto
 
+Actor Property Numinar auto
+ObjectReference Property numinarmarker auto
+
 Event OnLoad()
 	RegisterForSingleUpdate(15)
 	isInPlay = TRUE
@@ -123,6 +126,8 @@ Event OnDeath(Actor akKiller)
 	fyrSay.Say(FyrTopic, fyr, true)
 	Utility.Wait(6)
 	Game.GetPlayer().MoveTo(playerMarker)
+	numinar.moveto(numinarmarker)
+	numinar.evaluatepackage()
 	blackout.Remove()
 	MQ05.SetStage(15)
 	Game.EnablePlayerControls()

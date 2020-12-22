@@ -8,13 +8,18 @@ Actor Property Masscroft auto
 ObjectReference Property ArcheronMarker auto
 ObjectReference Property MasscroftMarker auto
 
+Spell Property ExplosionSpell auto
+
 Event OnEffectStart(Actor Target, Actor Caster)
 	ArcheronMarker.moveto(Fyr)
-	Fyr.DisableNoWait()
-	Archeron.MoveTo(ArcheronMarker)
 	MasscroftMarker.MoveTo(Yagrum)
-	Yagrum.DisableNoWait()
+	Fyr.Disable()
+	Yagrum.Disable()
+EndEvent
+
+Event OnEffectFinish (Actor Target, Actor Caster)
+	Archeron.MoveTo(ArcheronMarker)
 	Masscroft.MoveTo(MasscroftMarker)
 	Archeron.evaluatepackage()
 	Masscroft.evaluatepackage()
-EndEvent
+EndEvent 
