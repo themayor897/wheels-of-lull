@@ -6,8 +6,8 @@ Scriptname TIF__04024241 Extends TopicInfo Hidden
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
-Game.GetPlayer().AddItem(robes, 1)
-Game.GetPlayer().AddItem(notes, 1)
+Numinar.RemoveItem(robes, 1, false, PlayerRef)
+Numinar.RemoveItem(notes, 1, false, PlayerRef)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -15,3 +15,6 @@ EndFunction
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 Armor Property robes auto
 Book Property notes auto
+Actor Property numinar  Auto  
+
+Actor Property PlayerRef  Auto  

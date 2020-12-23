@@ -1,6 +1,11 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 2
+;NEXT FRAGMENT INDEX 3
 Scriptname QF__Lull_SQ_ArcheronMines_05005921 Extends Quest Hidden
+
+;BEGIN ALIAS PROPERTY Mines_Player
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Mines_Player Auto
+;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY Mines_Teleport
 ;ALIAS PROPERTY TYPE ReferenceAlias
@@ -12,10 +17,14 @@ ReferenceAlias Property Alias_Mines_Teleport Auto
 ReferenceAlias Property Alias_Mines_Instructions Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY Mines_Player
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mines_Player Auto
-;END ALIAS PROPERTY
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
+;BEGIN CODE
+debug.notification("Note from The Eternity added")
+debug.notification("Archeron's Mines Teleporter added")
+;END CODE
+EndFunction
+;END FRAGMENT
 
 ;BEGIN FRAGMENT Fragment_0
 Function Fragment_0()

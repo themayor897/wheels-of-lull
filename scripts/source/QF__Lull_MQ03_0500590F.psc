@@ -2,14 +2,9 @@
 ;NEXT FRAGMENT INDEX 6
 Scriptname QF__Lull_MQ03_0500590F Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY _MQ03_JournalMarker
+;BEGIN ALIAS PROPERTY _MQ03_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_JournalMarker Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Secarius
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Secarius Auto
+ReferenceAlias Property Alias__MQ03_Numinar Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_Subori
@@ -17,34 +12,9 @@ ReferenceAlias Property Alias__MQ03_Secarius Auto
 ReferenceAlias Property Alias__MQ03_Subori Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ03_Butter3
+;BEGIN ALIAS PROPERTY _MQ03_Secarius
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter3 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter2
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter2 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter4
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter4 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter1
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter1 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_KeyMarker
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_KeyMarker Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Key
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Key Auto
+ReferenceAlias Property Alias__MQ03_Secarius Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_GuardF
@@ -52,24 +22,9 @@ ReferenceAlias Property Alias__MQ03_Key Auto
 ReferenceAlias Property Alias__MQ03_GuardF Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ03_Journal
+;BEGIN ALIAS PROPERTY _MQ03_Butter4
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Journal Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter6
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter6 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Avarri
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Avarri Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Numinar Auto
+ReferenceAlias Property Alias__MQ03_Butter4 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_Llavados
@@ -77,9 +32,64 @@ ReferenceAlias Property Alias__MQ03_Numinar Auto
 ReferenceAlias Property Alias__MQ03_Llavados Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY _MQ03_Key
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Key Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_KeyMarker
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_KeyMarker Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Journal
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Journal Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_ForgedNote
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_ForgedNote Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Butter6
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter6 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Robes
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Robes Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY _MQ03_Butter5
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ03_Butter5 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_JournalMarker
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_JournalMarker Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Butter2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter2 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Butter1
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter1 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Butter3
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter3 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Avarri
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Avarri Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03l_GuardM

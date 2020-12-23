@@ -37,7 +37,7 @@ MusicType Property archeronFight auto
 ;Post Scene
 
 Topic Property AllTheStops auto
-
+Activator Property xMarkerActivator auto
 
 Event OnCombatStateChanged(Actor akTarget, int aeCombatState)
    if (aeCombatState == 1)
@@ -100,7 +100,11 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 			explosionFX.Cast(self, Game.GetPlayer())
 			archeronHits += 1
 			if(archeronHits >= 5)
-				Archeron.Say(AllTheStops, none, true)
+				archeron.damageav("health", 6001)
+				archeronFight.Remove()
+				archeron.stopcombat()
+				;ObjectReference ArchSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
+				;ArchSay.Say(AllTheStops, Archeron, True)
 				explosionFX.Cast(self, Game.GetPlayer())
 				Utility.Wait(1.5)
 				explosionFX.Cast(self, Game.GetPlayer())
@@ -109,7 +113,7 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 				Utility.Wait(2.5)
 				explosionFX.Cast(self, Game.GetPlayer())
 				Utility.Wait(0.5)
-				mq07.SetStage(9)
+				MQ07.setstage(8)
 			else
 				archeronWeak = false
 				archeron.RemoveSpell(purpleFX)
