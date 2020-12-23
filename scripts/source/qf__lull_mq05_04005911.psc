@@ -1,11 +1,6 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 1
+;NEXT FRAGMENT INDEX 3
 Scriptname QF__Lull_MQ05_04005911 Extends Quest Hidden
-
-;BEGIN ALIAS PROPERTY _MQ04_Fyr
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ04_Fyr Auto
-;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY LocationCenterMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
@@ -20,6 +15,11 @@ ReferenceAlias Property Alias__MQ04_Numinar Auto
 ;BEGIN ALIAS PROPERTY Location
 ;ALIAS PROPERTY TYPE LocationAlias
 LocationAlias Property Alias_Location Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ04_Fyr
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ04_Fyr Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ04_Yagrum
@@ -39,6 +39,14 @@ kmyQuest.numinar.moveto(Game.GetPlayer())
 kmyQuest.numinar.PlaceAtMe(kmyQuest.TeleportMarker)
 kmyQuest.numinar.enable()
 kmyQuest.numinar.evaluatepackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+;started via Old Tho Mahalis Script
 ;END CODE
 EndFunction
 ;END FRAGMENT
