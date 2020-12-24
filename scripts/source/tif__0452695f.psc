@@ -7,7 +7,8 @@ Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 GetOwningQuest().SetStage(10)
-lullBarrier.DisableNoWait(1)
+akSpeaker.setdontmove(false)
+lullbarrier.disablenowait()
 Game.EnablePlayerControls()
 ;END CODE
 EndFunction
