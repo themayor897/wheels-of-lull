@@ -7,6 +7,8 @@ ObjectReference property numinarBarrier auto
 quest property skySpy auto
 globalvariable property barreirOne auto
 
+ObjectReference property marker1 auto
+
 Bool doOnce = false
 
 
@@ -19,6 +21,7 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 					game.DisablePlayerControls(true, true, false, false, false, true, true, false, 0)
 					securitySound.Play(game.GetPlayer() as ObjectReference)
 					numinar.EnableNoWait(1 as Bool)
+					numinar.moveto(marker1)
 					numinarBarrier.EnableNoWait(1 as Bool)
 					utility.Wait(4 as Float)
 					numinarTalks.Start()

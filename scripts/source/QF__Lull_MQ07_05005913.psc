@@ -12,20 +12,27 @@ ReferenceAlias Property Alias_archeron Auto
 ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
 ;BEGIN CODE
-;First Stage
-;Starts via MQ06_EndTriggerScript
-;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
+;About to enter/entering Snow-Throat Cell
+;Numinar dialogue
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
 ;BEGIN CODE
-;Hammar Dialogue conditioned
+if(usedVariable.GetValue() >= 1)
+ Game.GetPlayer().MoveTo(failmarker)
+else
+ Game.GetPlayer().MoveTo(playerMarker)
+endif
+llavados.DisableNoWait()
+memory.DisableNoWait()
+llavadosAccelerator.EnableNoWait()
+myDoor.lock(False)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -39,7 +46,7 @@ Utility.Wait(1)
 ObjectReference ArchSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
 ArchSay.Say(ArcheronFinal, Archeron, True)
 collapse.play(Game.getplayer())
-Utility.Wait(2)
+Utility.Wait(4)
 Setstage(9)
 ;END CODE
 EndFunction
@@ -67,27 +74,20 @@ Game.ShakeCamera(Game.GetPlayer(), 0.75, 20)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
 ;BEGIN CODE
-if(usedVariable.GetValue() >= 1)
- Game.GetPlayer().MoveTo(failmarker)
-else
- Game.GetPlayer().MoveTo(playerMarker)
-endif
-llavados.DisableNoWait()
-memory.DisableNoWait()
-llavadosAccelerator.EnableNoWait()
-myDoor.lock(False)
+;First Stage
+;Starts via MQ06_EndTriggerScript
+;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
 ;BEGIN CODE
-;About to enter/entering Snow-Throat Cell
-;Numinar dialogue
+;Hammar Dialogue conditioned
 ;END CODE
 EndFunction
 ;END FRAGMENT
