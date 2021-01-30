@@ -7,24 +7,15 @@ Scriptname QF__Lull_SQ_ArcheronMines_05005921 Extends Quest Hidden
 ReferenceAlias Property Alias_Mines_Player Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY Mines_Teleport
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mines_Teleport Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY Mines_Instructions
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Mines_Instructions Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_2
-Function Fragment_2()
-;BEGIN CODE
-debug.notification("Note from The Eternity added")
-debug.notification("Archeron's Mines Teleporter added")
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY Mines_Teleport
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Mines_Teleport Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_0
 Function Fragment_0()
@@ -36,4 +27,21 @@ stop()
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
+;BEGIN CODE
+debug.notification("Note from The Eternity added")
+_Lull_ITMNoteUp.Play(PlayerRef)
+debug.notification("Archeron's Mines Teleporter added")
+ITMGenericUp.Play(PlayerRef)
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
+
+Sound Property _Lull_ITMNoteUp  Auto  
+
+Sound Property ITMGenericUp  Auto  
+
+ObjectReference Property PlayerRef  Auto  

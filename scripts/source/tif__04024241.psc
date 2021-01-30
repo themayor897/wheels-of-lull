@@ -9,7 +9,9 @@ Actor akSpeaker = akSpeakerRef as Actor
 chest.RemoveItem(robes, 1, false, PlayerRef)
 chest.RemoveItem(notes, 1, false, PlayerRef)
 Debug.Notification("Enchanted Thalmor Robes Added")
+ITMClothingUp.Play(PlayerRef)
 Debug.Notification("Forged Notes Added")
+ITMNoteUp.Play(PlayerRef)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -20,3 +22,7 @@ Book Property notes auto
 ObjectReference Property chest Auto  
 
 Actor Property PlayerRef  Auto  
+
+Sound Property ITMClothingUp  Auto  
+
+Sound Property ITMNoteUp  Auto  
