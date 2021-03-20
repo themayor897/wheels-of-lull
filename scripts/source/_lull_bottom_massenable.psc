@@ -2,6 +2,7 @@ Scriptname _Lull_Bottom_MassEnable extends ObjectReference
 
 Actor Property masscroft auto
 ObjectReference Property grate auto
+ObjectReference Property grate2 auto
 ObjectReference Property grateEnd auto
 ObjectReference Property xMarker auto
 bool doOnce = false
@@ -14,6 +15,7 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 		Game.DisablePlayerControls()
 		doorClose.Play(Game.GetPlayer())
 		grate.TranslateToRef(grateEnd, 600)
+		grate2.enablenowait()
 		Utility.Wait(3)
 		masscroft.MoveTo(xMarker)
 		massCroftAppear.Play(Game.GetPlayer())
