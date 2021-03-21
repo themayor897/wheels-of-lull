@@ -4,6 +4,9 @@ Actor selfRef
 Actor Property PlayerRef auto
 Spell  Property ChargeSpell1 Auto
 Sound Property castSound auto
+GlobalVariable Property _lull_shieldstamina auto
+
+Float RestoreMyStamina
 
 EVENT OnEffectStart(Actor Target, Actor Caster)	
 	selfRef = caster
@@ -13,7 +16,9 @@ EVENT OnEffectStart(Actor Target, Actor Caster)
 		registerForAnimationEvent(caster, "bashExit")
 		registerForAnimationEvent(caster, "bashStop")
 	endif
-	;debug.trace("Registering for Single Update")
+	
+	RestoreMyStamina = _lull_shieldstamina.GetValue()
+
 ENDEVENT
 	
 
@@ -23,14 +28,15 @@ Event OnAnimationEvent(ObjectReference akSource, string EventName)
 		if (eventName == "bashRelease")
 			ChargeSpell1.cast(PlayerRef)
 			castSound.Play(PlayerRef)
-			;debug.Notification("Shield at LEVEL 0")
+			Utility.Wait(1)
+			If RestoreMyStamina == 1
+				PlayerRef.RestoreActorValue("stamina", 50)
+			endif
 		endif
 	else
 		if (eventName == "bashExit") || (eventName == "bashStop")
 			ChargeSpell1.cast(selfRef)
 			castSound.Play(PlayerRef)
-			selfRef.SetSubGraphFloatVariable("fToggleBlend", 0)
-			;debug.Notification("Shield at LEVEL 0")
 		endif
 	endif
 		
