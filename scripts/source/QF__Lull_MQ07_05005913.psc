@@ -1,5 +1,5 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 8
+;NEXT FRAGMENT INDEX 9
 Scriptname QF__Lull_MQ07_05005913 Extends Quest Hidden
 
 ;BEGIN ALIAS PROPERTY archeron
@@ -12,11 +12,17 @@ ReferenceAlias Property Alias_archeron Auto
 ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
 ;BEGIN CODE
-;About to enter/entering Snow-Throat Cell
-;Numinar dialogue
+blackout.apply()
+collapse.play(game.getplayer())
+Utility.Wait(1)
+ObjectReference ArchSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
+ArchSay.Say(ArcheronFinal, Archeron, True)
+collapse.play(Game.getplayer())
+Utility.Wait(4)
+Setstage(9)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -37,17 +43,38 @@ myDoor.lock(False)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
+;BEGIN FRAGMENT Fragment_8
+Function Fragment_8()
 ;BEGIN CODE
-blackout.apply()
-collapse.play(game.getplayer())
-Utility.Wait(1)
-ObjectReference ArchSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
-ArchSay.Say(ArcheronFinal, Archeron, True)
-collapse.play(Game.getplayer())
-Utility.Wait(4)
-Setstage(9)
+;Talked to Numinar, Archeron behind me.
+Numinar.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+;About to enter/entering Snow-Throat Cell
+;Numinar dialogue
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Hammar Dialogue conditioned
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
+;BEGIN CODE
+;First Stage
+;Starts via MQ06_EndTriggerScript
+;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -70,24 +97,6 @@ ramonSkull.EnableNoWait()
 ramonHandL.EnableNoWait()
 ramonHandR.EnableNoWait()
 Game.ShakeCamera(Game.GetPlayer(), 0.75, 20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;First Stage
-;Starts via MQ06_EndTriggerScript
-;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
-;BEGIN CODE
-;Hammar Dialogue conditioned
 ;END CODE
 EndFunction
 ;END FRAGMENT

@@ -10,12 +10,17 @@ Actor Property massCroft auto
 Activator Property teleporter auto
 bool doOnce = FALSE
 GlobalVariable property NumFalls auto
+GlobalVariable property TotalFalls auto
+float HitDamage
+float ReqHits
 
 Event OnCombatStateChanged(Actor akTarget, int aeCombatState)
   if (akTarget == Game.GetPlayer())
 	if(self.GetParentCell() == bottomCell)
 		if(!doOnce)
 			RegisterForSingleUpdate(7)
+			CheckHealth(massCroft)
+			ReqHits = TotalFalls.GetValue()
 			doOnce = TRUE
 		endif
 	endif
@@ -34,28 +39,28 @@ Event OnUpdate()
 			self.PlaceAtMe(teleporter, 1)
 			self.MoveTo(teleportMarker1)
 			masscroft.Resurrect()
-			masscroft.DamageAV("Health", (hits*300))
+			masscroft.DamageAV("Health", (hits*HitDamage))
 			massCroft.StartCombat(Game.GetPlayer())
 			invisibleSpell.Cast(massCroft, massCroft)
 		elseif(randomNumber == 1)
 			self.PlaceAtMe(teleporter, 1)
 			self.MoveTo(teleportMarker2)
 			masscroft.Resurrect()
-			masscroft.DamageAV("Health", (hits*300))
+			masscroft.DamageAV("Health", (hits*HitDamage))
 			massCroft.StartCombat(Game.GetPlayer())
 			invisibleSpell.Cast(massCroft, massCroft)
 		elseif(randomNumber == 2)
 			self.PlaceAtMe(teleporter, 1)
 			self.MoveTo(teleportMarker3)
 			masscroft.Resurrect()
-			masscroft.DamageAV("Health", (hits*300))
+			masscroft.DamageAV("Health", (hits*HitDamage))
 			massCroft.StartCombat(Game.GetPlayer())
 			invisibleSpell.Cast(massCroft, massCroft)
 		elseif(randomNumber == 3)
 			self.PlaceAtMe(teleporter, 1)
 			self.MoveTo(teleportMarker4)
 			masscroft.Resurrect()
-			masscroft.DamageAV("Health", (hits*300))
+			masscroft.DamageAV("Health", (hits*HitDamage))
 			massCroft.StartCombat(Game.GetPlayer())
 			invisibleSpell.Cast(massCroft, massCroft)
 		endif
@@ -64,3 +69,11 @@ Event OnUpdate()
 		endif
 	endif
 EndEvent 
+
+Function CheckHealth(Actor akActor)
+	Float BaseValue = akActor.GetBaseActorValue("Health")
+	Float CurrentMaxValue = Math.Ceiling(akActor.GetActorValue("Health") / akActor.GetActorValuePercentage("Health"))
+	Float ValueDifference = CurrentMaxValue - (akactor.GetActorValue("Health"))
+	akactor.RestoreAV("Health", ValueDifference)
+	HitDamage = ((CurrentMaxValue / ReqHits) - 1)
+EndFunction

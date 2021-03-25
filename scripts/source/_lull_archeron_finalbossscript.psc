@@ -1,4 +1,4 @@
-Scriptname _Lull_Archeron_FinalBossScript extends ObjectReference  
+Scriptname _Lull_Archeron_FinalBossScript extends Actor 
 
 ;For hitting
 Enchantment Property ohmsBlast auto
@@ -9,6 +9,8 @@ Spell Property explosionFX auto
 
 bool archeronWeak = false;
 int archeronHits = 0 ;
+Float HitDamage
+
 
 ;Teleportation
 int randomLocation;
@@ -24,6 +26,7 @@ Spell Property archeronAttackSpell auto
 ;Initial
 Cell Property finalBossCell auto
 Actor Property archeron auto
+bool doOnce = FALSE
 
 ;Effects
 int randomEffect
@@ -43,39 +46,45 @@ Event OnCombatStateChanged(Actor akTarget, int aeCombatState)
    if (aeCombatState == 1)
 		if(archeron.GetParentCell() == finalBossCell)
 			RegisterForSingleUpdate(8)
+			if(!doOnce)
+				CheckHealth(self)
+				doOnce = TRUE
+			endif
 		endif
   endIf
 endEvent
 
 Event OnUpdate()
-	if(archeronWeak)
-		archeronWeak = false
-		archeron.RemoveSpell(purpleFX)
-		archeron.setDontMove(false)
-		randomAttack = 2
-	else
-		randomAttack = Utility.RandomInt(0, 2)
+	if (!self.isDisabled())
+		if(archeronWeak)
+			archeronWeak = false
+			archeron.RemoveSpell(purpleFX)
+			archeron.setDontMove(false)
+			randomAttack = 2
+		else
+			randomAttack = Utility.RandomInt(0, 2)
+		endif
+		randomLocation = Utility.RandomInt(0, 3)
+		if(randomAttack == 0)
+			RandomTeleport()
+		elseif(randomAttack == 1)
+			RandomTeleport()
+			randomLocation = Utility.RandomInt(0, 3)
+			Utility.Wait(0.5)
+			RandomTeleport()
+			randomLocation = Utility.RandomInt(0, 3)
+			Utility.Wait(0.5)	
+			RandomTeleport()
+			randomLocation = Utility.RandomInt(0, 3)
+			Utility.Wait(0.5)	
+			RandomTeleport()
+		else
+			ObjectReference fireShot = archeron.PlaceAtMe(fireShooter)
+			fireShot.SetPosition(fireShot.GetPositionX(), fireShot.GetPositionY(), fireShot.GetPositionZ() + 10)
+			RandomTeleport()
+		endif
+		RegisterForSingleUpdate(8)
 	endif
-	randomLocation = Utility.RandomInt(0, 3)
-	if(randomAttack == 0)
-		RandomTeleport()
-	elseif(randomAttack == 1)
-		RandomTeleport()
-		randomLocation = Utility.RandomInt(0, 3)
-		Utility.Wait(0.5)
-		RandomTeleport()
-		randomLocation = Utility.RandomInt(0, 3)
-		Utility.Wait(0.5)	
-		RandomTeleport()
-		randomLocation = Utility.RandomInt(0, 3)
-		Utility.Wait(0.5)	
-		RandomTeleport()
-	else
-		ObjectReference fireShot = archeron.PlaceAtMe(fireShooter)
-		fireShot.SetPosition(fireShot.GetPositionX(), fireShot.GetPositionY(), fireShot.GetPositionZ() + 10)
-		RandomTeleport()
-	endif
-	RegisterForSingleUpdate(8)
 EndEvent
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack,   bool abBashAttack, bool abHitBlocked)
@@ -100,20 +109,7 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 			explosionFX.Cast(self, Game.GetPlayer())
 			archeronHits += 1
 			if(archeronHits >= 5)
-				archeron.damageav("health", 6001)
-				archeronFight.Remove()
-				archeron.stopcombat()
-				;ObjectReference ArchSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
-				;ArchSay.Say(AllTheStops, Archeron, True)
-				explosionFX.Cast(self, Game.GetPlayer())
-				Utility.Wait(1.5)
-				explosionFX.Cast(self, Game.GetPlayer())
-				Utility.Wait(0.5)
-				explosionFX.Cast(self, Game.GetPlayer())
-				Utility.Wait(2.5)
-				explosionFX.Cast(self, Game.GetPlayer())
-				Utility.Wait(0.5)
-				MQ07.setstage(8)
+				TransToRamon()
 			else
 				archeronWeak = false
 				archeron.RemoveSpell(purpleFX)
@@ -129,21 +125,25 @@ Function RandomTeleport()
 		if(randomLocation == 0)
 			archeron.MoveTo(teleportMarker1)
 			archeron.Resurrect()
+			archeron.DamageAV("health", ((archeronhits as float)*HitDamage))
 			RandomEffect()
 			archeron.StartCombat(Game.GetPlayer())
 		elseif(randomLocation == 1)
 			archeron.MoveTo(teleportMarker2)
 			archeron.Resurrect()
+			archeron.DamageAV("health", ((archeronhits as float)*HitDamage))
 			RandomEffect()
 			archeron.StartCombat(Game.GetPlayer())
 		elseif(randomLocation == 2)
 			archeron.MoveTo(teleportMarker3)
 			archeron.Resurrect()
+			archeron.DamageAV("health", ((archeronhits as float)*HitDamage))
 			RandomEffect()
 			archeron.StartCombat(Game.GetPlayer())
 		elseif(randomLocation == 3)	
 			archeron.MoveTo(teleportMarker4)
 			archeron.Resurrect()
+			archeron.DamageAV("health", ((archeronhits as float)*HitDamage))
 			RandomEffect()
 			archeron.StartCombat(Game.GetPlayer())
 		endif
@@ -169,4 +169,30 @@ Function HitArcheron()
 	archeronWeak = true
 	archeron.SetDontMove(true)
 	RegisterForSingleUpdate(6)
+EndFunction
+
+Function TransToRamon()
+	archeron.ForceActorValue("health", 4)
+	archeronFight.Remove()
+	archeron.stopcombat()
+	UnregisterForUpdate()
+	;ObjectReference ArchSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
+	;ArchSay.Say(AllTheStops, Archeron, True)
+	explosionFX.Cast(self, Game.GetPlayer())
+	Utility.Wait(1.5)
+	explosionFX.Cast(self, Game.GetPlayer())
+	Utility.Wait(0.5)
+	explosionFX.Cast(self, Game.GetPlayer())
+	Utility.Wait(2.5)
+	explosionFX.Cast(self, Game.GetPlayer())
+	Utility.Wait(0.5)
+	MQ07.setstage(8)
+EndFunction
+
+Function CheckHealth(Actor akActor)
+	Float BaseValue = akActor.GetBaseActorValue("Health")
+	Float CurrentMaxValue = Math.Ceiling(akActor.GetActorValue("Health") / akActor.GetActorValuePercentage("Health"))
+	Float ValueDifference = CurrentMaxValue - (akactor.GetActorValue("Health"))
+	akactor.RestoreAV("Health", ValueDifference)
+	HitDamage = ((CurrentMaxValue / 5) - 1)
 EndFunction
