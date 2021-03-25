@@ -2,19 +2,19 @@
 ;NEXT FRAGMENT INDEX 9
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
+;BEGIN ALIAS PROPERTY LocationCenterMarker
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_LocationCenterMarker Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY Location
 ;ALIAS PROPERTY TYPE LocationAlias
 LocationAlias Property Alias_Location Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor3
+;BEGIN ALIAS PROPERTY MQ06_Thalmor6
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY LocationCenterMarker
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LocationCenterMarker Auto
+ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Yagrum
@@ -22,14 +22,14 @@ ReferenceAlias Property Alias_LocationCenterMarker Auto
 ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor7
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor1
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Numinar
@@ -37,14 +37,14 @@ ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
 ReferenceAlias Property Alias_MQ06_Numinar Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY MQ06_Thalmor7
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY MQ06_Fyr
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Fyr Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor2
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor4
@@ -57,9 +57,9 @@ ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
 ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor6
+;BEGIN ALIAS PROPERTY MQ06_Thalmor3
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
+ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_5
@@ -69,17 +69,16 @@ Fyr.EvaluatePackage()
 Yagrum.EvaluatePackage()
 Numinar.EvaluatePackage()
 setobjectivedisplayed(14)
+Masscroft.Enable()
+Archeron.Enable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
 ;BEGIN CODE
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal)
-portal.playAnimation("playAnim02")
-SetStage(5)
+thalmorMarker.DisableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -106,10 +105,13 @@ portal.disable()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
 ;BEGIN CODE
-thalmorMarker.DisableNoWait()
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal)
+portal.playAnimation("playAnim02")
+SetStage(5)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -141,3 +143,7 @@ Actor Property fyr auto
 Actor Property avarri auto
 Actor Property yagrum auto
 Actor Property numinar auto
+
+Actor Property masscroft  Auto  
+
+Actor Property archeron  Auto  
