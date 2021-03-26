@@ -18,18 +18,24 @@ ObjectReference Property watchmanBoots auto
 ObjectReference Property watchmanArmor auto
 ObjectReference Property watchmanHelm auto
 ObjectReference Property watchmanGauntlets auto
+ObjectReference Property watchmanActivator auto
 ActorBase Property watchMan auto
 ObjectReference Property xMarker auto
 weapon property ohmsRod auto
 
 Sound Property startupSound auto
 
+Message Property _Lull_UseOhm Auto
+Message Property _Lull_NeedOhm Auto
+Message Property _Lull_WatchmanSwitchNextPhase auto
+Message Property _Lull_WatchmanSwitchReset auto
+
 Event OnActivate(ObjectReference akActionRef)
 
 	if game.GetPlayer().GetItemCount(ohmsRod as form) < 1
-		debug.MessageBox("It looks like you'll need some sort of special staff to activate this, and you feel like you won't find that staff until you help out the Chronographers more")
+		_Lull_NeedOhm.show()
 	else
-		debug.MessageBox("It seems like you should shoot this switch with your Rod of Ohm. This is extremely obvious, and you feel like a complete idiot for not realizing it.")
+		_Lull_UseOhm.Show()
 	endIf
 endEvent
 
@@ -94,7 +100,7 @@ Function checkOrder()
 	
 			if(currentNode.GetValue() >= 4)
 
-				Debug.MessageBox("The switches move to the next phase.")
+				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
 				currentSet.SetValue(currentSet.GetValue() + 1)
 			
@@ -116,7 +122,7 @@ Function checkOrder()
 
 			endif
 		else
-			Debug.MessageBox("The switches reset.")
+			_Lull_WatchmanSwitchReset.show()
 
 			currentNode.SetValue(0)
 			showOrder()	
@@ -126,7 +132,7 @@ Function checkOrder()
 			currentNode.SetValue(currentNode.GetValue() + 1)
 
 			if(currentNode.GetValue() >= 4)
-				Debug.MessageBox("The switches move to the next phase.")
+				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
 				currentSet.SetValue(currentSet.GetValue() + 1)
 
@@ -146,7 +152,7 @@ Function checkOrder()
 
 			endif
 		else
-			Debug.MessageBox("The switches reset.")
+			_Lull_WatchmanSwitchReset.show()
 			currentNode.SetValue(0)
 			showOrder()	
 		endif	
@@ -155,7 +161,7 @@ Function checkOrder()
 			currentNode.SetValue(currentNode.GetValue() + 1)
 
 			if(currentNode.GetValue() >= 4)
-				Debug.MessageBox("The switches move to the next phase.")
+				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
 				currentSet.SetValue(currentSet.GetValue() + 1)
 
@@ -175,7 +181,7 @@ Function checkOrder()
 
 			endif
 		else
-			Debug.MessageBox("The switches reset.")
+			_Lull_WatchmanSwitchReset.show()
 			currentNode.SetValue(0)
 			showOrder()	
 		endif	
@@ -185,7 +191,7 @@ Function checkOrder()
 			currentNode.SetValue(currentNode.GetValue() + 1)
 
 			if(currentNode.GetValue() >= 4)
-				Debug.MessageBox("The switches move to the next phase.")
+				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
 				currentSet.SetValue(currentSet.GetValue() + 1)
 
@@ -205,7 +211,7 @@ Function checkOrder()
 
 			endif
 		else
-			Debug.MessageBox("The switches reset.")
+			_Lull_WatchmanSwitchReset.show()
 			currentNode.SetValue(0)
 			showOrder()	
 		endif	
@@ -217,5 +223,6 @@ Function EnableWatchman()
 	watchmanArmor.DisableNoWait()
 	watchmanHelm.DisableNoWait()
 	watchmanGauntlets.DisableNoWait()
+	watchmanActivator.DisableNoWait()
 	xMarker.PlaceAtMe(watchMan, 1)
 EndFunction
