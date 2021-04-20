@@ -1,14 +1,7 @@
 Scriptname _Lull_WhistlingKingTranslate extends ObjectReference  
 
-Actor Property whistlingKing auto
-Sound Property whistlingKingAwakens auto
-MusicType Property bossMusic auto
-
+Quest Property MQ04 Auto
 
 Event OnTranslationComplete()
-	whistlingKing.MoveTo(self)
-	self.DisableNoWait()
-	bossMusic.Add()
-	Game.EnablePlayerControls()
-	whistlingKingAwakens.Play(Game.GetPlayer())
+	MQ04.SetStage(26)
 EndEvent
