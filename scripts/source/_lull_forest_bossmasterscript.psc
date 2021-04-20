@@ -1,14 +1,16 @@
-Scriptname _Lull_Forest_BossMasterScript extends ObjectReference  
+Scriptname _Lull_Forest_BossMasterScript extends Actor
+
+;modified 4.19.21 by themayor897 - added logging, PlayerRef, changed type from ObjectReference to Actor, switched "meboss" property to self or removed it.
 
 ActorBase Property familyMan auto
 ActorBase Property tho auto
+
 ;Platforms where familymen spawn
 ObjectReference Property spawnPlatform1 auto
 ObjectReference Property spawnPlatform2 auto
 ObjectReference Property spawnPlatform3 auto
 ObjectReference Property spawnPlatform4 auto
 ObjectReference Property spawnPlatform5 auto
-Actor Property meBoss auto
 
 GlobalVariable Property isInCoffin auto
 Spell Property effectSpellCoffin auto
@@ -39,39 +41,41 @@ Quest Property MQ05 auto
 Actor Property Numinar auto
 ObjectReference Property numinarmarker auto
 
+ObjectReference Property PlayerRef auto
+
 Event OnLoad()
 	RegisterForSingleUpdate(15)
 	isInPlay = TRUE
-	healthSince = meBoss.GetBaseActorValue("Health")
+	healthSince = self.GetBaseActorValue("Health")
+	if(!assignOnce) ;moved up from top of OnHit event, 4.19.20 by themayor897. Testing forthcoming.
+		self.SetActorValue("Health", 1700)
+		healthSince = self.GetActorValue("Health")
+		assignOnce = TRUE
+	endif
 EndEvent
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
-	if(!assignOnce)
-		meBoss.SetActorValue("Health", 1700)
-		healthSince = meBoss.GetActorValue("Health")
-		assignOnce = TRUE
-	endif
 	Weapon akWeapon = akSource as Weapon
-	currentHealth = meBoss.GetActorValue("Health")
+	currentHealth = self.GetActorValue("Health")
 	if(akWeapon == goverisUnwinder)
 		if(!isInPlay)
 			UnregisterForUpdate()
-			meBoss.RemoveSpell(effectSpellCoffin)
+			self.RemoveSpell(effectSpellCoffin)
 			isInPlay = TRUE
 			tho.SetInvulnerable(false)
-			meBoss.SetDontMove(false)
+			SetDontMove(false)
 			RegisterForSingleUpdate(15)
-			thoMad.Play(Game.GetPlayer())
+			thoMad.Play(PlayerRef)
 		endif
 	endif
 	if(healthSince - currentHealth >= 200)
 		if(isInPlay)
 			isInPlay = FALSE
-			healthSince = meBoss.GetActorValue("Health")
-			meBoss.PlaceAtme(teleportEffect, 1)
-			meBoss.AddSpell(effectSpellCoffin)
+			healthSince = self.GetActorValue("Health")
+			PlaceAtme(teleportEffect, 1)
+			self.AddSpell(effectSpellCoffin)
 			tho.SetInvulnerable(true)
-			meBoss.SetDontMove()
+			SetDontMove()
 			UnregisterForUpdate()
 			spawnPlatform1.PlaceAtMe(teleportEffect, 1)
 			spawnPlatform1.PlaceAtMe(familyMan, 1)
@@ -90,43 +94,44 @@ EndEvent
 
 Event OnUpdate()
 	if(isInPlay)
-		Debug.SendAnimationEvent(meBoss, "idleStartScan")
-		attackSpell.Cast(meBoss, Game.GetPlayer())
+		Debug.SendAnimationEvent(self, "idleStartScan")
+		attackSpell.Cast(self, PlayerRef)
 		RegisterForSingleUpdate(15)
 	else
-		meBoss.RestoreActorValue("Health", 200)
-		meBoss.RemoveSpell(effectSpellCoffin)
-		explosionSpell.Cast(meBoss, Game.GetPlayer())
+		self.RestoreActorValue("Health", 200)
+		self.RemoveSpell(effectSpellCoffin)
+		explosionSpell.Cast(self, PlayerRef)
 		tho.SetInvulnerable(false)
-		meBoss.SetDontMove(false)
+		SetDontMove(false)
 		isInPlay = TRUE
 		RegisterForSingleUpdate(15)
 	endif
 EndEvent
 
 Event OnDeath(Actor akKiller)
+	WoL.Log(self, "Tho dead, scene commencing...")
 	bossMusic.Remove()
 	UnregisterForUpdate()
 	Game.DisablePlayerControls()
-	explosionSpell.Cast(meBoss, Game.GetPlayer())
-	Game.ShakeCamera(Game.GetPlayer(), 1, 10)
+	explosionSpell.Cast(self, PlayerRef)
+	Game.ShakeCamera(PlayerRef, 1, 10)
 	Utility.Wait(1)
-	explosionSpell.Cast(spawnPlatform1, Game.GetPlayer())
+	explosionSpell.Cast(spawnPlatform1, PlayerRef)
 	Utility.Wait(1)
-	explosionSpell.Cast(spawnPlatform2, Game.GetPlayer())
+	explosionSpell.Cast(spawnPlatform2, PlayerRef)
 	Utility.Wait(1)
-	explosionSpell.Cast(spawnPlatform3, Game.GetPlayer())
+	explosionSpell.Cast(spawnPlatform3, PlayerRef)
 	Utility.Wait(1)
-	explosionSpell.Cast(spawnPlatform4, Game.GetPlayer())
+	explosionSpell.Cast(spawnPlatform4, PlayerRef)
 	Utility.Wait(1)
-	explosionSpell.Cast(spawnPlatform5, Game.GetPlayer())	
+	explosionSpell.Cast(spawnPlatform5, PlayerRef)	
 	blackOut.Apply()
 	Utility.Wait(4)
-	ObjectReference fyrSay = Game.GetPlayer().PlaceAtMe(xMarkerActivator)
+	ObjectReference fyrSay = PlayerRef.PlaceAtMe(xMarkerActivator)
 	fyrSay.Say(FyrTopic, fyr, true)
 	Utility.Wait(6)
 	MQ05.SetStage(15)
-	Game.GetPlayer().MoveTo(playerMarker)
+	PlayerRef.MoveTo(playerMarker)
 	numinar.moveto(numinarmarker)
 	numinar.evaluatepackage()
 	blackout.Remove()

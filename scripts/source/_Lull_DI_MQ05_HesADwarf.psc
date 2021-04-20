@@ -1,18 +1,14 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 1
-Scriptname TIF__04038EB8 Extends TopicInfo Hidden
+Scriptname _Lull_DI_MQ05_HesADwarf Extends TopicInfo Hidden
 
 ;BEGIN FRAGMENT Fragment_0
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
-GetOwningQuest().SetStage(5)
-akSpeaker.MoveTo(numinarMarker)
-Game.GetPlayer().MoveTo(playerMarker)
+GetOwningQuest().SetStage(17)
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
-ObjectReference Property numinarMarker auto
-ObjectReference Property playerMarker auto

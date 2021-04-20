@@ -1,14 +1,12 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 1
-Scriptname TIF__04347D7F Extends TopicInfo Hidden
+Scriptname _Lull_DI_MQ05_WatchOutforSaboteur Extends TopicInfo Hidden
 
 ;BEGIN FRAGMENT Fragment_0
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
-GetOwningQuest().SetStage(20)
-GetOwningQuest().SetObjectiveCompleted(10)
-GetOwningQuest().SetObjectiveCompleted(12)
+GetOwningQuest().SetStage(21)
 ;END CODE
 EndFunction
 ;END FRAGMENT
