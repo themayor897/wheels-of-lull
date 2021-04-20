@@ -6,10 +6,12 @@ ObjectReference Property PlayerRef auto
 
 Event OnCellAttach()
 	RegisterForSingleUpdate(2)
+	WoL.Log(self, "Bottom Firer enabled")
 EndEvent
 
 Event OnCellDetach()
 	UnregisterForUpdate()
+	WoL.Log(self, "Bottom Firer disabled")
 EndEvent
 
 Event OnUpdate()
@@ -18,5 +20,6 @@ Event OnUpdate()
 		RegisterForSingleUpdate(2)
 	Else
 		UnregisterForUpdate()
+		WoL.Log(self, "Bottom Firer disabled")
 	EndIf
 EndEvent

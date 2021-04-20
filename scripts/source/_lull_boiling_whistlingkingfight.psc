@@ -18,5 +18,7 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 		chainReleaseSound.Play(Game.GetPlayer())
 		whistlingKing.TranslateToRef(markerToMove, 200)
 		doOnce = true
+		self.disable()
+		WoL.Log(self, "Whistling King fight commencing...")
 	endif
 EndEvent

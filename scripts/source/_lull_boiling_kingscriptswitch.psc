@@ -1,6 +1,5 @@
 Scriptname _Lull_Boiling_KingScriptSwitch extends ObjectReference  
 
-
 Enchantment Property ohmSpell auto
 ActorBase Property kingBase auto
 ObjectReference Property enableOrMoveWith auto
@@ -9,6 +8,10 @@ GlobalVariable Property kingIsIn auto
 Sound Property kingScream auto
 Actor Property king auto
 Weapon Property ohmsRod auto
+ObjectReference Property PlayerRef auto
+
+Message Property NeedOhm auto
+Message Property UseOhm auto
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Enchantment akSpell = akSource as Enchantment 
@@ -19,13 +22,15 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 					;We can assume the boss is in the trigger zone
 					king.SetDontMove(true)
 					kingBase.SetInvulnerable(false)
-					kingScream.Play(Game.GetPlayer())
+					kingScream.Play(PlayerRef)
+					WoL.Log(self, "King in trigger zone, now vulnerable.")
 				endif
 				Utility.Wait(2)
 				enableOrMoveWith.DisableNoWait(1)
 				Utility.Wait(5)
 				kingBase.SetInvulnerable(true)
 				king.SetDontMove(false)
+				WoL.Log(self, "King back in action.")
 				self.DisableNoWait(1)
 				Utility.Wait(45)
 				self.EnableNoWait(1)			
@@ -34,9 +39,10 @@ EndEvent
 
 Event OnActivate(ObjectReference akActionRef)
 
-	if game.GetPlayer().GetItemCount(ohmsRod) < 1
-		debug.MessageBox("It looks like you'll need some sort of special staff to activate this, and you feel like you won't find that staff until you help out the Chronographers more.")
+	if PlayerRef.GetItemCount(ohmsRod) < 1
+		NeedOhm.show()
+		WoL.Log(self, "Player has advanced to boss fight without the Rod of Ohm!", 2)
 	else
-		debug.MessageBox("It seems like you should shoot this switch with your Rod of Ohm. This is extremely obvious, and you feel like a complete idiot for not realizing it.")
+		UseOhm.show()
 	endIf
 endEvent

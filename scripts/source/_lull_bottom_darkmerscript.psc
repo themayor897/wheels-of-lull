@@ -17,8 +17,10 @@ Event OnUpdate()
 EndEvent
 
 Event OnDeath(Actor akKiller)
+	WoL.Log(self, "Darkmer death registered")
 	if(darkMaer.GetDeadCount() >= 3)
 		myLever.EnableNoWait(1)
+		WoL.Log(self, "Three darkmer killed, lever enabled")
 	endif
 EndEvent
 

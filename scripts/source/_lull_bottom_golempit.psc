@@ -9,5 +9,6 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 		lullGolem.DisableNoWait()
 		lullScream.Play(Game.GetPlayer())
 		finalDoor.Lock(false)
+		WoL.Log(self, "Golem fell in the pit, door unlocked")
 	endif
 EndEvent
