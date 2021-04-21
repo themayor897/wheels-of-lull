@@ -1,5 +1,9 @@
 Scriptname _Lull_LullianShieldScript extends ActiveMagicEffect  
 
+;Modified March 2021 by themayor897 to remove unnecessary functions leftover from Auriel's Shield Script, added stamina funtion set in MCM.
+;Modified 4.20.21 by themayor897, added logging functions.
+
+
 Actor selfRef
 Actor Property PlayerRef auto
 Spell  Property ChargeSpell1 Auto
@@ -18,7 +22,7 @@ EVENT OnEffectStart(Actor Target, Actor Caster)
 	endif
 	
 	RestoreMyStamina = _lull_shieldstamina.GetValue()
-
+	WoL.Log(PlayerRef, "Lullian shield effect started, registered for animation events. Restore stamina variable set to" + RestoreMyStamina as Int)
 ENDEVENT
 	
 

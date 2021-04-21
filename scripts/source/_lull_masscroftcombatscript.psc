@@ -15,7 +15,7 @@ float HitDamage
 float ReqHits
 
 Spell Property lullSpell auto
-ActorBase Property Masscroft auto
+ActorBase Property MasscroftBase auto
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Spell akSpell = akSource as Spell

@@ -3,16 +3,21 @@ Scriptname WoL extends Quest
 
 Import Debug
 
-Function OpenLog() Global
-	Utility.SetINIBool("bEnableTrace:Papyrus", true)
-	OpenUserLog("WheelsofLull")
-	TraceUser("WheelsOfLull","[WHEELS OF LULL LOGGING INITIATED]")
-EndFunction
-
-Bool Function CloseLog() Global
-	TraceUser("WheelsOfLull","[WHEELS OF LULL LOGGING STOPPED]")
-	CloseUserLog("WheelsofLull")
-	Return True
+bool Function ToggleLog(bool bStop = false) Global
+	if bStop
+		TraceUser("WheelsOfLull","[WHEELS OF LULL LOGGING STOPPED]")
+		CloseUserLog("WheelsofLull")
+		Trace("Wheels of Lull Debug Logging stopped.")
+		Return True
+	else
+		Utility.SetINIBool("bEnableTrace:Papyrus", true)
+		OpenUserLog("WheelsofLull")
+		TraceUser("WheelsOfLull","[WHEELS OF LULL LOGGING INITIATED]")
+		Trace("Wheels of Lull Debug Logging started.")
+		Return True
+	endif
+	
+	Return False
 EndFunction
 
 Function Log(Form Sender, String sMessage, Int iSeverity = 0) Global

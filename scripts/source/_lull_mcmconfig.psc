@@ -214,14 +214,12 @@ state OID__lull_debugging
 			_Lull_UT_Debug.Start()
 		endIf
 		
-		_lull_DebugLogging.SetValue(Value)
 		SetToggleOptionValueST(Value)		
 	EndEvent	
 
 	
 	Event OnDefaultST()
 		_Lull_UT_Debug.Stop()
-		_lull_DebugLogging.SetValue(0)
 		SetToggleOptionValueST(0)
 	endEvent
 

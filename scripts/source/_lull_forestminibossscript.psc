@@ -50,6 +50,7 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 EndEvent
 
 Event OnDeath(Actor akKiller)
+	WoL.Log(self, "Forest miniboss death registered, disabling clones and enabling unwinder")
 	clone1.DisableNoWait()
 	clone2.DisableNoWait()
 	effectSpell.Cast(pedestal, pedestal)

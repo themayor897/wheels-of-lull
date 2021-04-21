@@ -6,6 +6,7 @@ GlobalVariable Property ButterTotal Auto Conditional
 Function ButterCount()
 	ModObjectiveGlobal(1, butterVariable)
 	if butterVariable.value == ButterTotal.value
+		WoL.Log(self, "Butter cleared, advancing to next stage.")
 		SetStage(15)
 		SetObjectiveCompleted(10)
 		SetObjectiveDisplayed(15)
