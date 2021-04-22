@@ -1,11 +1,13 @@
-scriptName PF__Lull_SecariusTravelToFir_0452BAD9 extends Package hidden
+;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
+;NEXT FRAGMENT INDEX 4
+Scriptname PF__Lull_SecariusTravelToFir_0452BAD9 Extends Package Hidden
 
-quest property MQ03 auto
-actor property Secarius auto
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3(Actor akActor)
+;BEGIN CODE
+GetOwningQuest().setstage(27)
+;END CODE
+EndFunction
+;END FRAGMENT
 
-function Fragment_0(actor akActor)
-
-	MQ03.SetStage(27)
-	Secarius.EvaluatePackage()
-	
-endFunction
+;END FRAGMENT CODE - Do not edit anything between this and the begin comment

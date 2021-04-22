@@ -6,7 +6,6 @@ Scriptname PF__lull_SecariusTravelToThi_0452BADB Extends Package Hidden
 Function Fragment_5(Actor akActor)
 ;BEGIN CODE
 MQ03.SetStage(30)
-MQ03Scene.Start()
 ;END CODE
 EndFunction
 ;END FRAGMENT
