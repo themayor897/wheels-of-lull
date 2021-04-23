@@ -2,14 +2,9 @@
 ;NEXT FRAGMENT INDEX 24
 Scriptname QF__Lull_MQ01_0400590D Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY LocationCenterMarker
+;BEGIN ALIAS PROPERTY _Lull_MarkerLlavadosBody
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LocationCenterMarker Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Location
-;ALIAS PROPERTY TYPE LocationAlias
-LocationAlias Property Alias_Location Auto
+ReferenceAlias Property Alias__Lull_MarkerLlavadosBody Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _Lull_MQ01_MapMarker
@@ -17,14 +12,14 @@ LocationAlias Property Alias_Location Auto
 ReferenceAlias Property Alias__Lull_MQ01_MapMarker Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _Lull_MQ01_Llavados
+;BEGIN ALIAS PROPERTY _Lull_LlavadosTalker
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__Lull_MQ01_Llavados Auto
+ReferenceAlias Property Alias__Lull_LlavadosTalker Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _Lull_MarkerLlavadosBody
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__Lull_MarkerLlavadosBody Auto
+;BEGIN ALIAS PROPERTY Location
+;ALIAS PROPERTY TYPE LocationAlias
+LocationAlias Property Alias_Location Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _Lull_ElevatorMQ01
@@ -32,9 +27,9 @@ ReferenceAlias Property Alias__Lull_MarkerLlavadosBody Auto
 ReferenceAlias Property Alias__Lull_ElevatorMQ01 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _Lull_LlavadosTalker
+;BEGIN ALIAS PROPERTY LocationCenterMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__Lull_LlavadosTalker Auto
+ReferenceAlias Property Alias_LocationCenterMarker Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _Lull_MQ01_Pneuma
@@ -42,10 +37,39 @@ ReferenceAlias Property Alias__Lull_LlavadosTalker Auto
 ReferenceAlias Property Alias__Lull_MQ01_Pneuma Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY _Lull_MQ01_Llavados
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__Lull_MQ01_Llavados Auto
+;END ALIAS PROPERTY
+
+;BEGIN FRAGMENT Fragment_19
+Function Fragment_19()
+;BEGIN CODE
+_Lull_MQ01_OldLift.start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_11
 Function Fragment_11()
 ;BEGIN CODE
 _Lull_MQ01_ExplainLlavados2.start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_15
+Function Fragment_15()
+;BEGIN CODE
+_Lull_MQ01_ExplainLlavados3.start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
+;BEGIN CODE
+_Lull_MQ01_Poltergeists.start()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -59,13 +83,24 @@ _Lull_MQ01_ExplainLlavados1.start()
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_17
+Function Fragment_17()
+;BEGIN CODE
+_Lull_MQ01_ExplainLlavados4.start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_23
 Function Fragment_23()
 ;BEGIN CODE
 ;Stage set in Dialogue Topic _Lull_MQ01_TakeSomething, TIF__0400AA40.
 ;Llavados set not essential, killed.
 ;Door to Stonehole mine unlocked.
+
+If MQ01Startup.IsRunning()
 MQ01Startup.SetStage(100)
+EndIf
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -75,38 +110,6 @@ Function Fragment_21()
 ;BEGIN CODE
 setobjectivecompleted(12)
 setobjectivedisplayed(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_15
-Function Fragment_15()
-;BEGIN CODE
-_Lull_MQ01_ExplainLlavados3.start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_19
-Function Fragment_19()
-;BEGIN CODE
-_Lull_MQ01_OldLift.start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_17
-Function Fragment_17()
-;BEGIN CODE
-_Lull_MQ01_ExplainLlavados4.start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-_Lull_MQ01_Poltergeists.start()
 ;END CODE
 EndFunction
 ;END FRAGMENT

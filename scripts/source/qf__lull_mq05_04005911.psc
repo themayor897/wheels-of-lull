@@ -2,9 +2,9 @@
 ;NEXT FRAGMENT INDEX 21
 Scriptname QF__Lull_MQ05_04005911 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY LocationCenterMarker
+;BEGIN ALIAS PROPERTY _MQ04_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LocationCenterMarker Auto
+ReferenceAlias Property Alias__MQ04_Numinar Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ04_Fyr
@@ -12,27 +12,17 @@ ReferenceAlias Property Alias_LocationCenterMarker Auto
 ReferenceAlias Property Alias__MQ04_Fyr Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY Location
-;ALIAS PROPERTY TYPE LocationAlias
-LocationAlias Property Alias_Location Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ04_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ04_Numinar Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY _MQ04_Yagrum
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ04_Yagrum Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_12
-Function Fragment_12()
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
 ;BEGIN CODE
-;Set in "Your friend is a Dwarf?"
+;Started in "What are you doing in catacombs"
 
-YagrumRef.EvaluatePackage()
+FyrScene.Start()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -44,28 +34,6 @@ Function Fragment_3()
 
 numinarREF.MoveTo(numinarcontrolMarker)
 PlayerREF.MoveTo(playercontrolMarker)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;Set via "Deal with it" dialogue
-
-SetObjectiveDisplayed(10)
-SetObjectiveDisplayed(12)
-DrillParent01.DisableNoWait(1)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
-;BEGIN CODE
-;Set in "Weren't you a bloated monster?"
-
-FyrRef.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -82,40 +50,6 @@ DrillParent02.DisableNoWait()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_16
-Function Fragment_16()
-;BEGIN CODE
-;Set in SaboteurWho Topic
-
-SetObjectiveDisplayed(21)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-;Started in "What are you doing in catacombs"
-
-FyrScene.Start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-;Set when the player asks who Fyr is
-
-FyrREF.EnableNoWait()
-YagrumREF.EnableNoWait()
-FyrREF.MoveTo(MQ05_FyrMarker)
-YagrumREF.MoveTo(MQ05_YagrumMarker)
-FyrREF.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
 ;BEGIN FRAGMENT Fragment_1
 Function Fragment_1()
 ;BEGIN CODE
@@ -127,7 +61,7 @@ EndFunction
 ;BEGIN FRAGMENT Fragment_19
 Function Fragment_19()
 ;BEGIN CODE
-Game.DisablePlayerControls()
+game.disablePlayerControls()
 thoSummon.Play(PlayerRef)
 tho1.EnableNoWait(1)
 Utility.Wait(2)
@@ -149,10 +83,16 @@ Game.EnablePlayerControls()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_9
-Function Fragment_9()
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
 ;BEGIN CODE
-;WIP: Quickstart
+;Set when the player asks who Fyr is
+
+FyrREF.EnableNoWait()
+YagrumREF.EnableNoWait()
+FyrREF.MoveTo(MQ05_FyrMarker)
+YagrumREF.MoveTo(MQ05_YagrumMarker)
+FyrREF.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -169,6 +109,38 @@ numinarREF.evaluatepackage()
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
+;BEGIN CODE
+;Set via "Deal with it" dialogue
+
+SetObjectiveDisplayed(10)
+SetObjectiveDisplayed(12)
+DrillParent01.DisableNoWait(1)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_16
+Function Fragment_16()
+;BEGIN CODE
+;Set in SaboteurWho Topic
+
+SetObjectiveDisplayed(21)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_12
+Function Fragment_12()
+;BEGIN CODE
+;Set in "Your friend is a Dwarf?"
+
+YagrumRef.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_15
 Function Fragment_15()
 ;BEGIN CODE
@@ -176,6 +148,16 @@ Function Fragment_15()
 
 SetObjectiveCompleted(10)
 SetObjectiveCompleted(12)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
+;BEGIN CODE
+;Set in "Weren't you a bloated monster?"
+
+FyrRef.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT

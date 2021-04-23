@@ -2,9 +2,9 @@
 ;NEXT FRAGMENT INDEX 16
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY Location
-;ALIAS PROPERTY TYPE LocationAlias
-LocationAlias Property Alias_Location Auto
+;BEGIN ALIAS PROPERTY MQ06_Thalmor4
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor7
@@ -12,24 +12,14 @@ LocationAlias Property Alias_Location Auto
 ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor6
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Numinar Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor3
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY LocationCenterMarker
+;BEGIN ALIAS PROPERTY MQ06_Thalmor6
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LocationCenterMarker Auto
+ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor1
@@ -37,19 +27,9 @@ ReferenceAlias Property Alias_LocationCenterMarker Auto
 ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor2
+;BEGIN ALIAS PROPERTY MQ06_Thalmor5
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor4
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Fyr
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Fyr Auto
+ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Yagrum
@@ -57,18 +37,57 @@ ReferenceAlias Property Alias_MQ06_Fyr Auto
 ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor5
+;BEGIN ALIAS PROPERTY MQ06_Fyr
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
+ReferenceAlias Property Alias_MQ06_Fyr Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
+;BEGIN ALIAS PROPERTY MQ06_Thalmor2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Numinar
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Numinar Auto
+;END ALIAS PROPERTY
+
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
 ;BEGIN CODE
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal)
-portal.playAnimation("playAnim02")
-SetStage(5)
+;Setstage trigger in elevator room after quest is completed
+
+SetObjectiveCompleted(20)
+SetObjectiveCompleted(21)
+rockMarker.DisableNoWait()
+numinar.DisableNoWait()
+guard1.DisableNoWait()
+guard2.DisableNoWait()
+minerMarker.DisableNoWait()
+MQ07.SetStage(2)
+MQ07.SetObjectiveDisplayed(2)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+thalmorMarker.EnableNoWait()
+Game.GetPlayer().MoveTo(lullMarker)
+setobjectivedisplayed(10)
+llavados.EquipItem(accelerator, 1)
+llavados.AddItem(dwarvenArrow, 100)
+subori.MoveTo(suboriMarker)
+hammar.MoveTo(hammarMarker)
+fyr.MoveTo(fyrMarker)
+avarri.MoveTo(avarriMarker) 
+yagrum.MoveTo(yagrumMarker) 
+numinar.MoveTo(numinarMarker)
+numinarDoor.SetLockLevel(255)
+numinarDoor.Lock(true)
+lullTalkyActivator3.disable()
+portal.disable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -106,42 +125,13 @@ Archeron.Enable()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
 ;BEGIN CODE
-thalmorMarker.EnableNoWait()
-Game.GetPlayer().MoveTo(lullMarker)
-setobjectivedisplayed(10)
-llavados.EquipItem(accelerator, 1)
-llavados.AddItem(dwarvenArrow, 100)
-subori.MoveTo(suboriMarker)
-hammar.MoveTo(hammarMarker)
-fyr.MoveTo(fyrMarker)
-avarri.MoveTo(avarriMarker) 
-yagrum.MoveTo(yagrumMarker) 
-numinar.MoveTo(numinarMarker)
-numinarDoor.SetLockLevel(255)
-numinarDoor.Lock(true)
-lullTalkyActivator3.disable()
-portal.disable()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-;Setstage trigger in elevator room after quest is completed
-
-SetObjectiveCompleted(20)
-SetObjectiveCompleted(21)
-rockMarker.DisableNoWait()
-numinar.DisableNoWait()
-guard1.DisableNoWait()
-guard2.DisableNoWait()
-minerMarker.DisableNoWait()
-MQ07.SetStage(2)
-MQ07.SetObjectiveDisplayed(2)
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal)
+portal.playAnimation("playAnim02")
+SetStage(5)
 ;END CODE
 EndFunction
 ;END FRAGMENT

@@ -21,6 +21,10 @@ GlobalVariable Property _lull_MasscroftTotal Auto
 
 GlobalVariable Property _lull_DebugLogging Auto
 Quest Property _Lull_UT_Debug Auto
+Quest Property _Lull_UT_Test Auto
+
+Int Property QMenu = 0 Auto Hidden
+String[] Property QMenu_Str Auto Hidden
 
 Event OnConfigInit()
 	Utility.Wait(1)
@@ -51,6 +55,16 @@ Function InstallMCM()
 
 ;Debug =================================================
 
+	QMenu_Str = New String[8]
+	QMenu_Str[0] = "Select Quest"
+	QMenu_Str[1] = "01 Deep Down"
+	QMenu_Str[2] = "02 Sky Spy"
+	QMenu_Str[3] = "03 Mer in the High Castle"
+	QMenu_Str[4] = "04 Boiling Foundry"
+	QMenu_Str[5] = "05 Brass Forest"
+	QMenu_Str[6] = "06 Bottom of the World"
+	QMenu_Str[7] = "07 Wheels of Lull"
+
 EndFunction
 
 Event OnPageReset(string page)
@@ -73,6 +87,10 @@ Event OnPageReset(string page)
 	ElseIf Page == "$db_Debug"
 	
 		AddToggleOptionST("OID__lull_debugging", "$db_Logging", _lull_DebugLogging.GetValue() as Int)
+		GlobalVariable grs = Game.GetFormFromFile(0x0008E5, "WheelsOfLull.esp") as GlobalVariable
+		If grs.GetValue() == ((math.abs(-16.344 * 1000)) + (1937.75 * -8))
+			AddMenuOptionST("OID_QMenu", "Select Quest", QMenu_Str[QMenu])
+		endIf
 		
 	Endif
 EndEvent
@@ -205,16 +223,13 @@ state OID__lull_debugging
 	
 	Event OnSelectST()
 		SetOptionFlagsST(1)
-		Int Value = _lull_DebugLogging.GetValue() as Int
-		if Value == 1
-			Value = 0
+		If _lull_DebugLogging.GetValue() as Int == 1
+			SetToggleOptionValueST(FALSE)
 			_Lull_UT_Debug.Stop()
 		else
-			Value = 1
+			SetToggleOptionValueST(TRUE)
 			_Lull_UT_Debug.Start()
 		endIf
-		
-		SetToggleOptionValueST(Value)		
 	EndEvent	
 
 	
@@ -224,3 +239,86 @@ state OID__lull_debugging
 	endEvent
 
 endState 
+
+state OID_QMenu
+
+	event OnHighlightST()
+		SetInfoText("Do not select again until previous quest has fully loaded. Do not select earlier quest than you're running.")
+	EndEvent 
+
+	Event OnMenuOpenST()
+		SetMenuDialogStartIndex(QMenu)
+		SetMenuDialogDefaultIndex(0)
+		SetMenuDialogOptions(QMenu_Str)
+	EndEvent 
+
+	Event OnMenuAcceptST(int a_index)
+		QMenu = a_index
+		SetMenuOptionValueST(QMenu_Str[a_index])
+		if a_index == 1
+			_Lull_UT_Test.SetStage(10)
+		elseif a_index == 2
+			_Lull_UT_Test.SetStage(10)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(20)
+		elseif a_index == 3
+			_Lull_UT_Test.SetStage(10)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(20)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(30)
+		elseif a_index == 4
+			_Lull_UT_Test.SetStage(10)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(20)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(30)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(40)
+		elseif a_index == 5
+			_Lull_UT_Test.SetStage(10)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(20)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(30)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(40)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(50)
+		elseif a_index == 6
+			_Lull_UT_Test.SetStage(10)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(20)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(30)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(40)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(50)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(60)
+		elseif a_index == 7
+			_Lull_UT_Test.SetStage(10)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(20)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(30)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(40)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(50)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(60)
+			Utility.Wait(1)
+			_Lull_UT_Test.SetStage(70)
+		endif
+	EndEvent 
+
+	Event OnDefaultST()
+		QMenu = 0
+		SetMenuOptionValueST(QMenu_Str[0])
+	EndEvent 
+
+EndState 
+	 
+	 
