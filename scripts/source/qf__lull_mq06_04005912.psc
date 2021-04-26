@@ -2,14 +2,9 @@
 ;NEXT FRAGMENT INDEX 16
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor4
+;BEGIN ALIAS PROPERTY MQ06_Thalmor1
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor7
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
+ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor3
@@ -17,19 +12,19 @@ ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
 ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor6
+;BEGIN ALIAS PROPERTY MQ06_Fyr
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
+ReferenceAlias Property Alias_MQ06_Fyr Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor1
+;BEGIN ALIAS PROPERTY MQ06_Thalmor7
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
+ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor5
+;BEGIN ALIAS PROPERTY MQ06_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
+ReferenceAlias Property Alias_MQ06_Numinar Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Yagrum
@@ -37,9 +32,19 @@ ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
 ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Fyr
+;BEGIN ALIAS PROPERTY MQ06_Thalmor6
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Fyr Auto
+ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor5
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor4
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor2
@@ -47,10 +52,37 @@ ReferenceAlias Property Alias_MQ06_Fyr Auto
 ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Numinar Auto
-;END ALIAS PROPERTY
+;BEGIN FRAGMENT Fragment_15
+Function Fragment_15()
+;BEGIN CODE
+;Player enters trigger in front of elevator
+
+Game.DisablePlayerControls()
+doorClose.Play(grate)
+grate.TranslateToRef(grateEnd, 600)
+grate2.enablenowait()
+Utility.Wait(3)
+masscroft.MoveTo(xMarker)
+massCroftAppear.Play(masscroft)
+Utility.Wait(4)
+masscroft.StartCombat(PlayerRef)
+Game.EnablePlayerControls()
+massBossMusic.Add()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+WorldShift03.show()
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal)
+portal.playAnimation("playAnim02")
+SetStage(5)
+;END CODE
+EndFunction
+;END FRAGMENT
 
 ;BEGIN FRAGMENT Fragment_14
 Function Fragment_14()
@@ -66,6 +98,27 @@ guard2.DisableNoWait()
 minerMarker.DisableNoWait()
 MQ07.SetStage(2)
 MQ07.SetObjectiveDisplayed(2)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+Fyr.EvaluatePackage()
+Yagrum.EvaluatePackage()
+Numinar.EvaluatePackage()
+setobjectivedisplayed(14)
+Masscroft.Enable()
+Archeron.Enable()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
+;BEGIN CODE
+thalmorMarker.DisableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -88,58 +141,6 @@ numinarDoor.SetLockLevel(255)
 numinarDoor.Lock(true)
 lullTalkyActivator3.disable()
 portal.disable()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_15
-Function Fragment_15()
-;BEGIN CODE
-;Player enters trigger in front of elevator
-
-Game.DisablePlayerControls()
-doorClose.Play(grate)
-grate.TranslateToRef(grateEnd, 600)
-grate2.enablenowait()
-Utility.Wait(3)
-masscroft.MoveTo(xMarker)
-massCroftAppear.Play(masscroft)
-Utility.Wait(4)
-masscroft.StartCombat(PlayerRef)
-Game.EnablePlayerControls()
-massBossMusic.Add()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-Fyr.EvaluatePackage()
-Yagrum.EvaluatePackage()
-Numinar.EvaluatePackage()
-setobjectivedisplayed(14)
-Masscroft.Enable()
-Archeron.Enable()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal)
-portal.playAnimation("playAnim02")
-SetStage(5)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
-;BEGIN CODE
-thalmorMarker.DisableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -194,3 +195,5 @@ ObjectReference Property rockMarker auto
 ObjectReference Property guard1 auto
 ObjectReference Property guard2 auto
 ObjectReference Property minerMarker auto
+
+Message Property WorldShift03 auto
