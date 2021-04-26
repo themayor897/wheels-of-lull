@@ -15,6 +15,9 @@ Event OnCellAttach()
 		Memory.EnableNoWait()
 		light1.EnableNoWait()
 		appearSound.Play(Game.GetPlayer())
+		WoL.Log(self, "Memory enabled, approaching player")
 		doOnce = true
+	else
+		WoL.Log(self, "Player re-entered LullBottom initial cell")
 	endif
 EndEvent

@@ -7,6 +7,9 @@ Int Property questObjective auto
 bool Property isAnalyst auto
 int numHits = 0;
 Static Property pillarOfLight auto
+Message property _Lull_AnalystBlock auto
+Actor Property PlayerRef auto
+
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Weapon akWeapon = akSource as Weapon
 	if(akWeapon == triangulator)
@@ -14,15 +17,15 @@ Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile,
 		if(numHits == 3)
 			if(!isAnalyst)
 				MQ02.SetObjectiveCompleted(questObjective)
-				installSound.Play(Game.GetPlayer())
+				installSound.Play(PlayerRef)
 				self.PlaceAtMe(pillarOfLight)
 			else
 				if(!MQ02.IsObjectiveCompleted(25))
-					Debug.MessageBox("It doesn't work. It seems the Analyst is somehow blocking whatever magic powers this peg.")
+					_Lull_AnalystBlock.show()
 					numHits = 0
 				else
 					MQ02.SetObjectiveCompleted(questObjective)
-					installSound.Play(Game.GetPlayer())
+					installSound.Play(PlayerRef)
 					self.PlaceAtMe(pillarOfLight)
 				endif
 			endif

@@ -15,6 +15,7 @@ Event OnEffectStart(Actor Target, Actor Caster)
 	MasscroftMarker.MoveTo(Yagrum)
 	Fyr.Disable()
 	Yagrum.Disable()
+	WoL.Log(Caster, "Markers moved, Fyr and Yagrum disabled.")
 EndEvent
 
 Event OnEffectFinish (Actor Target, Actor Caster)
@@ -22,4 +23,5 @@ Event OnEffectFinish (Actor Target, Actor Caster)
 	Masscroft.MoveTo(MasscroftMarker)
 	Archeron.evaluatepackage()
 	Masscroft.evaluatepackage()
+	WoL.Log(caster, "Archeron and Masscroft moved, packages updating...")
 EndEvent 

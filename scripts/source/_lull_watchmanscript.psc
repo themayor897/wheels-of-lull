@@ -41,17 +41,19 @@ endEvent
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
 	Enchantment akSpell = akSource as Enchantment 
+	int Pattern = showedPatern.GetValue() as int
 	if(akSpell == ohmSpell)
-		if(showedPatern.GetValue() == 0)
+		if(Pattern == 0)
 			showOrder();
-		elseif(showedPatern.GetValue() == 1)
+		elseif(Pattern == 1)
 			checkOrder();
 		endif
 	endif
 EndEvent
 
 Function showOrder()
-	if(currentSet.GetValue() == 0)
+	int CSet = currentSet.GetValue() as int
+	if(CSet == 0)
 		orderSpell.Cast(switch1, switch1)
 		Utility.Wait(1)
 		orderSpell.Cast(switch2, switch2)
@@ -60,7 +62,7 @@ Function showOrder()
 		Utility.Wait(1)
 		orderSpell.Cast(switch4, switch4)
 		showedPatern.SetValue(1)
-	elseif(currentSet.GetValue() == 1)
+	elseif(CSet == 1)
 		orderSpell.Cast(switch4, switch4)
 		Utility.Wait(1)
 		orderSpell.Cast(switch3, switch3)
@@ -69,7 +71,7 @@ Function showOrder()
 		Utility.Wait(1)
 		orderSpell.Cast(switch2, switch2)
 		showedPatern.SetValue(1)
-	elseif(currentSet.GetValue() == 2)
+	elseif(CSet == 2)
 		orderSpell.Cast(switch2, switch2)
 		Utility.Wait(1)
 		orderSpell.Cast(switch3, switch3)
@@ -78,7 +80,7 @@ Function showOrder()
 		Utility.Wait(1)
 		orderSpell.Cast(switch1, switch1)
 		showedPatern.SetValue(1)
-	elseif(currentSet.GetValue() == 3)
+	elseif(CSet == 3)
 		orderSpell.Cast(switch3, switch3)
 		Utility.Wait(1)
 		orderSpell.Cast(switch1, switch1)
@@ -96,13 +98,13 @@ Function checkOrder()
 
 
 		if((currentNode.GetValue() + 1) == order1)
-			currentNode.SetValue(currentNode.GetValue() + 1)
+			currentNode.Mod(1)
 	
 			if(currentNode.GetValue() >= 4)
 
 				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
-				currentSet.SetValue(currentSet.GetValue() + 1)
+				currentSet.Mod(1)
 			
 				if(currentSet.GetValue() >= 4)
 
@@ -129,12 +131,12 @@ Function checkOrder()
 		endif			
 	elseif(currentSet.GetValue() == 1)
 		if((currentNode.GetValue() + 1) == order2)
-			currentNode.SetValue(currentNode.GetValue() + 1)
+			currentNode.Mod(1)
 
 			if(currentNode.GetValue() >= 4)
 				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
-				currentSet.SetValue(currentSet.GetValue() + 1)
+				currentSet.Mod(1)
 
 				if(currentSet.GetValue() >= 4)
 					switch1.DisableNoWait()
@@ -158,12 +160,12 @@ Function checkOrder()
 		endif	
 	elseif(currentSet.GetValue() == 2)
 		if((currentNode.GetValue() + 1) == order3)
-			currentNode.SetValue(currentNode.GetValue() + 1)
+			currentNode.Mod(1)
 
 			if(currentNode.GetValue() >= 4)
 				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
-				currentSet.SetValue(currentSet.GetValue() + 1)
+				currentSet.Mod(1)
 
 				if(currentSet.GetValue() >= 4)
 					switch1.DisableNoWait()
@@ -188,12 +190,12 @@ Function checkOrder()
 
 	elseif(currentSet.GetValue() == 3)
 		if((currentNode.GetValue() + 1) == order4)
-			currentNode.SetValue(currentNode.GetValue() + 1)
+			currentNode.Mod(1)
 
 			if(currentNode.GetValue() >= 4)
 				_Lull_WatchmanSwitchNextPhase.show()
 				currentNode.SetValue(0)
-				currentSet.SetValue(currentSet.GetValue() + 1)
+				currentSet.Mod(1)
 
 				if(currentSet.GetValue() >= 4)
 					switch1.DisableNoWait()
@@ -225,4 +227,4 @@ Function EnableWatchman()
 	watchmanGauntlets.DisableNoWait()
 	watchmanActivator.DisableNoWait()
 	xMarker.PlaceAtMe(watchMan, 1)
-EndFunction
+EndFunction 

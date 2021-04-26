@@ -8,6 +8,10 @@ weapon property ohmsRod auto
 Int Property eventType auto;
 Spell Property effectSpell auto							   
 
+Actor Property PlayerRef auto
+Message Property NeedOhm auto
+Message Property UseOhm auto
+
 bool doOnce = false								 
 
 Event OnHit(ObjectReference akAggressor, Form akSource, Projectile akProjectile, bool abPowerAttack, bool abSneakAttack, bool abBashAttack, bool abHitBlocked)
@@ -28,9 +32,9 @@ EndEvent
 
 Event OnActivate(ObjectReference akActionRef)
 
-	if game.GetPlayer().GetItemCount(ohmsRod) < 1
-		debug.MessageBox("It looks like you'll need some sort of special staff to activate this, and you feel like you won't find that staff until you help out the Chronographers more.")
+	if PlayerRef.GetItemCount(ohmsRod) < 1
+		NeedOhm.Show()
 	else
-		debug.MessageBox("It seems like you should shoot this switch with your Rod of Ohm. This is extremely obvious, and you feel like a complete idiot for not realizing it.")
+		UseOhm.Show()
 	endIf
 endEvent
