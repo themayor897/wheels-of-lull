@@ -1,4 +1,6 @@
 scriptName _Lull_TrapTriggerTimeInterval extends TrapTriggerBase
+{Modified version of vanilla script for wheels of Lull piston off-switch MCM option}
+
 ;
 ;
 ;========================================================
@@ -83,10 +85,10 @@ Event OnMyCustomEvent(Form theForm)
 	If theForm == OffSwitch
 		If GetState() == ("TimedFireState")
 			GoToState("Inactive")
-			;debug.Trace("Wheels of Lull: Off switch event recieved from" + OffSwitch.GetParentCell() + "switch. Turning off pistons in" + self.GetParentCell())
+			WoL.Log(self, "Off switch event recieved from" + (OffSwitch.GetParentCell() as string) + "switch. Turning off pistons in" + (self.GetParentCell() as string))
 		elseif GetState() == ("Inactive")
 			GoToState("TimedFireState")
-			;debug.Trace("Wheels of Lull: On switch event recieved from" + OffSwitch.GetParentCell() + "switch. Turning on pistons in" + self.GetParentCell())
+			WoL.Log(self, "On switch event recieved from" + (OffSwitch.GetParentCell() as string) + "switch. Turning on pistons in" + (self.GetParentCell() as string))
 		EndIf
 	EndIf
 EndEvent

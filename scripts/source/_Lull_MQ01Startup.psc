@@ -8,9 +8,9 @@ Keyword Property pLocTypeHabitation Auto
 
 Event OnUpdate()
 	if Llavados.getCurrentLocation().IsSameLocation((PlayerRef.getCurrentLocation()), pLocTypeHabitation)
-; 		debug.trace("WICourierScript: Courier and player are in same habitation. Quest is continuing to run.")
+		WoL.Log(self, "Llavados and player are in same habitation. Initial Stage is continuing to run.")
 	else
-; 		debug.trace("WICourierScript: Courier and player are not in same habitation. Stopping quest.")
+ 		WoL.Log(self, "Llavados and player are not in same habitation. Advancing startup quest.")
 		UnregisterForUpdate()
 		SetStage(10)
 	endif

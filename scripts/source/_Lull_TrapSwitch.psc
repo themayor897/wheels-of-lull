@@ -1,4 +1,6 @@
 Scriptname _Lull_TrapSwitch extends ObjectReference  
+{Controls piston off switches in boiling foundry. Created march 2021 by themayor897}
+
 
 ObjectReference[] Property _lull_piston Auto
 FormList Property CellPistons Auto
@@ -10,7 +12,7 @@ Event OnActivate(ObjectReference akActionRef)
     if (handle)
         ModEvent.PushForm(handle, self)
         ModEvent.Send(handle)
-		;debug.trace("Wheels of Lull: Foundry off Switch Event Sent")
+		WoL.Log(self, "Foundry off Switch Event Sent")
     endIf
 	Int iIndex = CellPistons.GetSize()
 	While iIndex

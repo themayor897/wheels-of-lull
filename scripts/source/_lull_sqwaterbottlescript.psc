@@ -1,21 +1,18 @@
-Scriptname _Lull_SQWaterBottleScript extends ObjectReference  
+ScriptName _Lull_SQWaterBottleScript extends ObjectReference
 
-MiscObject Property waterBottleFilled auto
-Potion Property filledBottle auto
-bool Property isRefillable auto
+;modified 4.25.21 by themayor897. Decompiled script that had old source, silenced UI notifications for add spell, Swapped getplayer calls for playerref
+
+Bool property isRefillable auto
+spell property filledBottleSpell auto
+spell property waterPotionSpell auto
+
+Actor property PlayerRef auto
 
 Event OnEquipped(Actor akActor)
 
-		RegisterForAnimationEvent(Game.GetPlayer(), "SoundPlay.FSTSwimSwim")
-EndEvent
-
-Event OnAnimationEvent(ObjectReference akSource, string asEventName)
-		Debug.MessageBox("You fill up the water bottle.")
-		Game.GetPlayer().RemoveItem(self, 1)
-		if(isRefillable)
-			Game.GetPlayer().AddItem(filledBottle, 1)
-		else
-			Game.GetPlayer().AddItem(waterBottleFilled, 1)
-		endif
-		UnregisterForAnimationEvent(Game.GetPlayer(), "SoundPlay.FSTSwimSwim")
-EndEvent
+	if !isRefillable
+		PlayerRef.AddSpell(filledBottleSpell, False)
+	else
+		PlayerRef.AddSpell(waterPotionSpell, False)
+	endIf
+endEvent

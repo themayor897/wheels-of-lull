@@ -4,6 +4,7 @@ _Lull_MQ06_ThalmorUtility  LTU
 
 Event OnDeath(Actor akKiller)
 	
+	WoL.Log(GetReference(), "Thalmor Dead")
 	LTU= GetOwningQuest() as _Lull_MQ06_ThalmorUtility
 	LTU.ThalmorCount()
 

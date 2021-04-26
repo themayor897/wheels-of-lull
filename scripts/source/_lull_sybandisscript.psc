@@ -1,5 +1,8 @@
 scriptName _Lull_SybandisScript extends ObjectReference
 
+;Modifed 4.25.21 by themayor897. Cleaned up leftover compiler-generated variables, swapped out debug messageboxes, added message about dragon souls being removed.
+
+
 globalvariable property usedBoil auto
 globalvariable property usedBrass auto
 armor property lullshield auto
@@ -16,31 +19,37 @@ weapon property unwinder auto
 armor property visor auto
 weapon property rod auto
 
+Actor Property PlayerRef auto
+Message Property Punished01 auto
+Message Property Punished02 auto
+Message Property Punished03 auto
+
 Event OnActivate(ObjectReference akActionRef)
 
-	utility.Wait(3 as Float)
-	eye1.EnableNoWait(1 as Bool)
-	eye2.EnableNoWait(1 as Bool)
-	eye3.EnableNoWait(1 as Bool)
-	eye4.EnableNoWait(1 as Bool)
-	sybandisNoise.Play(game.GetPlayer() as ObjectReference)
-	utility.Wait(5 as Float)
-	game.GetPlayer().MoveTo(endMarker, 0.000000, 0.000000, 0.000000, true)
-	debug.MessageBox("For using the lantern, Sybandis punishes you, removing any items you used the lantern to acquire as well as some of your power! You suppose you shouldn't have cheated.")
-	game.GetPlayer().SetAV("DragonSouls", 0 as Float)
-	game.GetPlayer().RemoveItem(visor as form, game.GetPlayer().GetItemCount(visor as form), false, none)
-	if usedBoil.GetValue() >= 1 as Float
-		game.GetPlayer().RemoveItem(rod as form, game.GetPlayer().GetItemCount(rod as form), false, none)
+	utility.Wait(3)
+	eye1.EnableNoWait(TRUE)
+	eye2.EnableNoWait(TRUE)
+	eye3.EnableNoWait(TRUE)
+	eye4.EnableNoWait(TRUE)
+	sybandisNoise.Play(PlayerRef)
+	utility.Wait(5)
+	PlayerRef.MoveTo(endMarker)
+	Punished01.show()
+	PlayerRef.SetAV("DragonSouls", 0)
+	Punished03.show()
+	PlayerRef.RemoveItem(visor, PlayerRef.GetItemCount(visor))
+	if usedBoil.GetValue() >= 1
+		PlayerRef.RemoveItem(rod, PlayerRef.GetItemCount(rod))
 	endIf
-	if usedBrass.GetValue() >= 1 as Float
-		game.GetPlayer().RemoveItem(unwinder as form, game.GetPlayer().GetItemCount(unwinder as form), false, none)
+	if usedBrass.GetValue() >= 1
+		PlayerRef.RemoveItem(unwinder, PlayerRef.GetItemCount(unwinder))
 	endIf
-	if usedBottom.GetValue() >= 1 as Float
-		game.GetPlayer().RemoveItem(lullshield as form, game.GetPlayer().GetItemCount(lullshield as form), false, none)
+	if usedBottom.GetValue() >= 1
+		PlayerRef.RemoveItem(lullshield, PlayerRef.GetItemCount(lullshield))
 	endIf
-	if timesUsed.GetValue() >= 3 as Float
-		debug.MessageBox("Because you used the lantern so many times, you are further punished.")
-		game.GetPlayer().RemoveItem(gold as form, 10000, false, none)
+	if timesUsed.GetValue() >= 3
+		Punished02.show()
+		PlayerRef.RemoveItem(gold, 10000)
 	endIf
 	
 endEvent
