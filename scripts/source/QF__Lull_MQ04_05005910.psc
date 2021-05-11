@@ -1,31 +1,27 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 10
+;NEXT FRAGMENT INDEX 15
 Scriptname QF__Lull_MQ04_05005910 Extends Quest Hidden
-
-;BEGIN ALIAS PROPERTY _MQ04_Drillbit
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ04_Drillbit Auto
-;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ04_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ04_Numinar Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;Activated trigger around drillbit
+;BEGIN ALIAS PROPERTY _MQ04_Drillbit
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ04_Drillbit Auto
+;END ALIAS PROPERTY
 
-WoL.Log(self, "Drillbit acquired, advancing stage and enabling black FRF")
-PlayerRef.AddItem(drillBit, 1)
-doorMarker1.DisableNoWait() 
-blackFRF.EnableNoWait()
-MinesStartup.setstage(5)
-guardsActivate.EnableNoWait()
-bittrigger.DisableNoWait()
-SetObjectiveDisplayed(30)
-SetObjectiveCompleted(20)
+;BEGIN FRAGMENT Fragment_10
+Function Fragment_10()
+;BEGIN CODE
+;Whistling King OnTranslationComplete
+
+RealWhistlingKing.MoveTo(WhistlingKing)
+WhistlingKing.DisableNoWait()
+bossMusic.Add()
+Game.EnablePlayerControls()
+whistlingKingAwakens.Play(PlayerRef)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -35,6 +31,18 @@ Function Fragment_0()
 ;BEGIN CODE
 SetObjectiveCompleted(10)
 SetObjectiveDisplayed(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_13
+Function Fragment_13()
+;BEGIN CODE
+;OnDeath Whistling King
+
+doorToLock1.Lock(false)
+doorToLock2.Lock(false)
+bossMusic.Remove()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -56,28 +64,20 @@ WoL.Log(self, "Whistling King fight commencing...")
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
 ;BEGIN CODE
-;Whistling King OnTranslationComplete
+;Activated trigger around drillbit
 
-RealWhistlingKing.MoveTo(WhistlingKing)
-WhistlingKing.DisableNoWait()
-bossMusic.Add()
-Game.EnablePlayerControls()
-whistlingKingAwakens.Play(PlayerRef)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-;OnDeath Whistling King
-
-doorToLock1.Lock(false)
-doorToLock2.Lock(false)
-bossMusic.Remove()
+WoL.Log(self, "Drillbit acquired, advancing stage and enabling black FRF")
+PlayerRef.AddItem(drillBit, 1)
+doorMarker1.DisableNoWait() 
+blackFRF.EnableNoWait()
+MinesStartup.setstage(5)
+guardsActivate.EnableNoWait()
+bittrigger.DisableNoWait()
+SetObjectiveDisplayed(30)
+SetObjectiveCompleted(20)
 ;END CODE
 EndFunction
 ;END FRAGMENT
