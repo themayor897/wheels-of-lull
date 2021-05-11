@@ -1,5 +1,8 @@
 Scriptname _Lull_Boiling_BossPit extends ObjectReference  
 
+;Modified April 2021 by themayor897 - added logging functions
+;Modified 11 May 2021 by themayor897 - transitioned death functions to mq04 script fragment
+
 Actor Property bossEnemy auto
 ObjectReference Property reward auto
 ObjectReference Property wallBall auto
@@ -9,6 +12,7 @@ Spell Property effectSpell auto
 GlobalVariable property NumFalls auto
 GlobalVariable property TotalFalls auto
 MusicType Property minibossMusic auto
+Quest Property MQ04 Auto
 bool doOnce = FALSE
 float HitDamage
 float total
@@ -34,14 +38,7 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 				bossEnemy.resurrect()
 			endif
 		else
-			bossEnemy.DisableNoWait()
-			reward.EnableNoWait()
-			effectSpell.Cast(reward, reward)
-			minibossMusic.Remove()
-			bossDie.Play(Game.GetPlayer())
-			Utility.Wait(1)
-			wallBall.DisableNoWait()
-			WoL.Log(self, "Welding Soldier defeated, Rod of Ohm enabled") 
+			MQ04.SetStage(22) 
 		endif
 	endif
 EndEvent
