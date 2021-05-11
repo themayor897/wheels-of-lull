@@ -20,7 +20,10 @@ Event OnTriggerEnter(ObjectReference akActionRef)
         endif
     Else
         if tmpRef.IsInFaction(FollowerFact)||tmpRef.IsInFaction(PotentialFollowerFact)
-            tmpRef.MoveTo(startMarker)
+            utility.wait(1) ;we wait in case the player fell in and died too, this way the player has time to reset
+            if !PlayerRef.isDead()
+                tmpRef.MoveTo(PlayerRef) ;no point moving them if the save is about to reload.
+            EndIf
         endif
     endif
 
