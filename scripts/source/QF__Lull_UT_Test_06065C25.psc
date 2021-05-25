@@ -2,6 +2,32 @@
 ;NEXT FRAGMENT INDEX 16
 Scriptname QF__Lull_UT_Test_06065C25 Extends Quest Hidden
 
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
+;BEGIN CODE
+MQ03.Setstage(5)
+MQ03.Setstage(10)
+MQ03.setstage(15)
+MQ03.SetObjectiveCompleted(10)
+MQ03.SetObjectiveDisplayed(15)
+MQ03.SetStage(20)
+MQ03.SetStage(25)
+MQ03.SetStage(35)
+MQ03.Setstage(40)
+MQ03.Setstage(44)
+MQ03.Setstage(45)
+MQ03.Setstage(50)
+MQ03.Setstage(51)
+MQ03.Setstage(55)
+MQ03.Setstage(60)
+MQ03.Setstage(65)
+MQ03.CompleteAllObjectives()
+MQ03.Setstage(70)
+PlayerRef.MoveTo(Marker03)
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_14
 Function Fragment_14()
 ;BEGIN CODE
@@ -57,6 +83,16 @@ LlavadosREF.MoveTo(PlayerRef)
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+MQ02.SetStage(5)
+MQ02.CompleteQuest()
+PlayerRef.Moveto(marker03)
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_9
 Function Fragment_9()
 ;BEGIN CODE
@@ -71,42 +107,6 @@ playerref.additem(ohm, 1)
 playerref.removeitem(drillbit, 1)
 Utility.Wait(4)
 MQ05.Start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-MQ02.SetStage(5)
-MQ02.CompleteQuest()
-PlayerRef.Moveto(marker03)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-MQ03.Setstage(5)
-MQ03.Setstage(10)
-MQ03.setstage(15)
-MQ03.SetObjectiveCompleted(10)
-MQ03.SetObjectiveDisplayed(15)
-MQ03.SetStage(20)
-MQ03.SetStage(25)
-MQ03.SetStage(35)
-MQ03.Setstage(40)
-MQ03.Setstage(44)
-MQ03.Setstage(45)
-MQ03.Setstage(50)
-MQ03.Setstage(51)
-MQ03.Setstage(55)
-MQ03.Setstage(60)
-MQ03.Setstage(65)
-MQ03.CompleteAllObjectives()
-MQ03.Setstage(70)
-PlayerRef.MoveTo(Marker03)
 ;END CODE
 EndFunction
 ;END FRAGMENT

@@ -1,20 +1,25 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 12
+;NEXT FRAGMENT INDEX 13
 Scriptname QF__Lull_MQ02_0500590E Extends Quest Hidden
+
+;BEGIN ALIAS PROPERTY _MQ02_HighHrothgar
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ02_HighHrothgar Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ02_College
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ02_College Auto
+;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ02_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ02_Numinar Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ02_Thalmor
+;BEGIN ALIAS PROPERTY _MQ02_NuminarDoor
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ02_Thalmor Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ02_HighHrothgar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ02_HighHrothgar Auto
+ReferenceAlias Property Alias__MQ02_NuminarDoor Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ02_LlavadosTalker
@@ -27,14 +32,9 @@ ReferenceAlias Property Alias__MQ02_LlavadosTalker Auto
 ReferenceAlias Property Alias_Player Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ02_NuminarDoor
+;BEGIN ALIAS PROPERTY _MQ02_Thalmor
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ02_NuminarDoor Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ02_College
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ02_College Auto
+ReferenceAlias Property Alias__MQ02_Thalmor Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_7
@@ -75,6 +75,19 @@ _Lull_MQ02_LlavadosSaysGoodbye.start()
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_12
+Function Fragment_12()
+;BEGIN CODE
+;set at end of numinar's initial dialogue
+
+NuminarREF.setdontmove(false)
+NuminarREF.evaluatepackage()
+Barrier.disablenowait()
+Game.EnablePlayerControls()
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
 Quest Property quest1 auto
@@ -85,3 +98,7 @@ Armor Property llavadosMask auto
 Scene Property _Lull_MQ02_LlavadosSaysGoodbye  Auto  
 
 ObjectReference Property numinarDoor  Auto  
+
+Actor Property NuminarREF  Auto  
+
+ObjectReference Property Barrier  Auto  
