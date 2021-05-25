@@ -6,7 +6,9 @@ Scriptname _lull_mcmconfig extends SKI_ConfigBase
 
 GlobalVariable Property _lull_stoneholeghosts Auto
 GlobalVariable Property _lull_surprise Auto
-GlobalVariable Property _lull_mutantdeath Auto
+
+Bool MutantDeath
+Actor[] Property WhitehornMutants Auto
 
 Bool FoundrySwitches
 ObjectReference Property _lull_FoundryLeverParent Auto
@@ -46,7 +48,6 @@ Function InstallMCM()
 
 	_lull_stoneholeghosts.SetValue(0)
 	_lull_surprise.SetValue(1)
-	_lull_mutantdeath.SetValue(0)
 	_lull_shieldstamina.SetValue(0)
 	; Toggle Options ^^ 
 
@@ -79,7 +80,7 @@ Event OnPageReset(string page)
 		;AddToggleOptionST("OID__lull_surprise", "Surprise?", _lull_surprise.GetValue() as Int)
 		AddHeaderOption("$gen_Battle")
 		AddSliderOptionST("OID__lull_MasscroftTotal", "$gen_MasscroftDrops", _lull_MasscroftTotal.GetValue(), "{0}")
-		AddToggleOptionST("OID__lull_mutantdeath", "$gen_KillableMutants", _lull_mutantdeath.GetValue() as Int)
+		AddToggleOptionST("OID__lull_mutantdeath", "$gen_KillableMutants", MutantDeath)
 		AddHeaderOption("$gen_Misc")
 		AddToggleOptionST("OID__lull_foundryswitches", "$gen_FoundryPistons", FoundrySwitches)
 		AddToggleOptionST("OID__lull_shieldstamina", "$gen_ShieldStamina", _lull_shieldstamina.GetValue() as Int)
@@ -139,15 +140,16 @@ State OID__lull_mutantdeath
 	EndEvent 
 
 	event OnSelectST()
-		Int Value = _lull_mutantdeath.GetValue() as Int
-		If Value == 0
-			Value = 1
+		If MutantDeath == 0
+			MutantDeath = 1
+			SetMutantDeath(false)
 		Else
-			Value = 0
+			MutantDeath = 0
+			SetMutantDeath(true)
 		Endif 
-
-		_lull_mutantdeath.SetValue(Value)
-		SetToggleOptionValueST(Value)
+		
+		SetToggleOptionValueST(MutantDeath)
+		
 	EndEvent 
 
 EndState 
@@ -322,3 +324,11 @@ state OID_QMenu
 EndState 
 	 
 	 
+	 
+Function SetMutantDeath(bool isInvul)
+	Int iElement = WhitehornMutants.Length
+	While iElement
+		iElement -= 1
+		WhitehornMutants[iElement].GetActorBase().SetInvulnerable(isInvul)
+	EndWhile	 
+EndFunction 
