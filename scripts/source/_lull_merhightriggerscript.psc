@@ -13,6 +13,8 @@ Int Property stage03 auto
 Armor Property thalmorRobes auto
 bool property doOnce = True auto
 
+Faction Property WhitehornThalmor auto
+
 auto STATE waitingforPlayer
 	Event OnTriggerEnter(ObjectReference akActionRef)
 		if(akActionRef == Game.GetPlayer())
@@ -21,8 +23,9 @@ auto STATE waitingforPlayer
 			lightBulb.EnableNoWait(1)
 			Utility.Wait(3)
 			Game.GetPlayer().RemoveItem(thalmorRobes)
-			Game.GetPlayer().RemoveAllItems(chestThings)
-			Game.GetPlayer().MoveTo(lullMove)
+			;Game.GetPlayer().RemoveAllItems(chestThings)
+			;Game.GetPlayer().MoveTo(lullMove)
+			WhitehornThalmor.SendPlayertoJail()			
 			archeron.MoveTo(archerMove)
 			masscroft.MoveTo(massMove)
 			MQ03.SetStage(stage03)
