@@ -22,14 +22,16 @@ MusicType Property massMusic auto
 
 Event OnTriggerEnter(ObjectReference akActionRef)
 	if(akActionRef == masscroft)
-		if(NumFalls.getvalue() < TotalFalls.getvalue())
+		float fCount = NumFalls.GetValue()
+		float Total = TotalFalls.GetValue()
+		if(fcount < Total)
 			massScream.Play(PlayerRef)
 			masscroft.MoveTo(resetMarker)
 			NumFalls.Mod(1.0)
 			masscroft.StartCombat(PlayerRef)
-			WoL.Log(self, "Fall registered on Masscroft." + NumFalls.GetValue() + "/" + TotalFalls.getvalue() + "falls.")
+			WoL.Log(self, "Fall registered on Masscroft." + (fCount as String) + "/" + (Total as String) + "falls.")
 			if masscroft.isDead() && !masscroft.isDisabled()
-				WoL.Log(self, "Masscroft died prematurely! Hits:" + NumFalls.GetValue() + ". Resurrecting", 1)
+				WoL.Log(self, "Masscroft died prematurely! Hits:" + (fCount as String) + ". Resurrecting", 1)
 				Masscroft.resurrect()
 			endif
 		else

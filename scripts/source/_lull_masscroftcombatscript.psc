@@ -31,8 +31,8 @@ Event OnCombatStateChanged(Actor akTarget, int aeCombatState)
 	if(self.GetParentCell() == bottomCell)
 		if(!doOnce)
 			RegisterForSingleUpdate(7)
-			CheckHealth(self)
 			ReqHits = TotalFalls.GetValue()
+			CheckHealth(self)
 			doOnce = TRUE
 		endif
 	endif
@@ -41,7 +41,7 @@ EndEvent
 
 
 Event OnUpdate()
-	float hits = NumFalls.GetValue()
+	float hits = (NumFalls.GetValue() - 1) ;numfalls defaults to 1 so totalfalls works properly in MCM.
  	int randomNumber = Utility.RandomInt(0, 3)
 	invisibleSpell.Cast(self, self)
 	WoL.Log(self, "Masscroft update processed, choosing random location...")
