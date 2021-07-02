@@ -2,12 +2,13 @@ Scriptname _Lull_Boiling_BossPit extends ObjectReference
 
 ;Modified April 2021 by themayor897 - added logging functions
 ;Modified 11 May 2021 by themayor897 - transitioned death functions to mq04 script fragment
+;Modified 30 JUne 2021 by themayor897 - fixed log strings
 
 Actor Property bossEnemy auto
-ObjectReference Property reward auto
-ObjectReference Property wallBall auto
+ObjectReference Property reward auto ;no longer used
+ObjectReference Property wallBall auto ;no longer used
 Sound Property bossScream auto
-Sound Property bossDie auto
+Sound Property bossDie auto ;no longer used
 Spell Property effectSpell auto
 GlobalVariable property NumFalls auto
 GlobalVariable property TotalFalls auto
@@ -32,9 +33,9 @@ Event OnTriggerEnter(ObjectReference akActionRef)
 			Utility.Wait(3)
 			bossEnemy.MoveToMyEditorLocation()
 			NumFalls.Mod(1.0)
-			WoL.Log(self, "Fall registered on Welding soldier." + (hits + 1) + "/" + total + "falls.")
+			WoL.Log(self, "Fall registered on Welding soldier. " + ((hits + 1) as string) + "/" + (total as string) + " falls.")
 			if bossEnemy.isDead() && !bossEnemy.isDisabled()
-				WoL.Log(self, "Welding Soldier died prematurely! Hits:" + NumFalls.GetValue() + ". Resurrecting", 1)
+				WoL.Log(self, "Welding Soldier died prematurely! Hits: " + NumFalls.GetValue() + ". Resurrecting", 1)
 				bossEnemy.resurrect()
 			endif
 		else
