@@ -2,14 +2,14 @@
 ;NEXT FRAGMENT INDEX 10
 Scriptname QF__Lull_MQ07_05005913 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY archeron
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_archeron Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ07_ArcheronTA
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ07_Archeron
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ07_Archeron Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_6
@@ -27,10 +27,12 @@ Setstage(9)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
 ;BEGIN CODE
-;Hammar Dialogue conditioned
+;First Stage
+;Starts via MQ06 stage 40
+;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -44,12 +46,25 @@ Numinar.EvaluatePackage()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
 ;BEGIN CODE
-;First Stage
-;Starts via MQ06 stage 40
-;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
+;setstage trigger in LullCave09
+;About to enter/entering Snow-Throat Cell
+;Numinar dialogue
+
+numinar.MoveTo(MQ07_NuminarTPMarker)
+numinar.EnableNoWait()
+GuardMREF.EnableNoWait()
+GuardFREF.EnableNoWait()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Hammar Dialogue conditioned
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -74,21 +89,6 @@ ramonSkull.EnableNoWait()
 ramonHandL.EnableNoWait()
 ramonHandR.EnableNoWait()
 Game.ShakeCamera(Game.GetPlayer(), 0.75, 20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-;setstage trigger in LullCave09
-;About to enter/entering Snow-Throat Cell
-;Numinar dialogue
-
-numinar.MoveTo(MQ07_NuminarTPMarker)
-numinar.EnableNoWait()
-GuardMREF.EnableNoWait()
-GuardFREF.EnableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT
