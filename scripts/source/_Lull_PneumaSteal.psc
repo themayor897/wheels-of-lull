@@ -9,7 +9,7 @@ EVENT OnContainerChanged(ObjectReference akNewContainer, ObjectReference akOldCo
         actor oldHost = (akOldContainer as actor)
         if (oldHost.getRace() == chronoRace)
             if !oldHost.isDead()
-                oldHost.kill(akNewContainer as actor)
+                oldHost.killEssential(akNewContainer as actor)
             endif
 
             while utility.isInMenuMode()
