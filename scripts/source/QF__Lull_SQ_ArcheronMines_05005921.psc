@@ -30,9 +30,9 @@ EndFunction
 ;BEGIN FRAGMENT Fragment_2
 Function Fragment_2()
 ;BEGIN CODE
-debug.notification("Note from The Eternity added")
+NoteAdded.Show()
 _Lull_ITMNoteUp.Play(PlayerRef)
-debug.notification("Archeron's Mines Teleporter added")
+TeleporterAdded.Show()
 ITMGenericUp.Play(PlayerRef)
 ;END CODE
 EndFunction
@@ -45,3 +45,7 @@ Sound Property _Lull_ITMNoteUp  Auto
 Sound Property ITMGenericUp  Auto  
 
 ObjectReference Property PlayerRef  Auto  
+
+Message Property NoteAdded  Auto  
+
+Message Property TeleporterAdded  Auto  

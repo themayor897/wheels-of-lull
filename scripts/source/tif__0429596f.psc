@@ -11,7 +11,7 @@ cartWright.DisableNoWait()
 Game.ShakeCamera()
 Utility.Wait(3)
 Game.GetPlayer().MoveTo(CartCell)
-Debug.MessageBox("You exit the tram.")
+ExitTram.Show()
 getOwningQuest().SetObjectiveCompleted(1)
 getOwningQuest().CompleteQuest()
 ;END CODE
@@ -21,3 +21,5 @@ EndFunction
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 ObjectReference Property CartCell auto
 ObjectReference Property cartWright  Auto  
+
+Message Property ExitTram  Auto  
