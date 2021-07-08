@@ -1,12 +1,11 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 1
-Scriptname TIF__04361509 Extends TopicInfo Hidden
+Scriptname PF__Lull_MQ06_FyrToCage_0600FB05 Extends Package Hidden
 
 ;BEGIN FRAGMENT Fragment_0
-Function Fragment_0(ObjectReference akSpeakerRef)
-Actor akSpeaker = akSpeakerRef as Actor
+Function Fragment_0(Actor akActor)
 ;BEGIN CODE
-GetOwningQuest().SetStage(17)
+GetOwningQuest().SetStage(19)
 ;END CODE
 EndFunction
 ;END FRAGMENT

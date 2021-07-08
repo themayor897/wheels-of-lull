@@ -15,6 +15,7 @@ Sound Property massDie auto
 
 GlobalVariable property NumFalls auto
 GlobalVariable property TotalFalls auto
+GlobalVariable property HitDamage auto
 
 MusicType Property massMusic auto
 
@@ -22,12 +23,16 @@ MusicType Property massMusic auto
 
 Event OnTriggerEnter(ObjectReference akActionRef)
 	if(akActionRef == masscroft)
-		float fCount = NumFalls.GetValue()
-		float Total = TotalFalls.GetValue()
+		NumFalls.Mod(1.0)
+		float fCount = NumFalls.GetValue() as Int
+		float Total = TotalFalls.GetValue() as Int
+		float hDamage = HitDamage.GetValue() as Int
 		if(fcount < Total)
+			Masscroft.DamageAV("Health", hDamage)
 			massScream.Play(PlayerRef)
 			masscroft.MoveTo(resetMarker)
-			NumFalls.Mod(1.0)
+			Masscroft.Resurrect()
+			Masscroft.DamageAV("Health", (fcount*hDamage))
 			masscroft.StartCombat(PlayerRef)
 			WoL.Log(self, "Fall registered on Masscroft." + (fCount as String) + "/" + (Total as String) + "falls.")
 			if masscroft.isDead() && !masscroft.isDisabled()

@@ -1,12 +1,12 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 4
-Scriptname PF__Lull_MQ06_TravelToPlayer_0600590A Extends Package Hidden
+Scriptname _Lull_PF_TravelToConferFyr Extends Package Hidden
 
 ;BEGIN FRAGMENT Fragment_3
 Function Fragment_3(Actor akActor)
 ;BEGIN CODE
-lullApproached.SetValue(lullApproached.GetValue() + 1 as Float)
-	if lullApproached.GetValue() >= 3 as Float
+Float wDone = lullApproached.Mod(1)
+	if wDone == 3
 		saboteurScene.Start()
 		mq06.SetStage(15)
 	endIf

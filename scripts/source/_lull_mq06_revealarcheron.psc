@@ -8,14 +8,16 @@ Actor Property Masscroft auto
 ObjectReference Property ArcheronMarker auto
 ObjectReference Property MasscroftMarker auto
 
-Spell Property ExplosionSpell auto
+Explosion Property IllusionMassiveLight auto
+ImageSpaceModifier Property FadeToWhite Auto
 
 Event OnEffectStart(Actor Target, Actor Caster)
-	ArcheronMarker.moveto(Fyr)
-	MasscroftMarker.MoveTo(Yagrum)
+	Fyr.PlaceAtMe(IllusionMassiveLight)
+	Utility.Wait(0.5)
+	FadeToWhite.Apply()
 	Fyr.Disable()
 	Yagrum.Disable()
-	WoL.Log(Caster, "Markers moved, Fyr and Yagrum disabled.")
+	WoL.Log(Caster, "Fyr and Yagrum disabled.")
 EndEvent
 
 Event OnEffectFinish (Actor Target, Actor Caster)
@@ -23,5 +25,6 @@ Event OnEffectFinish (Actor Target, Actor Caster)
 	Masscroft.MoveTo(MasscroftMarker)
 	Archeron.evaluatepackage()
 	Masscroft.evaluatepackage()
+	FadeToWhite.Remove()
 	WoL.Log(caster, "Archeron and Masscroft moved, packages updating...")
 EndEvent 

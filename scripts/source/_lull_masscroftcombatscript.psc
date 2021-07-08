@@ -12,6 +12,7 @@ bool doOnce = FALSE
 GlobalVariable property NumFalls auto
 GlobalVariable property TotalFalls auto
 float HitDamage
+GlobalVariable Property HitDamageGV auto
 float ReqHits
 
 Spell Property lullSpell auto
@@ -41,7 +42,7 @@ EndEvent
 
 
 Event OnUpdate()
-	float hits = (NumFalls.GetValue() - 1) ;numfalls defaults to 1 so totalfalls works properly in MCM.
+	float hits = (NumFalls.GetValue())
  	int randomNumber = Utility.RandomInt(0, 3)
 	invisibleSpell.Cast(self, self)
 	WoL.Log(self, "Masscroft update processed, choosing random location...")
@@ -87,4 +88,5 @@ Function CheckHealth(Actor akActor)
 	akactor.RestoreAV("Health", ValueDifference)
 	HitDamage = ((CurrentMaxValue / ReqHits) - 1)
 	WoL.log(self, "Masscroft hit value calculated to be" + HitDamage)
+	HitDamageGV.SetValue(HitDamage)
 EndFunction

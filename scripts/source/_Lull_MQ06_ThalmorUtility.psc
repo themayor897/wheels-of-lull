@@ -5,7 +5,7 @@ GlobalVariable Property ThalmorTotal  Auto  Conditional
 
 Function ThalmorCount()
  	ModObjectiveGlobal(1, ThalmorKilled)
-	WoL.Log(self, (ThalmorKilled.getvalue() as int) as string + "/" + (ThalmorKilled.getvalue() as int) as string + " thalmor killed.")
+	WoL.Log(self, (ThalmorKilled.getvalue() as int) as string + "/7 thalmor killed.")
 	if ThalmorKilled.value == ThalmorTotal.value	
 		SetStage(14)
 	endif
