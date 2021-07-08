@@ -14,6 +14,9 @@ Bool FoundrySwitches
 ObjectReference Property _lull_FoundryLeverParent Auto
 
 GlobalVariable Property _lull_shieldstamina Auto
+
+Bool RecoveryTriggers
+ObjectReference Property RecoveryEnabler Auto
 ; Toggle Options ^^ 
 
 GlobalVariable Property _lull_MasscroftTotal Auto
@@ -84,6 +87,7 @@ Event OnPageReset(string page)
 		AddHeaderOption("$gen_Misc")
 		AddToggleOptionST("OID__lull_foundryswitches", "$gen_FoundryPistons", FoundrySwitches)
 		AddToggleOptionST("OID__lull_shieldstamina", "$gen_ShieldStamina", _lull_shieldstamina.GetValue() as Int)
+		AddToggleOptionST("OID__lull_RecoveryTriggers", "$gen_RecoveryTriggers", RecoveryTriggers)
 		
 	ElseIf Page == "$db_Debug"
 	
@@ -213,6 +217,26 @@ State OID__lull_shieldstamina
 
 		_lull_shieldstamina.SetValue(Value)
 		SetToggleOptionValueST(Value)
+	EndEvent 
+
+EndState 
+
+State OID__lull_RecoveryTriggers
+	event OnHighlightST()
+		SetInfoText("$gen_RecoveryTriggersInfo")
+	EndEvent 
+
+	event OnSelectST()
+		If RecoveryTriggers == 0
+			RecoveryTriggers = 1
+			RecoveryEnabler.enable()
+		Else
+			RecoveryTriggers = 0
+			RecoveryEnabler.disable()
+		Endif 
+
+		SetToggleOptionValueST(RecoveryTriggers)
+		
 	EndEvent 
 
 EndState 
