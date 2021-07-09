@@ -22,8 +22,17 @@ Cell property myParentCell auto hidden
 
 ObjectReference Property OffSwitch Auto
 
-Function OnInit()
+Event OnInit()
+	SwitchReg()
+EndEvent
+
+Event OnCellAttach()
+	SwitchReg()
+EndEvent
+
+Function SwitchReg()
 	RegisterForModEvent("_Lull_FoundryOffSwitch", "OnMyCustomEvent")
+	;Debug.Trace("Trap Trigger Mod Event Registered on " + self as string)
 EndFunction
 
 auto state TimedFireState
@@ -75,8 +84,8 @@ state Inactive
 endState
 
 
-event onCellAttach()
-endEvent
+;event onCellAttach()
+;endEvent
 
 event onCellDetach()
 endEvent

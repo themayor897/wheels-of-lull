@@ -1,5 +1,5 @@
-Scriptname PlayerBhruceCheck extends ReferenceAlias
- 
+Scriptname _Lull_BhruceCheckPlayer extends ReferenceAlias  
+
 _Lull_BhruceChecker Property QuestScript Auto
  
 Event OnPlayerLoadGame()
