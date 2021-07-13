@@ -133,7 +133,6 @@ Event OnDeath(Actor akKiller)
 	MQ05.SetStage(15)
 	PlayerRef.MoveTo(playerMarker)
 	numinar.moveto(numinarmarker)
-	numinar.evaluatepackage()
 	blackout.Remove()
 	Game.EnablePlayerControls()
 endEvent

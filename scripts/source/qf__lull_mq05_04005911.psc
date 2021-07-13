@@ -17,13 +17,23 @@ ReferenceAlias Property Alias__MQ04_Numinar Auto
 ReferenceAlias Property Alias__MQ04_Yagrum Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_15
-Function Fragment_15()
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
 ;BEGIN CODE
-;Set at end of FyrSaboteur Scene
+;Started in "What are you doing in catacombs"
 
-SetObjectiveCompleted(10)
-SetObjectiveCompleted(12)
+FyrScene.Start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_16
+Function Fragment_16()
+;BEGIN CODE
+;Set in SaboteurWho Topic
+
+SetObjectiveDisplayed(21)
+NuminarREF.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -34,28 +44,6 @@ Function Fragment_7()
 ;Set in "Weren't you a bloated monster?"
 
 FyrRef.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_12
-Function Fragment_12()
-;BEGIN CODE
-;Set in "Your friend is a Dwarf?"
-
-YagrumRef.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-;Set in quest end topic
-
-SetObjectiveCompleted(21)
-;minerMarker.EnableNoWait() not used??
-DrillParent02.DisableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -85,54 +73,12 @@ Game.EnablePlayerControls()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_16
-Function Fragment_16()
+;BEGIN FRAGMENT Fragment_12
+Function Fragment_12()
 ;BEGIN CODE
-;Set in SaboteurWho Topic
+;Set in "Your friend is a Dwarf?"
 
-SetObjectiveDisplayed(21)
-NuminarREF.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_0
-Function Fragment_0()
-;BEGIN CODE
-_Lull_WorldShift02.Show()
-numinarREF.moveto(PlayerRef)
-numinarREF.PlaceAtMe(TeleportMarker)
-numinarREF.enable()
-numinarREF.evaluatepackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-;started via Old Tho Mahalis Script on Death
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-;Started in "What are you doing in catacombs"
-
-FyrScene.Start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
-;BEGIN CODE
-;Set in "You, come with me, now"
-
-numinarREF.MoveTo(numinarcontrolMarker)
-PlayerREF.MoveTo(playercontrolMarker)
+YagrumRef.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -159,6 +105,61 @@ Function Fragment_4()
 SetObjectiveDisplayed(10)
 SetObjectiveDisplayed(12)
 DrillParent01.DisableNoWait(1)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+;Set in quest end topic
+
+SetObjectiveCompleted(21)
+;minerMarker.EnableNoWait() not used??
+DrillParent02.DisableNoWait()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_15
+Function Fragment_15()
+;BEGIN CODE
+;Set at end of FyrSaboteur Scene
+
+SetObjectiveCompleted(10)
+SetObjectiveCompleted(12)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+;started via Old Tho Mahalis Script on Death
+NuminarREF.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_0
+Function Fragment_0()
+;BEGIN CODE
+_Lull_WorldShift02.Show()
+numinarREF.moveto(PlayerRef)
+numinarREF.PlaceAtMe(TeleportMarker)
+numinarREF.enable()
+numinarREF.evaluatepackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Set in "You, come with me, now"
+
+numinarREF.MoveTo(numinarcontrolMarker)
+PlayerREF.MoveTo(playercontrolMarker)
 ;END CODE
 EndFunction
 ;END FRAGMENT
