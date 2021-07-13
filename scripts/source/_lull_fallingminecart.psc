@@ -5,7 +5,7 @@ ObjectReference Property Cart auto
 
 
 Event OnTranslationComplete()
-	explodespell.Cast(self, game.getplayer());
+	explodespell.Cast(self, self)
 	self.disablenowait()
 	cart.enablenowait()
 EndEvent
