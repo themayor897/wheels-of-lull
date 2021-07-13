@@ -15,10 +15,10 @@ Float RestoreMyStamina
 EVENT OnEffectStart(Actor Target, Actor Caster)	
 	selfRef = caster
 	if (selfref == PlayerRef)
-		registerForAnimationEvent(caster, "bashRelease")
+		registerForAnimationEvent(selfRef, "bashRelease")
 	else
-		registerForAnimationEvent(caster, "bashExit")
-		registerForAnimationEvent(caster, "bashStop")
+		registerForAnimationEvent(selfRef, "bashExit")
+		registerForAnimationEvent(selfRef, "bashStop")
 	endif
 	
 	RestoreMyStamina = _lull_shieldstamina.GetValue()
