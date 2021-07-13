@@ -2,69 +2,21 @@
 ;NEXT FRAGMENT INDEX 10
 Scriptname QF__Lull_MQ07_05005913 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ07_ArcheronTA
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ07_Archeron
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ07_Archeron Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-blackout.apply()
-collapse.play(PlayerRef)
-Utility.Wait(1)
-ObjectReference ArchSay = PlayerRef.PlaceAtMe(xMarkerActivator)
-ArchSay.Say(ArcheronFinal, Archeron, True)
-collapse.play(PlayerRef)
-Utility.Wait(4)
-Setstage(9)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;First Stage
-;Starts via MQ06 stage 40
-;Conditioned in: MQ07_ForceGreet Package, Hammar dialogue,
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY MQ07_ArcheronTA
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_8
 Function Fragment_8()
 ;BEGIN CODE
 ;Talked to Numinar, Archeron behind me.
 Numinar.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-;setstage trigger in LullCave09
-;About to enter/entering Snow-Throat Cell
-;Numinar dialogue
-
-numinar.MoveTo(MQ07_NuminarTPMarker)
-numinar.EnableNoWait()
-GuardMREF.EnableNoWait()
-GuardFREF.EnableNoWait()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
-;BEGIN CODE
-;Hammar Dialogue conditioned
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -93,6 +45,53 @@ Game.ShakeCamera(Game.GetPlayer(), 0.75, 20)
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
+;BEGIN CODE
+blackout.apply()
+collapse.play(PlayerRef)
+Utility.Wait(1)
+ObjectReference ArchSay = PlayerRef.PlaceAtMe(xMarkerActivator)
+ArchSay.Say(ArcheronFinal, Archeron, True)
+collapse.play(PlayerRef)
+Utility.Wait(4)
+Setstage(9)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
+;BEGIN CODE
+;Conditioned in: MQ07_ForceGreet Package, set via Hammar's MQ07 dialogue.
+SetObjectiveDisplayed(2)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Hammar Dialogue conditioned
+;First stage, set in MQ06 stage 40
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_9
+Function Fragment_9()
+;BEGIN CODE
+;Moved from RamonHeadScript, where this stage is now set.
+
+llavados.MoveTo(llavadosMarker)
+llavados.EnableNoWait()
+memory.MoveTo(memoMarker)
+memory.EnableNoWait()
+PlayerRef.MoveTo(endMarker)
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_7
 Function Fragment_7()
 ;BEGIN CODE
@@ -111,16 +110,17 @@ myDoor.lock(False)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_9
-Function Fragment_9()
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
 ;BEGIN CODE
-;Moved from RamonHeadScript, where this stage is now set.
+;setstage trigger in LullCave09
+;About to enter/entering Snow-Throat Cell
+;Numinar dialogue
 
-llavados.MoveTo(llavadosMarker)
-llavados.EnableNoWait()
-memory.MoveTo(memoMarker)
-memory.EnableNoWait()
-PlayerRef.MoveTo(endMarker)
+numinar.MoveTo(MQ07_NuminarTPMarker)
+numinar.EnableNoWait()
+GuardMREF.EnableNoWait()
+GuardFREF.EnableNoWait()
 ;END CODE
 EndFunction
 ;END FRAGMENT

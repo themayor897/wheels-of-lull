@@ -2,29 +2,9 @@
 ;NEXT FRAGMENT INDEX 40
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ06_Fyr
+;BEGIN ALIAS PROPERTY MQ06_Thalmor5
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Fyr Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor3
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor1
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor2
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Numinar Auto
+ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor4
@@ -32,9 +12,9 @@ ReferenceAlias Property Alias_MQ06_Numinar Auto
 ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Yagrum
+;BEGIN ALIAS PROPERTY MQ06_Thalmor1
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Yagrum Auto
+ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Archeron
@@ -42,19 +22,29 @@ ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ReferenceAlias Property Alias_MQ06_Archeron Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY MQ06_Fyr
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Fyr Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Numinar
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Numinar Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor7
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor5
+;BEGIN ALIAS PROPERTY MQ06_Thalmor3
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
+ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor6
+;BEGIN ALIAS PROPERTY MQ06_Yagrum
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
+ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Masscroft
@@ -62,14 +52,29 @@ ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
 ReferenceAlias Property Alias_MQ06_Masscroft Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_34
-Function Fragment_34()
+;BEGIN ALIAS PROPERTY MQ06_Thalmor2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor6
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
+;END ALIAS PROPERTY
+
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
 ;BEGIN CODE
-Utility.Wait(2)
-BreakSound.Play(PlayerRef)
-;MetalCage.TranslateToRef(CageFallRef, 700)
-;Utility.Wait(1)
-MetalCage.Disable()
+;Setstage trigger in elevator room after quest is completed
+
+SetObjectiveCompleted(24)
+rockMarker.DisableNoWait()
+numinar.DisableNoWait()
+guard1.DisableNoWait()
+guard2.DisableNoWait()
+minerMarker.DisableNoWait()
+MQ07.SetStage(1)
+MQ07.SetObjectiveDisplayed(1)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -78,6 +83,48 @@ EndFunction
 Function Fragment_18()
 ;BEGIN CODE
 ;Conversation in Lull-Mor (scene)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_20
+Function Fragment_20()
+;BEGIN CODE
+setobjectivecompleted(14)
+;Numinar appreaches player and arrests him
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_26
+Function Fragment_26()
+;BEGIN CODE
+;Game.GetPlayer().MoveTo(PlayerCellMarker)
+bottomFact.SendPlayertoJail(abRemoveInventory=False) 
+Fyr.MoveTo(FyrJail)
+Yagrum.MoveTo(YagrumJail)
+Fyr.EvaluatePackage()
+Yagrum.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_38
+Function Fragment_38()
+;BEGIN CODE
+;Player enters trigger in front of elevator
+
+Game.DisablePlayerControls()
+doorClose.Play(grate)
+grate.TranslateToRef(grateEnd, 600)
+grate2.enablenowait()
+Utility.Wait(3)
+masscroft.MoveTo(xMarker)
+massCroftAppear.Play(xMarker)
+Utility.Wait(4)
+masscroft.StartCombat(PlayerRef)
+Game.EnablePlayerControls()
+massBossMusic.Add()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -104,12 +151,14 @@ Archeron.Enable()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_30
-Function Fragment_30()
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
 ;BEGIN CODE
-;end llavados conversation
-SetObjectiveDisplayed(30)
-mainDoor.Lock(false)
+WorldShift03.show()
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal)
+portal.playAnimation("playAnim02")
+SetStage(5)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -123,22 +172,11 @@ setobjectivedisplayed(24)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_38
-Function Fragment_38()
+;BEGIN FRAGMENT Fragment_24
+Function Fragment_24()
 ;BEGIN CODE
-;Player enters trigger in front of elevator
-
-Game.DisablePlayerControls()
-doorClose.Play(grate)
-grate.TranslateToRef(grateEnd, 600)
-grate2.enablenowait()
-Utility.Wait(3)
-masscroft.MoveTo(xMarker)
-massCroftAppear.Play(xMarker)
-Utility.Wait(4)
-masscroft.StartCombat(PlayerRef)
-Game.EnablePlayerControls()
-massBossMusic.Add()
+;set at end of fyr final dialogue
+Fyr.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -166,33 +204,24 @@ portal.disable()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_24
-Function Fragment_24()
+;BEGIN FRAGMENT Fragment_30
+Function Fragment_30()
 ;BEGIN CODE
-;set at end of fyr final dialogue
-Fyr.EvaluatePackage()
+;end llavados conversation
+SetObjectiveDisplayed(30)
+mainDoor.Lock(false)
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_20
-Function Fragment_20()
+;BEGIN FRAGMENT Fragment_34
+Function Fragment_34()
 ;BEGIN CODE
-setobjectivecompleted(14)
-;Numinar appreaches player and arrests him
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_26
-Function Fragment_26()
-;BEGIN CODE
-;Game.GetPlayer().MoveTo(PlayerCellMarker)
-bottomFact.SendPlayertoJail(abRemoveInventory=False) 
-Fyr.MoveTo(FyrJail)
-Yagrum.MoveTo(YagrumJail)
-Fyr.EvaluatePackage()
-Yagrum.EvaluatePackage()
+Utility.Wait(2)
+BreakSound.Play(PlayerRef)
+;MetalCage.TranslateToRef(CageFallRef, 700)
+;Utility.Wait(1)
+MetalCage.Disable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -210,35 +239,6 @@ llavados.EquipItem(lHelm)
 llavados.EquipItem(lTorso)
 llavados.EquipItem(lHands)
 llavados.EquipItem(lFeet)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-;Setstage trigger in elevator room after quest is completed
-
-SetObjectiveCompleted(24)
-rockMarker.DisableNoWait()
-numinar.DisableNoWait()
-guard1.DisableNoWait()
-guard2.DisableNoWait()
-minerMarker.DisableNoWait()
-MQ07.SetStage(2)
-MQ07.SetObjectiveDisplayed(2)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-WorldShift03.show()
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal)
-portal.playAnimation("playAnim02")
-SetStage(5)
 ;END CODE
 EndFunction
 ;END FRAGMENT
