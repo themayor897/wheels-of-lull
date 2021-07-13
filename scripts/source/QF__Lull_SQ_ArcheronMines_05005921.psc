@@ -2,14 +2,19 @@
 ;NEXT FRAGMENT INDEX 3
 Scriptname QF__Lull_SQ_ArcheronMines_05005921 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY Mines_Player
+;BEGIN ALIAS PROPERTY Mines_FRF
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mines_Player Auto
+ReferenceAlias Property Alias_Mines_FRF Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY Mines_Instructions
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Mines_Instructions Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY Mines_Player
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Mines_Player Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY Mines_Teleport
@@ -30,8 +35,10 @@ EndFunction
 ;BEGIN FRAGMENT Fragment_2
 Function Fragment_2()
 ;BEGIN CODE
+BlueFRF.RemoveItem(Note, 0, 1, PlayerRef)
 NoteAdded.Show()
 _Lull_ITMNoteUp.Play(PlayerRef)
+BlueFRF.RemoveItem(Ball, 0, 1, PlayerRef)
 TeleporterAdded.Show()
 ITMGenericUp.Play(PlayerRef)
 ;END CODE
@@ -49,3 +56,9 @@ ObjectReference Property PlayerRef  Auto
 Message Property NoteAdded  Auto  
 
 Message Property TeleporterAdded  Auto  
+
+Actor Property BlueFRF  Auto  
+
+Book Property Note  Auto  
+
+MiscObject Property Ball  Auto  

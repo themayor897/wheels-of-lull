@@ -26,24 +26,6 @@ whistlingKingAwakens.Play(PlayerRef)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;Activated trigger around drillbit
-
-WoL.Log(self, "Drillbit acquired, advancing stage and enabling black FRF")
-PlayerRef.AddItem(drillBit, 1)
-doorMarker1.DisableNoWait() 
-blackFRF.EnableNoWait()
-MinesStartup.setstage(5)
-guardsActivate.EnableNoWait()
-bittrigger.DisableNoWait()
-SetObjectiveDisplayed(30)
-SetObjectiveCompleted(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
 ;BEGIN FRAGMENT Fragment_16
 Function Fragment_16()
 ;BEGIN CODE
@@ -63,25 +45,20 @@ WoL.Log(self, "Welding Soldier defeated, Rod of Ohm enabled")
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_0
-Function Fragment_0()
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
 ;BEGIN CODE
-;player enters the foundry
+;Activated trigger around drillbit
 
-SetObjectiveCompleted(10)
-SetObjectiveDisplayed(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_13
-Function Fragment_13()
-;BEGIN CODE
-;OnDeath Whistling King
-
-doorToLock1.Lock(false)
-doorToLock2.Lock(false)
-bossMusic.Remove()
+WoL.Log(self, "Drillbit acquired, advancing stage and enabling black FRF")
+PlayerRef.AddItem(drillBit, 1)
+doorMarker1.DisableNoWait() 
+blackFRF.EnableNoWait()
+MinesStartup.setstage(0) ;Mines startup quest removed for 5.1, replaced with regular closing ports quest
+guardsActivate.EnableNoWait()
+bittrigger.DisableNoWait()
+SetObjectiveDisplayed(30)
+SetObjectiveCompleted(20)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -100,6 +77,17 @@ MechNoise.Play(PlayerRef)
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_0
+Function Fragment_0()
+;BEGIN CODE
+;player enters the foundry
+
+SetObjectiveCompleted(10)
+SetObjectiveDisplayed(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_2
 Function Fragment_2()
 ;BEGIN CODE
@@ -113,6 +101,18 @@ Game.DisablePlayerControls()
 chainReleaseSound.Play(PlayerRef)
 whistlingKing.TranslateToRef(markerToMove, 200)
 WoL.Log(self, "Whistling King fight commencing...")
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_13
+Function Fragment_13()
+;BEGIN CODE
+;OnDeath Whistling King
+
+doorToLock1.Lock(false)
+doorToLock2.Lock(false)
+bossMusic.Remove()
 ;END CODE
 EndFunction
 ;END FRAGMENT
