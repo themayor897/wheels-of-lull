@@ -31,6 +31,9 @@ if(akActionRef == Game.GetPlayer())
 	elseif(i_eventType == 4) ;Ghost Enable
 		if _lull_stoneholeghosts.GetValue() == 0
 			enabler.EnableNoWait()
+			if disabler
+				disabler.disablenowait()
+			endif
 			spookySound.Play(PlayerRef)
 		else
 			;The player has disabled ghosts in the MCM
