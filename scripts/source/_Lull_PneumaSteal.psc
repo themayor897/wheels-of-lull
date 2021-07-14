@@ -4,19 +4,24 @@ Race property chronoRace auto
 EVENT OnContainerChanged(ObjectReference akNewContainer, ObjectReference akOldContainer)
 
     if (akOldContainer as actor)
-
-;       ; debug.trace("Briarheart: Handle removal from an actor")
         actor oldHost = (akOldContainer as actor)
         if (oldHost.getRace() == chronoRace)
-            if !oldHost.isDead()
-                oldHost.killEssential(akNewContainer as actor)
+             ActorBase oldHostBase  = oldHost.GetBaseObject() as ActorBase 
+            if !oldHost.isDead() && !oldHostBase.isUnique()
+                    oldHost.killEssential(akNewContainer as actor)
+                 
             endif
 
             while utility.isInMenuMode()
                 utility.wait(0.1)
             endWhile
-
         endif
     endif
-
+	if (akNewContainer as actor)
+		actor newHost = akNewContainer as actor	
+		if newHost.isDead() && newHost.getRace == chronoRace
+			newHost.resurrect()
+		endif
+	endif
+	
 endEVENT
