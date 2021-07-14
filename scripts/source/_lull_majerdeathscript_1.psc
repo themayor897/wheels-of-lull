@@ -10,6 +10,6 @@ Event OnDeath(Actor akKiller)
 	Majer1.EnableNoWait()
 	Majer2.EnableNoWait()
 	DisableNoWait()
-	DeleteWhenAble()
 	WoL.Log(self, "One Majer Dead, next two enabled.")
+	DeleteWhenAble()
 endEvent
