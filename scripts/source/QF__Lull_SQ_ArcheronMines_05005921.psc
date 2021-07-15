@@ -2,9 +2,9 @@
 ;NEXT FRAGMENT INDEX 5
 Scriptname QF__Lull_SQ_ArcheronMines_05005921 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY Mines_Instructions
+;BEGIN ALIAS PROPERTY Mines_Player
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mines_Instructions Auto
+ReferenceAlias Property Alias_Mines_Player Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY Mines_Teleport
@@ -12,28 +12,15 @@ ReferenceAlias Property Alias_Mines_Instructions Auto
 ReferenceAlias Property Alias_Mines_Teleport Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY Mines_Instructions
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Mines_Instructions Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY Mines_FRF
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Mines_FRF Auto
 ;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Mines_Player
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mines_Player Auto
-;END ALIAS PROPERTY
-
-;BEGIN FRAGMENT Fragment_2
-Function Fragment_2()
-;BEGIN CODE
-BlueFRF.RemoveItem(Note, 0, 1, PlayerRef)
-NoteAdded.Show()
-_Lull_ITMNoteUp.Play(PlayerRef)
-BlueFRF.RemoveItem(Ball, 0, 1, PlayerRef)
-TeleporterAdded.Show()
-ITMGenericUp.Play(PlayerRef)
-;END CODE
-EndFunction
-;END FRAGMENT
 
 ;BEGIN FRAGMENT Fragment_3
 Function Fragment_3()
@@ -49,6 +36,19 @@ Function Fragment_0()
 SetObjectiveCompleted(7)
 CompleteQuest()
 stop()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
+;BEGIN CODE
+BlueFRF.RemoveItem(Note, 1, 0, PlayerRef)
+NoteAdded.Show()
+_Lull_ITMNoteUp.Play(PlayerRef)
+BlueFRF.RemoveItem(Ball, 1, 0, PlayerRef)
+TeleporterAdded.Show()
+ITMGenericUp.Play(PlayerRef)
 ;END CODE
 EndFunction
 ;END FRAGMENT
