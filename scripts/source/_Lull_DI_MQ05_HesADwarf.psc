@@ -6,6 +6,7 @@ Scriptname _Lull_DI_MQ05_HesADwarf Extends TopicInfo Hidden
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
+Utility.Wait(2)
 GetOwningQuest().SetStage(17)
 ;END CODE
 EndFunction
