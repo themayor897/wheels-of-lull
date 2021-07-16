@@ -2,24 +2,14 @@
 ;NEXT FRAGMENT INDEX 40
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor5
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor4
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor1
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Archeron
+;BEGIN ALIAS PROPERTY MQ06_Thalmor6
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Archeron Auto
+ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Fyr
@@ -27,9 +17,29 @@ ReferenceAlias Property Alias_MQ06_Archeron Auto
 ReferenceAlias Property Alias_MQ06_Fyr Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY MQ06_Thalmor4
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Masscroft
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Masscroft Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY MQ06_Numinar
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Numinar Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Yagrum
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Yagrum Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor7
@@ -42,25 +52,64 @@ ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
 ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Yagrum
+;BEGIN ALIAS PROPERTY MQ06_Thalmor5
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Yagrum Auto
+ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Masscroft
+;BEGIN ALIAS PROPERTY MQ06_Archeron
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Masscroft Auto
+ReferenceAlias Property Alias_MQ06_Archeron Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor2
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
-;END ALIAS PROPERTY
+;BEGIN FRAGMENT Fragment_26
+Function Fragment_26()
+;BEGIN CODE
+;Game.GetPlayer().MoveTo(PlayerCellMarker)
+bottomFact.SendPlayertoJail(abRemoveInventory=False) 
+Fyr.MoveTo(FyrJail)
+Yagrum.MoveTo(YagrumJail)
+Fyr.EvaluatePackage()
+Yagrum.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
 
-;BEGIN ALIAS PROPERTY MQ06_Thalmor6
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
-;END ALIAS PROPERTY
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;set at the end of portal conversation "get in here you fool"
+thalmorMarker.EnableNoWait()
+Game.GetPlayer().MoveTo(lullMarker)
+setobjectivedisplayed(10)
+llavados.AddItem(accelerator, 1)
+llavados.EquipItem(accelerator, 1)
+llavados.AddItem(dwarvenArrow, 100)
+subori.MoveTo(suboriMarker)
+hammar.MoveTo(hammarMarker)
+fyr.MoveTo(fyrMarker)
+avarri.MoveTo(avarriMarker) 
+yagrum.MoveTo(yagrumMarker) 
+numinar.MoveTo(numinarMarker)
+numinarDoor.SetLockLevel(255)
+numinarDoor.Lock(true)
+lullTalkyActivator3.disable()
+portal.disable()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+WorldShift03.show()
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal)
+portal.playAnimation("playAnim02")
+SetStage(5)
+;END CODE
+EndFunction
+;END FRAGMENT
 
 ;BEGIN FRAGMENT Fragment_14
 Function Fragment_14()
@@ -79,10 +128,11 @@ MQ07.SetObjectiveDisplayed(1)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_18
-Function Fragment_18()
+;BEGIN FRAGMENT Fragment_24
+Function Fragment_24()
 ;BEGIN CODE
-;Conversation in Lull-Mor (scene)
+;set at end of fyr final dialogue
+Fyr.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -92,19 +142,6 @@ Function Fragment_20()
 ;BEGIN CODE
 setobjectivecompleted(14)
 ;Numinar appreaches player and arrests him
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_26
-Function Fragment_26()
-;BEGIN CODE
-;Game.GetPlayer().MoveTo(PlayerCellMarker)
-bottomFact.SendPlayertoJail(abRemoveInventory=False) 
-Fyr.MoveTo(FyrJail)
-Yagrum.MoveTo(YagrumJail)
-Fyr.EvaluatePackage()
-Yagrum.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -129,10 +166,19 @@ massBossMusic.Add()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_22
-Function Fragment_22()
+;BEGIN FRAGMENT Fragment_29
+Function Fragment_29()
 ;BEGIN CODE
-;set in FyrToCage package
+MemoryREF.DisableNoWait(1)
+bottomGrate.DisableNoWait(1)
+magicSound.Play(PlayerRef)
+llavados.MoveTo(LlavadosMarker)
+llavados.UnequipAll()
+Utility.Wait(1)
+llavados.EquipItem(lHelm)
+llavados.EquipItem(lTorso)
+llavados.EquipItem(lHands)
+llavados.EquipItem(lFeet)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -147,18 +193,21 @@ Numinar.EvaluatePackage()
 setobjectivedisplayed(14)
 Masscroft.Enable()
 Archeron.Enable()
+Utility.Wait(20)
+If GetStage() < 15
+WoL.Log(self, "20 seconds have passed and Lull-Mor confer scene has not started. Forcing advance...")
+Fyr.Moveto(FyrConfer)
+Yagrum.MoveTo(YagrumConfer)
+Numinar.MoveTo(NuminarConfer)
+Endif
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
+;BEGIN FRAGMENT Fragment_22
+Function Fragment_22()
 ;BEGIN CODE
-WorldShift03.show()
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal)
-portal.playAnimation("playAnim02")
-SetStage(5)
+;set in FyrToCage package
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -168,38 +217,6 @@ Function Fragment_31()
 ;BEGIN CODE
 ;get up
 setobjectivedisplayed(24)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_24
-Function Fragment_24()
-;BEGIN CODE
-;set at end of fyr final dialogue
-Fyr.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
-;BEGIN CODE
-;set at the end of portal conversation "get in here you fool"
-thalmorMarker.EnableNoWait()
-Game.GetPlayer().MoveTo(lullMarker)
-setobjectivedisplayed(10)
-llavados.EquipItem(accelerator, 1)
-llavados.AddItem(dwarvenArrow, 100)
-subori.MoveTo(suboriMarker)
-hammar.MoveTo(hammarMarker)
-fyr.MoveTo(fyrMarker)
-avarri.MoveTo(avarriMarker) 
-yagrum.MoveTo(yagrumMarker) 
-numinar.MoveTo(numinarMarker)
-numinarDoor.SetLockLevel(255)
-numinarDoor.Lock(true)
-lullTalkyActivator3.disable()
-portal.disable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -226,19 +243,10 @@ MetalCage.Disable()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_29
-Function Fragment_29()
+;BEGIN FRAGMENT Fragment_18
+Function Fragment_18()
 ;BEGIN CODE
-MemoryREF.DisableNoWait(1)
-bottomGrate.DisableNoWait(1)
-magicSound.Play(PlayerRef)
-llavados.MoveTo(LlavadosMarker)
-llavados.UnequipAll()
-Utility.Wait(1)
-llavados.EquipItem(lHelm)
-llavados.EquipItem(lTorso)
-llavados.EquipItem(lHands)
-llavados.EquipItem(lFeet)
+;Conversation in Lull-Mor (scene)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -274,6 +282,12 @@ Actor Property numinar auto
 Actor Property masscroft  Auto  
 
 Actor Property archeron  Auto  
+
+;-----------------------------
+
+ObjectReference Property NuminarConfer Auto
+ObjectReference Property FyrConfer Auto
+ObjectReference Property YagrumConfer Auto
 
 ;-----------------------------
 
