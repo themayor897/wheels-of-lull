@@ -13,18 +13,19 @@ ImageSpaceModifier Property FadeToWhite Auto
 
 Event OnEffectStart(Actor Target, Actor Caster)
 	Fyr.PlaceAtMe(IllusionMassiveLight)
-	Utility.Wait(0.5)
 	FadeToWhite.Apply()
+	Utility.Wait(2)
 	Fyr.Disable()
 	Yagrum.Disable()
 	WoL.Log(Caster, "Fyr and Yagrum disabled.")
 EndEvent
 
 Event OnEffectFinish (Actor Target, Actor Caster)
+	Utility.Wait(0.5)
 	Archeron.MoveTo(ArcheronMarker)
 	Masscroft.MoveTo(MasscroftMarker)
+	Utility.Wait(1)
 	Archeron.evaluatepackage()
 	Masscroft.evaluatepackage()
-	FadeToWhite.Remove()
 	WoL.Log(caster, "Archeron and Masscroft moved, packages updating...")
 EndEvent 
