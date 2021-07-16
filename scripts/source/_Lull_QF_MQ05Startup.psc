@@ -6,6 +6,7 @@ Scriptname _Lull_QF_MQ05Startup Extends Quest Hidden
 Function Fragment_0()
 ;BEGIN CODE
 _Lull_MQ05.Start()
+_Lull_MQ05.SetStage(0)
 ;END CODE
 EndFunction
 ;END FRAGMENT
