@@ -36,6 +36,8 @@ auto STATE waitingforPlayer
             archeron.EvaluatePackage()
             masscroft.EvaluatePackage()
             Game.EnablePlayerControls()
+			Utility.Wait(5)
+			Game.ClearPrison()
             
             if doOnce
                 gotoState("hasBeenTriggered")
