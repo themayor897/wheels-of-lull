@@ -22,10 +22,16 @@ ReferenceAlias Property Alias_Mines_Instructions Auto
 ReferenceAlias Property Alias_Mines_FRF Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
 ;BEGIN CODE
-BlueFRF.enable()
+BlueFRF.RemoveItem(Note, 1, 0, PlayerRef)
+NoteAdded.Show()
+_Lull_ITMNoteUp.Play(PlayerRef)
+BlueFRF.RemoveItem(Ball, 1, 0, PlayerRef)
+TeleporterAdded.Show()
+ITMGenericUp.Play(PlayerRef)
+SetObjectiveDisplayed(1)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -40,15 +46,10 @@ stop()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_2
-Function Fragment_2()
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
 ;BEGIN CODE
-BlueFRF.RemoveItem(Note, 1, 0, PlayerRef)
-NoteAdded.Show()
-_Lull_ITMNoteUp.Play(PlayerRef)
-BlueFRF.RemoveItem(Ball, 1, 0, PlayerRef)
-TeleporterAdded.Show()
-ITMGenericUp.Play(PlayerRef)
+Alias_Mines_FRF.trytoenable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
