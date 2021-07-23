@@ -5,11 +5,10 @@ EVENT OnContainerChanged(ObjectReference akNewContainer, ObjectReference akOldCo
 
     if (akOldContainer as actor)&&(akNewContainer as actor)
         actor oldHost = (akOldContainer as actor)
-        actor killer = (akNewContainer as actor)
         if (oldHost.GetRace() == chronoRace)
              ActorBase oldHostBase  = oldHost.GetBaseObject() as ActorBase 
             if !oldHost.isDead() && !oldHostBase.isUnique()
-                oldHost.Kill(killer)
+                oldHost.Kill()
             endif
 
             while utility.isInMenuMode()
