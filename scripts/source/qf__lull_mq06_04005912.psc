@@ -2,24 +2,9 @@
 ;NEXT FRAGMENT INDEX 40
 Scriptname QF__Lull_MQ06_04005912 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ06_Yagrum
+;BEGIN ALIAS PROPERTY MQ06_Thalmor1
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Yagrum Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor2
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Fyr
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Fyr Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Numinar
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Numinar Auto
+ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Archeron
@@ -27,34 +12,24 @@ ReferenceAlias Property Alias_MQ06_Numinar Auto
 ReferenceAlias Property Alias_MQ06_Archeron Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY MQ06_Numinar
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Numinar Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Yagrum
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Yagrum Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor5
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ06_Thalmor5 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY MQ06_Masscroft
+;BEGIN ALIAS PROPERTY MQ06_Fyr
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Masscroft Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor1
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor1 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor6
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor7
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY MQ06_Thalmor4
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
+ReferenceAlias Property Alias_MQ06_Fyr Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY MQ06_Thalmor3
@@ -62,26 +37,30 @@ ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
 ReferenceAlias Property Alias_MQ06_Thalmor3 Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-SetObjectiveCompleted(10)
-Fyr.EvaluatePackage()
-Yagrum.EvaluatePackage()
-Numinar.EvaluatePackage()
-setobjectivedisplayed(14)
-Masscroft.Enable()
-Archeron.Enable()
-Utility.Wait(20)
-If GetStage() < 15
-WoL.Log(self, "20 seconds have passed and Lull-Mor confer scene has not started. Forcing advance...")
-Fyr.Moveto(FyrConfer)
-Yagrum.MoveTo(YagrumConfer)
-Numinar.MoveTo(NuminarConfer)
-Endif
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY MQ06_Thalmor2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor2 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor7
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor7 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor6
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor6 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Masscroft
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Masscroft Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY MQ06_Thalmor4
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ06_Thalmor4 Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_29
 Function Fragment_29()
@@ -90,108 +69,14 @@ MemoryREF.DisableNoWait(1)
 bottomGrate.DisableNoWait(1)
 magicSound.Play(PlayerRef)
 llavados.MoveTo(LlavadosMarker)
+llavados.RemoveItem(accelerator, 1)
+llavados.RemoveItem(dwarvenArrow, 100)
 llavados.UnequipAll()
 Utility.Wait(1)
 llavados.EquipItem(lHelm)
 llavados.EquipItem(lTorso)
 llavados.EquipItem(lHands)
 llavados.EquipItem(lFeet)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_38
-Function Fragment_38()
-;BEGIN CODE
-;Player enters trigger in front of elevator
-
-Game.DisablePlayerControls()
-doorClose.Play(grate)
-grate.TranslateToRef(grateEnd, 600)
-grate2.enablenowait()
-Utility.Wait(3)
-masscroft.MoveTo(xMarker)
-massCroftAppear.Play(xMarker)
-Utility.Wait(4)
-masscroft.StartCombat(PlayerRef)
-Game.EnablePlayerControls()
-massBossMusic.Add()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_31
-Function Fragment_31()
-;BEGIN CODE
-;get up
-setobjectivedisplayed(24)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_24
-Function Fragment_24()
-;BEGIN CODE
-;set at end of fyr final dialogue
-Fyr.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_18
-Function Fragment_18()
-;BEGIN CODE
-;Conversation in Lull-Mor (scene)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_22
-Function Fragment_22()
-;BEGIN CODE
-;set in FyrToCage package
-thalmormarker.disable()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-WorldShift03.show()
-portal.moveto(PlayerRef)
-lullTalkyActivator3.MoveTo(portal)
-Utility.Wait(2)
-if portal.playAnimation("playAnim02")
-WoL.Log(Self, "Portal successfully spawned and animated")
-else
-WoL.Log(self, "Portal failed to animate! Attempting workaround...", 1)
-portal.Playanimation("animtrans01")
-portal.Playanimation("animidle02")
-endif
-SetStage(5)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_30
-Function Fragment_30()
-;BEGIN CODE
-;end llavados conversation
-SetObjectiveDisplayed(30)
-mainDoor.Lock(false)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_34
-Function Fragment_34()
-;BEGIN CODE
-Utility.Wait(2)
-BreakSound.Play(PlayerRef)
-;MetalCage.TranslateToRef(CageFallRef, 700)
-;Utility.Wait(1)
-MetalCage.Disable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -234,7 +119,6 @@ thalmorMarker.EnableNoWait()
 Game.GetPlayer().MoveTo(lullMarker)
 setobjectivedisplayed(10)
 llavados.AddItem(accelerator, 1)
-llavados.EquipItem(accelerator, 1)
 llavados.AddItem(dwarvenArrow, 100)
 subori.MoveTo(suboriMarker)
 hammar.MoveTo(hammarMarker)
@@ -250,11 +134,128 @@ portal.disable()
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_24
+Function Fragment_24()
+;BEGIN CODE
+;set at end of fyr final dialogue
+Fyr.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+WorldShift03.show()
+portal.moveto(PlayerRef)
+lullTalkyActivator3.MoveTo(portal)
+Utility.Wait(2)
+if portal.playAnimation("playAnim02")
+WoL.Log(Self, "Portal successfully spawned and animated")
+else
+WoL.Log(self, "Portal failed to animate! Attempting workaround...", 1)
+portal.Playanimation("animtrans01")
+portal.Playanimation("animidle02")
+endif
+SetStage(5)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+SetObjectiveCompleted(10)
+Fyr.EvaluatePackage()
+Yagrum.EvaluatePackage()
+Numinar.EvaluatePackage()
+setobjectivedisplayed(14)
+Masscroft.Enable()
+Archeron.Enable()
+Utility.Wait(20)
+If GetStage() < 15
+WoL.Log(self, "20 seconds have passed and Lull-Mor confer scene has not started. Forcing advance...")
+Fyr.Moveto(FyrConfer)
+Yagrum.MoveTo(YagrumConfer)
+Numinar.MoveTo(NuminarConfer)
+Endif
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_20
 Function Fragment_20()
 ;BEGIN CODE
 setobjectivecompleted(14)
 ;Numinar appreaches player and arrests him
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_22
+Function Fragment_22()
+;BEGIN CODE
+;set in FyrToCage package
+thalmormarker.disable()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_38
+Function Fragment_38()
+;BEGIN CODE
+;Player enters trigger in front of elevator
+
+Game.DisablePlayerControls()
+doorClose.Play(grate)
+grate.TranslateToRef(grateEnd, 600)
+grate2.enablenowait()
+Utility.Wait(3)
+masscroft.MoveTo(xMarker)
+massCroftAppear.Play(xMarker)
+Utility.Wait(4)
+masscroft.StartCombat(PlayerRef)
+Game.EnablePlayerControls()
+massBossMusic.Add()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_30
+Function Fragment_30()
+;BEGIN CODE
+;end llavados conversation
+SetObjectiveDisplayed(30)
+mainDoor.Lock(false)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_31
+Function Fragment_31()
+;BEGIN CODE
+;get up
+setobjectivedisplayed(24)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_18
+Function Fragment_18()
+;BEGIN CODE
+;Conversation in Lull-Mor (scene)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_34
+Function Fragment_34()
+;BEGIN CODE
+Utility.Wait(2)
+BreakSound.Play(PlayerRef)
+;MetalCage.TranslateToRef(CageFallRef, 700)
+;Utility.Wait(1)
+MetalCage.Disable()
 ;END CODE
 EndFunction
 ;END FRAGMENT
