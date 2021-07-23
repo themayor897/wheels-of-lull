@@ -1,5 +1,5 @@
 ;updated 7/8/21 darthvitrial. Move to xmarker instead of editor location.
-Scriptname _LullMorUnderScript extends ObjectReference  
+Scriptname _Lull_LullMorUnderScript extends ObjectReference  
 
 Faction Property whitehornFaction Auto
 Faction Property chronographerFaction Auto
