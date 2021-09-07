@@ -1,6 +1,6 @@
 Scriptname _Lull_UnwindingMasterScript extends ObjectReference  
 
-
+;Modified 9.07.2021 by themayor897 - added messages OnActive when activator is waiting to be hit.
 
 import utility
 import debug
@@ -16,6 +16,10 @@ Float Property fDelayBeforeLoopingBack = 3.0 Auto
 {(OPTIONAL)(Only matters if you havea LinkRef with LinkCustom01)Amount of time, in seconds, before resonater drops back down in order for steam to hit it again. (DEFAULT = 3.0 Seconds)}
 
 bool bBeenHit = FALSE
+
+ObjectReference Property PlayerRef Auto
+Message Property NeedGov Auto
+Message Property UseGov Auto
 
 Event OnCellAttach()
 	if (GetLinkedRef(LinkCustom01))
@@ -40,6 +44,16 @@ auto STATE sWaitingForHit
 			endif
 		endif
 
+	EndEvent
+	
+	Event OnActivate(ObjectReference akActionRef)
+
+    if PlayerRef.GetItemCount(goverisUnWinder) < 1
+        NeedGov.Show()
+    else
+        UseGov.Show()
+    endIf
+	
 	EndEvent
 
 ENDSTATE
