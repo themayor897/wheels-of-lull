@@ -1,6 +1,6 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
 ;NEXT FRAGMENT INDEX 2
-Scriptname TIF__044C5D63 Extends TopicInfo Hidden
+Scriptname _Lull_DI_MQ01_GoToStonehole Extends TopicInfo Hidden
 
 ;BEGIN FRAGMENT Fragment_1
 Function Fragment_1(ObjectReference akSpeakerRef)

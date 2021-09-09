@@ -1,5 +1,5 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 24
+;NEXT FRAGMENT INDEX 27
 Scriptname QF__Lull_MQ01_0400590D Extends Quest Hidden
 
 ;BEGIN ALIAS PROPERTY _Lull_LlavadosTalker
@@ -12,19 +12,9 @@ ReferenceAlias Property Alias__Lull_LlavadosTalker Auto
 ReferenceAlias Property Alias__Lull_MQ01_Llavados Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY LocationCenterMarker
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LocationCenterMarker Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY _Lull_MQ01_MapMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__Lull_MQ01_MapMarker Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Location
-;ALIAS PROPERTY TYPE LocationAlias
-LocationAlias Property Alias_Location Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _Lull_MarkerLlavadosBody
@@ -32,9 +22,14 @@ LocationAlias Property Alias_Location Auto
 ReferenceAlias Property Alias__Lull_MarkerLlavadosBody Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _Lull_ElevatorMQ01
+;BEGIN ALIAS PROPERTY Location
+;ALIAS PROPERTY TYPE LocationAlias
+LocationAlias Property Alias_Location Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY LocationCenterMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__Lull_ElevatorMQ01 Auto
+ReferenceAlias Property Alias_LocationCenterMarker Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _Lull_MQ01_Pneuma
@@ -42,48 +37,10 @@ ReferenceAlias Property Alias__Lull_ElevatorMQ01 Auto
 ReferenceAlias Property Alias__Lull_MQ01_Pneuma Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_9
-Function Fragment_9()
-;BEGIN CODE
-SetObjectiveCompleted(10)
-_Lull_MQ01_ExplainLlavados1.start()
-Llavados.SetEssential(True)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_21
-Function Fragment_21()
-;BEGIN CODE
-setobjectivecompleted(12)
-setobjectivedisplayed(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_11
-Function Fragment_11()
-;BEGIN CODE
-_Lull_MQ01_ExplainLlavados2.start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_17
-Function Fragment_17()
-;BEGIN CODE
-_Lull_MQ01_ExplainLlavados4.start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_15
-Function Fragment_15()
-;BEGIN CODE
-_Lull_MQ01_ExplainLlavados3.start()
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY _Lull_ElevatorMQ01
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__Lull_ElevatorMQ01 Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_14
 Function Fragment_14()
@@ -101,6 +58,51 @@ _Lull_MQ01_OldLift.start()
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_21
+Function Fragment_21()
+;BEGIN CODE
+setobjectivecompleted(12)
+setobjectivedisplayed(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_9
+Function Fragment_9()
+;BEGIN CODE
+SetObjectiveCompleted(10)
+_Lull_MQ01_ExplainLlavados1.start()
+Llavados.SetEssential(True)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_11
+Function Fragment_11()
+;BEGIN CODE
+_Lull_MQ01_ExplainLlavados2.start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_24
+Function Fragment_24()
+;BEGIN CODE
+;set in go to stonehole scen
+
+doorMine.Lock(false)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_17
+Function Fragment_17()
+;BEGIN CODE
+_Lull_MQ01_ExplainLlavados4.start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_23
 Function Fragment_23()
 ;BEGIN CODE
@@ -108,12 +110,19 @@ Function Fragment_23()
 
 Llavados.SetEssential(False)
 LlavadosREF.kill()
-doorMine.Lock(false)
 SetObjectiveDisplayed(10)
 
 If MQ01Startup.IsRunning()
 MQ01Startup.SetStage(100)
 EndIf
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_15
+Function Fragment_15()
+;BEGIN CODE
+_Lull_MQ01_ExplainLlavados3.start()
 ;END CODE
 EndFunction
 ;END FRAGMENT
