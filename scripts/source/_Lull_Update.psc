@@ -1,5 +1,7 @@
 Scriptname _Lull_Update extends Quest  
 
+Import Game
+
 GlobalVariable Property LullVersion Auto
 
 Int Property sVersion = 50001 Auto Hidden ;translates to 5.0.1, adding an additional 0 before each of the second numbers.
@@ -7,16 +9,30 @@ Int Property sVersion = 50001 Auto Hidden ;translates to 5.0.1, adding an additi
 FormList Property MovedRefs Auto
 Form[] aForceEditorLocation
 
+GlobalVariable Property iSKSE Auto
+Bool HasSKSE
+
+Message Property Installed40 Auto
+
 ;For version 5.1.0
 Quest Property MQ01 Auto
 Message Property QuestStarted Auto
 Bool Fixed510
 
 Event OnInit()
+	If SKSE.GetVersionRelease()
+		iSKSE.SetValue(1)
+		HasSKSE = True
+		Debug.Trace("Wheels of Lull: SKSE detected")
+	Else
+		HasSKSE = False
+		Debug.Trace("Wheels of Lull: SKSE is not installed.")
+	EndIf
 	CheckLullVersion()
 EndEvent
 
 Function CheckLullVersion()
+	CheckUserErrors()
 	Int nVersion = (LullVersion.GetValue() as Int)
 	if sversion != nVersion
 		WoL.Log(Self, "Updating Wheels of Lull from version "+sVersion+" to "+nversion)
@@ -36,6 +52,20 @@ Function Update(Int pNewVersion)
 		EndIf
 		sVersion = pNewVersion
 		Fixed510 = True
+	EndIf
+EndFunction
+
+Function CheckUserErrors()
+	If HasSKSE
+		If IsPluginInstalled("WoLStartAt40.esp")
+			Installed40.Show()
+			WoL.Log(self, "Old start at Level 40 plugin detected! This mod is incompatible and must be removed immidiately.", 2)
+		EndIf
+	;Else
+	;	If (GetFormFromFile(0x00000000, "WoLStartAt40.esp") != None)
+	;		Installed40.Show()
+	;		Debug.Trace("Wheels of Lull: Old start at Level 40 plugin detected! This mod is incompatible and must be removed immidiately.")
+	;	EndIf
 	EndIf
 EndFunction
 		
