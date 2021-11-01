@@ -19,6 +19,9 @@ Quest Property MQ01 Auto
 Message Property QuestStarted Auto
 Bool Fixed510
 
+;For version 5.1.1
+Bool Fixed511
+
 Event OnInit()
 	If SKSE.GetVersionRelease()
 		iSKSE.SetValue(1)
@@ -52,6 +55,12 @@ Function Update(Int pNewVersion)
 		EndIf
 		sVersion = pNewVersion
 		Fixed510 = True
+	EndIf
+	If pNewVersion == 50101 || !Fixed511
+		aForceEditorLocation = new Form[128]
+		MovePersistentRefs(MovedRefs)
+		sversion = pNewVersion
+		Fixed511 = True
 	EndIf
 EndFunction
 
