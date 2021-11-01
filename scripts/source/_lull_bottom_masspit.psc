@@ -40,6 +40,10 @@ Event OnTriggerEnter(ObjectReference akActionRef)
                 Masscroft.resurrect()
             endif
         else
+            ActorBase masscroftBase = masscroft.GetBaseObject() as ActorBase
+            if (masscroftBase.IsInvulnerable())
+                masscroftBase.SetInvulnerable(false)
+            endif
             masscroft.killEssential(playerRef)
             masscroft.DisableNoWait()
             massMusic.Remove()
