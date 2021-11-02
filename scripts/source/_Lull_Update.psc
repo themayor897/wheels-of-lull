@@ -53,15 +53,14 @@ Function Update(Int pNewVersion)
 		If MQ01.IsRunning() || MQ01.IsCompleted()
 			QuestStarted.Show()
 		EndIf
-		sVersion = pNewVersion
 		Fixed510 = True
 	EndIf
 	If pNewVersion == 50101 || !Fixed511
 		aForceEditorLocation = new Form[128]
 		MovePersistentRefs(MovedRefs)
-		sversion = pNewVersion
 		Fixed511 = True
 	EndIf
+	sversion = pNewVersion
 EndFunction
 
 Function CheckUserErrors()
