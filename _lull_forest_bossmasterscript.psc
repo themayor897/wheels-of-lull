@@ -95,8 +95,10 @@ EndEvent
 Event OnUpdate()
     if(isInPlay)
         Debug.SendAnimationEvent(self, "idleStartScan")
+        if(self.is3DLoaded())
         attackSpell.Cast(self, PlayerRef)
-        if(MQ05<15) ;in rare cases this might get called after the unregisterforupdate call, re-registering this forever. Adding this check will ensure it doesn't do that.
+        endif
+        if(MQ05.getStage()<15) ;in rare cases this might get called after the unregisterforupdate call, re-registering this forever. Adding this check will ensure it doesn't do that.
             RegisterForSingleUpdate(15)
         endif 
     else
