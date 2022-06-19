@@ -11,7 +11,7 @@ Int Property sVersion = 50001 Auto Hidden ;translates to 5.0.1, adding an additi
 int property oldFishVersion = 0 auto hidden 
 FormList Property MovedRefs Auto
 Form[] aForceEditorLocation
-
+ int fishVersion 
 GlobalVariable Property iSKSE Auto
 Bool HasSKSE
 
@@ -23,7 +23,7 @@ Message Property QuestStarted Auto
 Bool Fixed510
 
 ;For version 5.1.1
-Bool Fixed511
+;Bool Fixed511
 
 bool fishUpdate 
 
@@ -31,10 +31,12 @@ Event OnInit()
     If SKSE.GetVersionRelease()
         iSKSE.SetValue(1)
         HasSKSE = True
-        Debug.Trace("Wheels of Lull: SKSE detected")
+          WoL.Log(self, "Wheels of Lull: SKSE detected")
+          ; Debug.Trace("Wheels of Lull: SKSE detected")
     Else
         HasSKSE = False
-        Debug.Trace("Wheels of Lull: SKSE is not installed.")
+        WoL.Log(self, "Wheels of Lull: SKSE is not installed")
+        ; Debug.Trace("Wheels of Lull: SKSE is not installed.")
     EndIf
     CheckLullVersion()
 EndEvent
@@ -42,7 +44,7 @@ EndEvent
 Function CheckLullVersion()
     CheckUserErrors()
     Int nVersion = (LullVersion.GetValue() as Int)
-    int fishVersion 
+    fishVersion = 0
     if FishingAddonpresent.getValue()as int==1
         fishVersion = FishingAddonVersion.getValue() as int
         if fishVersion != oldFishVersion
@@ -51,15 +53,14 @@ Function CheckLullVersion()
         fishUpdate=False
     endif 
     else 
-        fishVersion = 0
         fishUpdate =false
     endif 
         if (sversion != nVersion) || fishUpdate
             WoL.Log(Self, "Updating Wheels of Lull from version "+sVersion+" to "+nversion)
-            Debug.Trace("Updating Wheels of Lull from version "+sVersion+" to "+nversion)
+            ;Debug.Trace("Updating Wheels of Lull from version "+sVersion+" to "+nversion)
         if fishUpdate
             WoL.Log(Self, "Updating Wheels of Lull from version "+oldFishVersion+" to "+fishVersion)
-            Debug.Trace("Updating Wheels of Lull from version "+oldFishVersion+" to "+fishVersion)
+            ;      Debug.Trace("Updating Wheels of Lull from version "+oldFishVersion+" to "+fishVersion)
         endif 
         Update(nversion)
     else
@@ -68,6 +69,7 @@ Function CheckLullVersion()
 EndFunction
 
 Function Update(Int pNewVersion)
+    
     If pNewVersion == 50100 || !Fixed510
         aForceEditorLocation = new Form[128]
         MovePersistentRefs(MovedRefs)
@@ -75,25 +77,30 @@ Function Update(Int pNewVersion)
             QuestStarted.Show()
         EndIf
         Fixed510 = True
-    EndIf
-    If pNewVersion == 50101 || !Fixed511
+    
+        ;   elseIf pNewVersion == 50101 && !Fixed511
+        ;    aForceEditorLocation = new Form[128]
+        ;    MovePersistentRefs(MovedRefs)
+        ;    Fixed511 = True
+        
+    else ;nothing specific hardcoded to change for this version but we still need to update since the versions dont match
         aForceEditorLocation = new Form[128]
-        MovePersistentRefs(MovedRefs)
-        Fixed511 = True
+        MovePersistentRefs(MovedRefs) 
     EndIf
     sversion = pNewVersion
+    oldFishVersion = fishVersion
 EndFunction
 
 Function CheckUserErrors()
     If HasSKSE
         If IsPluginInstalled("WoLStartAt40.esp")
             Installed40.Show()
-            WoL.Log(self, "Old start at Level 40 plugin detected! This mod is incompatible and must be removed immidiately.", 2)
+            WoL.Log(self, "Old start at Level 40 plugin detected! This plugin is incompatible and must be removed immediately.", 2)
         EndIf
     ;Else
     ;   If (GetFormFromFile(0x00000000, "WoLStartAt40.esp") != None)
     ;       Installed40.Show()
-    ;       Debug.Trace("Wheels of Lull: Old start at Level 40 plugin detected! This mod is incompatible and must be removed immidiately.")
+    ;       Debug.Trace("Wheels of Lull: Old start at Level 40 plugin detected! This plugin is incompatible and must be removed immediately.")
     ;   EndIf
     EndIf
 EndFunction
