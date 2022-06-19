@@ -57,10 +57,10 @@ Function CheckLullVersion()
     endif 
         if (sversion != nVersion) || fishUpdate
             WoL.Log(Self, "Updating Wheels of Lull from version "+sVersion+" to "+nversion)
-            ;Debug.Trace("Updating Wheels of Lull from version "+sVersion+" to "+nversion)
+            Debug.Trace("Updating Wheels of Lull from version "+sVersion+" to "+nversion)
         if fishUpdate
-            WoL.Log(Self, "Updating Wheels of Lull from version "+oldFishVersion+" to "+fishVersion)
-            ;      Debug.Trace("Updating Wheels of Lull from version "+oldFishVersion+" to "+fishVersion)
+            WoL.Log(Self, "Updating Fishing Addon from version "+oldFishVersion+" to "+fishVersion)
+                  Debug.Trace("Updating Fishing Addon from version "+oldFishVersion+" to "+fishVersion)
         endif 
         Update(nversion)
     else
