@@ -11,7 +11,8 @@ ObjectReference Property spawnPlatform2 auto
 ObjectReference Property spawnPlatform3 auto
 ObjectReference Property spawnPlatform4 auto
 ObjectReference Property spawnPlatform5 auto
-
+ReferenceAlias property currentFollower Auto
+ReferenceAlias property currentAnimal auto 
 GlobalVariable Property isInCoffin auto
 Spell Property effectSpellCoffin auto
 ObjectReference Property coffin auto 
@@ -40,7 +41,8 @@ Quest Property MQ05 auto
 
 Actor Property Numinar auto
 ObjectReference Property numinarmarker auto
-
+ObjectReference Property followerMarker auto
+ObjectReference Property animalMarker auto
 ObjectReference Property PlayerRef auto
 
 Event OnLoad()
@@ -113,6 +115,8 @@ Event OnUpdate()
 EndEvent
 
 Event OnDeath(Actor akKiller)
+    objectReference animal = currentAnimal.getReference()
+    ObjectReference follower = currentfollower.getReference()
     WoL.Log(self, "Tho dead, scene commencing...")
     bossMusic.Remove()
     UnregisterForUpdate()
@@ -135,6 +139,12 @@ Event OnDeath(Actor akKiller)
     fyrSay.Say(FyrTopic, fyr, true)
     Utility.Wait(6)
     MQ05.SetStage(15)
+    if animal 
+        animal.MoveTo(animalMarker)
+    endif 
+    if follower
+        follower.moveTo(followerMarker)
+    endif 
     PlayerRef.MoveTo(playerMarker)
     numinar.moveto(numinarmarker)
     blackout.Remove()
