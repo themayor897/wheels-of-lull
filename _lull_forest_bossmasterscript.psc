@@ -115,8 +115,8 @@ Event OnUpdate()
 EndEvent
 
 Event OnDeath(Actor akKiller)
-    objectReference animal = currentAnimal.getReference()
-    ObjectReference follower = currentfollower.getReference()
+    actor animal = currentAnimal.getReference() as actor
+    actor follower = currentfollower.getReference() as actor
     WoL.Log(self, "Tho dead, scene commencing...")
     bossMusic.Remove()
     UnregisterForUpdate()
@@ -141,9 +141,11 @@ Event OnDeath(Actor akKiller)
     MQ05.SetStage(15)
     if animal 
         animal.MoveTo(animalMarker)
+        animal.stopCombat()
     endif 
     if follower
         follower.moveTo(followerMarker)
+        follower.stopCombat()
     endif 
     PlayerRef.MoveTo(playerMarker)
     numinar.moveto(numinarmarker)
