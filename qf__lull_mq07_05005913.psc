@@ -70,13 +70,15 @@ Function Fragment_1()
 
 ;From Old Archeron Final Boss Script
 PlayerRef.MoveTo(moveToRamon)
-    objectReference animal = currentAnimal.getReference()
-    ObjectReference follower = currentfollower.getReference()
+    actor animal = currentAnimal.getReference() as actor
+    actor follower = currentfollower.getReference() as actor
     if animal 
         animal.MoveTo(animalMarker)
+        animal.stopCombat()
     endif 
     if follower
         follower.moveTo(followerMarker)
+        follower.stopcombat()
     endif 
 blackout.remove()
 ;archeronFight.Remove()

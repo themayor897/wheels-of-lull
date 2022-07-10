@@ -225,13 +225,15 @@ Function Fragment_3()
 ;set at the end of portal conversation "get in here you fool"
 thalmorMarker.EnableNoWait()
 playerRef.MoveTo(lullMarker)
-objectReference follower = currentCompanion.getReference()
-objectReference animal = animalCompanion.getReference()
+actor follower = currentCompanion.getReference() as actor
+actor animal = animalCompanion.getReference() as actor
 if follower
 follower.moveto(lullMarker2)
+follower.stopCombat()
 endif
 if animal
 animal.moveto(lullMarker3)
+animal.stopCombat()
 endif
 setobjectivedisplayed(10)
 llavados.AddItem(accelerator, 1)
@@ -275,31 +277,31 @@ EndFunction
 
 Function CheckBackups()
 
-	Int TookU = TookUnwinder.GetValue() as Int
-	Int TookO = TookOhm.GetValue() as Int
-	Int TookV = TookVisor.GetValue() as Int
-	
-	If TookU == 1
-		PlayerRef.RemoveItem(Unwinder, 1, True)
-		WoL.Log(self, "Removed backup unwinder from player's inventory")
-	ElseIf TookO == 1
-		PlayerRef.RemoveItem(Ohm, 1, True)
-		WoL.Log(self, "Removed backup Ohm from player's inventory")
-	ElseIf TookV == 1
-		PlayerRef.RemoveItem(Visor, 1, True)
-		WoL.Log(self, "Removed backup Visor from player's inventory")
-	EndIf
+    Int TookU = TookUnwinder.GetValue() as Int
+    Int TookO = TookOhm.GetValue() as Int
+    Int TookV = TookVisor.GetValue() as Int
+    
+    If TookU == 1
+        PlayerRef.RemoveItem(Unwinder, 1, True)
+        WoL.Log(self, "Removed backup unwinder from player's inventory")
+    ElseIf TookO == 1
+        PlayerRef.RemoveItem(Ohm, 1, True)
+        WoL.Log(self, "Removed backup Ohm from player's inventory")
+    ElseIf TookV == 1
+        PlayerRef.RemoveItem(Visor, 1, True)
+        WoL.Log(self, "Removed backup Visor from player's inventory")
+    EndIf
 
-	If (EnabledUnwinder.GetValue() as Int) == 1 && TookU == 0
-		UnwinderBRef.Disable()
-		WoL.Log(self, "Player did not pick up backup Unwinder, disabling...")
-	ElseIf (EnabledOhm.GetValue() as Int) == 1 && TookO == 0
-		OhmBRef.Disable()
-		WoL.Log(self, "Player did not pick up backup Ohm's Rod, disabling...")
-	ElseIf (EnabledVisor.GetValue() as Int) == 1 && TookV == 0
-		VisorBRef.Disable()
-		WoL.Log(self, "Player did not pick up backup Visor, disabling...")
-	EndIf
+    If (EnabledUnwinder.GetValue() as Int) == 1 && TookU == 0
+        UnwinderBRef.Disable()
+        WoL.Log(self, "Player did not pick up backup Unwinder, disabling...")
+    ElseIf (EnabledOhm.GetValue() as Int) == 1 && TookO == 0
+        OhmBRef.Disable()
+        WoL.Log(self, "Player did not pick up backup Ohm's Rod, disabling...")
+    ElseIf (EnabledVisor.GetValue() as Int) == 1 && TookV == 0
+        VisorBRef.Disable()
+        WoL.Log(self, "Player did not pick up backup Visor, disabling...")
+    EndIf
 
 EndFunction
 

@@ -18,8 +18,8 @@ ReferenceAlias property currentAnimal auto
 
 Event OnEquipped(Actor akActor)
     if akActor==playerRef
-        objectReference animal = currentAnimal.getReference()
-        ObjectReference follower = currentfollower.getReference()
+        actor animal = currentAnimal.getReference() as actor
+        actor follower = currentfollower.getReference() as actor
       if(PlayerRef.GetParentCell() == cellMine1 || PlayerRef.GetParentCell() == cellMine2 || PlayerRef.GetParentCell() == cellMine3)
           
             PlayerRef.PlaceAtMe(teleportFX)
@@ -27,9 +27,11 @@ Event OnEquipped(Actor akActor)
             PlayerRef.MoveTo(lullTeleport)
             if animal 
                 animal.MoveTo(lullTeleportPet)
+                animal.stopcombat()
             endif 
             if follower
                 follower.moveTo(lullTeleportFollower)
+                follower.stopcombat()
             endif 
             WoL.Log(self, "Sending player back to Lull-Mor...")
             if(archeronsMines.IsObjectiveDisplayed(7))
@@ -51,9 +53,11 @@ Event OnEquipped(Actor akActor)
                     PlayerRef.MoveTo(archeronTeleport)
                     if animal 
                         animal.MoveTo(ArcheronTeleportPet)
+                        animal.stopcombat()
                     endif 
                     if follower
                         follower.moveTo(archeronTeleportFollower)
+                        follower.stopcombat()
                     endif 
                     WoL.Log(self, "Sending player to mines...")
                 endIf
