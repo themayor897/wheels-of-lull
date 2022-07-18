@@ -4,10 +4,12 @@ Ammo Property lullAmmo auto
 GlobalVariable Property harqueBusequipped auto
 actor property playerRef auto 
 Event OnEquipped(Actor akActor)
+    if akActor==playerRef
     playerRef.AddItem(lullAmmo, 10)
     playerRef.EquipItem(lullAmmo)
     RegisterForSingleUpdate(0.5)
     harqueBusequipped.setValue(1)
+endif 
 EndEvent
 
 
