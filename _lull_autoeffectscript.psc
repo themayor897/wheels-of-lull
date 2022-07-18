@@ -17,11 +17,6 @@ Event OnEffectStart(Actor Target, Actor Caster)
     RegisterForAnimationEvent(myTarget, "AttackStop")
 EndEvent
 
-Event OnEffectFinish(Actor Target, Actor Caster)
-    UnregisterForAnimationEvent (myTarget, "BowRelease")
-    UnregisterForAnimationEvent (myTarget, "bowDrawn")
-    UnregisterForAnimationEvent (myTarget, "AttackStop")
-EndEvent
 
 Event OnAnimationEvent(ObjectReference akSource, string asEventName)
     if (akSource == myTarget)

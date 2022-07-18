@@ -20,6 +20,7 @@ Event OnUnequipped(Actor akActor)
     akActor.removeSpell(crossbowSpell)
     
     if (akActor == playerRef && PlayerHasPerk == 1)
+        PlayerHasPerk = 0
         playerRef.AddPerk(QuickshotPerk)
     endif
 endEvent
