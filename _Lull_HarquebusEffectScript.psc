@@ -12,9 +12,10 @@ EVENT OnEffectStart(Actor Target, Actor Caster)
 endEVENT
 
 EVENT OnEffectFinish(Actor Target, Actor Caster)
+      unregisterforupdate()
     EquippedActor.UnEquipItem(lullAmmo, abSilent = true)
     EquippedActor.RemoveItem(lullAmmo, maxAmmo, abSilent = true)
-    unregisterforupdate()
+  
 endEVENT
 
 
