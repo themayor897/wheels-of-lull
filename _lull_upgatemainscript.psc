@@ -27,75 +27,77 @@ Message Property _Lull_UpgateDeepSea01 auto
 Message Property _Lull_UpgateDeepSea02 auto
 
 Actor Property PlayerRef auto
-Actor Property currentAnimal auto
-Actor Property currentFollower auto
-Event OnActivate(ObjectReference akActionRef)
+ReferenceAlias Property currentAnimal auto
+ReferenceAlias Property currentFollower auto
 
+Event OnActivate(ObjectReference akActionRef)
+    actor animal = currentAnimal.getReference() as actor
+    actor follower = currentfollower.getReference() as actor
     int destgate = destinationGate.getvalue() as int
     int gateFail = Utility.RandomInt(0, 4)
     if(gateFail == 2 && !deepSea.IsCompleted())
         PlayerRef.MoveTo(gateMarker6)
         _Lull_UpgateDeepSea01.show()
-    If currentAnimal 
-        currentAnimal.MoveTo(gateMarker6Pet)
-        currentAnimal.stopCombat()
-    endif 
-    if currentFollower
-        currentFollower.moveTo(gateMarker6Follower)
-        currentFollower.stopCombat()
-    endif 
+        If animal 
+            animal.MoveTo(gateMarker6Pet)
+            animal.stopCombat()
+        endif 
+        if follower
+            follower.moveTo(gateMarker6Follower)
+            follower.stopCombat()
+        endif 
     else
         if(destgate == 0)
             _Lull_UpgateDeepSea02.show()
         elseif(destgate == 1)
             PlayerRef.MoveTo(gateMarker1)
-            If currentAnimal 
-                currentAnimal.MoveTo(gateMarker1Pet)
-                currentAnimal.stopCombat()
+            If animal 
+                animal.MoveTo(gateMarker1Pet)
+                animal.stopCombat()
             endif 
-            if currentFollower
-                currentFollower.moveTo(gateMarker1Follower)
-                currentFollower.stopCombat()
+            if follower
+                follower.moveTo(gateMarker1Follower)
+                follower.stopCombat()
             endif             
         elseif(destgate == 2)
             PlayerRef.MoveTo(gateMarker2)
-            If currentAnimal 
-                currentAnimal.MoveTo(gateMarker2Pet)
-                currentAnimal.stopCombat()
+            If animal 
+                animal.MoveTo(gateMarker2Pet)
+                animal.stopCombat()
             endif 
-            if currentFollower
-                currentFollower.moveTo(gateMarker2Follower)
-                currentFollower.stopCombat()
+            if follower
+                follower.moveTo(gateMarker2Follower)
+                follower.stopCombat()
             endif             
         elseif(destgate == 3)
             PlayerRef.MoveTo(gateMarker3)
-            If currentAnimal 
-                currentAnimal.MoveTo(gateMarker3Pet)
-                currentAnimal.stopCombat()
+            If animal 
+                animal.MoveTo(gateMarker3Pet)
+                animal.stopCombat()
             endif 
-            if currentFollower
-                currentFollower.moveTo(gateMarker3Follower)
-                currentFollower.stopCombat()
+            if follower
+                follower.moveTo(gateMarker3Follower)
+                follower.stopCombat()
             endif             
         elseif(destgate == 4)
             PlayerRef.MoveTo(gateMarker4)
-            If currentAnimal 
-                currentAnimal.MoveTo(gateMarker4Pet)
-                currentAnimal.stopCombat()
+            If animal 
+                animal.MoveTo(gateMarker4Pet)
+                animal.stopCombat()
             endif 
-            if currentFollower
-                currentFollower.moveTo(gateMarker4Follower)
-                currentFollower.stopCombat()
+            if follower
+                follower.moveTo(gateMarker4Follower)
+                follower.stopCombat()
             endif             
         elseif(destgate == 5)
             PlayerRef.MoveTo(gateMarker5)
-            If currentAnimal 
-                currentAnimal.MoveTo(gateMarker5Pet)
-                currentAnimal.stopCombat()
+            If animal 
+                animal.MoveTo(gateMarker5Pet)
+                animal.stopCombat()
             endif 
-            if currentFollower
-                currentFollower.moveTo(gateMarker5Follower)
-                currentFollower.stopCombat()
+            if follower
+                follower.moveTo(gateMarker5Follower)
+                follower.stopCombat()
             endif             
         endif
     endif
