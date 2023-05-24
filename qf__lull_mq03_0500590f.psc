@@ -2,29 +2,14 @@
 ;NEXT FRAGMENT INDEX 48
 Scriptname QF__Lull_MQ03_0500590F Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY _MQ03_Butter2
+;BEGIN ALIAS PROPERTY _MQ03_Butter3
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter2 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Journal
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Journal Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_KeyMarker
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_KeyMarker Auto
+ReferenceAlias Property Alias__MQ03_Butter3 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_Butter5
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ03_Butter5 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter6
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter6 Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_Subori
@@ -37,24 +22,9 @@ ReferenceAlias Property Alias__MQ03_Subori Auto
 ReferenceAlias Property Alias__MQ03_Numinar Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ03_Key
+;BEGIN ALIAS PROPERTY _MQ03_Journal
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Key Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter4
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter4 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter3
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter3 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Secarius
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Secarius Auto
+ReferenceAlias Property Alias__MQ03_Journal Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03l_GuardM
@@ -67,24 +37,19 @@ ReferenceAlias Property Alias__MQ03l_GuardM Auto
 ReferenceAlias Property Alias__MQ03_Avarri Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY _MQ03_SupplyContainer
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_SupplyContainer Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY _MQ03_GuardF
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias__MQ03_GuardF Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ03_ForgedNote
+;BEGIN ALIAS PROPERTY _MQ03_KeyMarker
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_ForgedNote Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Butter1
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Butter1 Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Llavados
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Llavados Auto
+ReferenceAlias Property Alias__MQ03_KeyMarker Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_Robes
@@ -92,14 +57,9 @@ ReferenceAlias Property Alias__MQ03_Llavados Auto
 ReferenceAlias Property Alias__MQ03_Robes Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY _MQ03_SupplyContainer
+;BEGIN ALIAS PROPERTY _MQ03_ForgedNote
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_SupplyContainer Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY _MQ03_Archeron
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias__MQ03_Archeron Auto
+ReferenceAlias Property Alias__MQ03_ForgedNote Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY _MQ03_JournalMarker
@@ -107,27 +67,45 @@ ReferenceAlias Property Alias__MQ03_Archeron Auto
 ReferenceAlias Property Alias__MQ03_JournalMarker Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_42
-Function Fragment_42()
-;BEGIN CODE
-;set after Numinar's speech
+;BEGIN ALIAS PROPERTY _MQ03_Butter4
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter4 Auto
+;END ALIAS PROPERTY
 
-MQ04.setstage(5)
-stop()
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY _MQ03_Secarius
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Secarius Auto
+;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_2
-Function Fragment_2()
-;BEGIN CODE
-;set at the end of ArcheronApproachCellPackage
+;BEGIN ALIAS PROPERTY _MQ03_Llavados
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Llavados Auto
+;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY _MQ03_Key
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Key Auto
+;END ALIAS PROPERTY
 
-Archeron.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY _MQ03_Butter1
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter1 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Butter2
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter2 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Butter6
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Butter6 Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY _MQ03_Archeron
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias__MQ03_Archeron Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_46
 Function Fragment_46()
@@ -137,33 +115,13 @@ Function Fragment_46()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_20
-Function Fragment_20()
+;BEGIN FRAGMENT Fragment_42
+Function Fragment_42()
 ;BEGIN CODE
-;Set after Secarius tells player about archeron. "A few lobotomies..."
-;Exists for package and dialogue conditioning. Secarius is traveling to final marker near archeron.
+;set after Numinar's speech
 
-SecariusREF.evaluatepackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
-;BEGIN CODE
-;Set when Subori accepts the player's help 
-
-SetObjectiveCompleted(5)
-SetObjectiveDisplayed(10)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-;Set in Secarius travel to first marker package
-;Exists for dialogue and package conditions. Secarius traveling to second marker.
+MQ04.setstage(5)
+stop()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -183,10 +141,35 @@ llavadosREF.EvaluatePackage()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_22
-Function Fragment_22()
+;BEGIN FRAGMENT Fragment_11
+Function Fragment_11()
 ;BEGIN CODE
-;set in butter script attached to this quest. includes objective completion and display.
+;set when Numinar asks player to follow him outside
+if GuardFREF && !GuardFREF.isDead()
+GuardFREF.MoveTo(guardFLocation)
+else 
+wol.log(self, "Female guard is dead or missing, skipping.")
+endIf
+AvarriREF.MoveTo(avarriMLocation)
+LlavadosREF.MoveTo(llavLocation)
+SuboriREF.MoveTo(suboriLocation)
+NuminarREF.EvaluatePackage()
+
+if (NuminarREF.GetCurrentPackage() != NumTravel)
+WoL.Log(self, "Numinar package not running! MQ03 stage set to " + (GetStage() as Int) + ", attempting fix...", 2)
+NuminarREF.EvaluatePackage()
+endif
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
+;BEGIN CODE
+;set at the end of ArcheronApproachCellPackage
+
+
+Archeron.EvaluatePackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -202,34 +185,24 @@ Archeron.EvaluatePackage()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_40
-Function Fragment_40()
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
 ;BEGIN CODE
-;stage set after picking up both key and journal ref aliases
+;Set when Subori accepts the player's help 
+
+SetObjectiveCompleted(5)
+SetObjectiveDisplayed(10)
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_24
-Function Fragment_24()
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
 ;BEGIN CODE
-;setstage trigger in Whitehorn01
+;Stage set in ExplainUpgate topic
 
-
-SetObjectiveCompleted(16)
-SetObjectiveDisplayed(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_28
-Function Fragment_28()
-;BEGIN CODE
-;set at the end of Archeron's first conversation with the player.
-;exists for dialogue and package conditioning.
-;Player is exploring whitehorn to find evidence.
-
-Archeron.EvaluatePackage()
+SetObjectiveDisplayed(5)
+doorGate.Lock(false)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -251,27 +224,6 @@ CellTear.EnableNoWait()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_18
-Function Fragment_18()
-;BEGIN CODE
-;set at the end of archeron/secarius intro scene
-;exists for dialogue and package conditioning. 
-;Archeron approaches player and talks to them for the fist time
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_16
-Function Fragment_16()
-;BEGIN CODE
-;Set at the end of Secarius travel to third script
-;Exists for dialogue conditions
-
-introScene.Start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
 ;BEGIN FRAGMENT Fragment_0
 Function Fragment_0()
 ;BEGIN CODE
@@ -287,32 +239,72 @@ SecariusREF.EvaluatePackage()
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
+;BEGIN FRAGMENT Fragment_18
+Function Fragment_18()
 ;BEGIN CODE
-;Stage set in ExplainUpgate topic
-
-SetObjectiveDisplayed(5)
-doorGate.Lock(false)
+;set at the end of archeron/secarius intro scene
+;exists for dialogue and package conditioning. 
+;Archeron approaches player and talks to them for the fist time
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_11
-Function Fragment_11()
+;BEGIN FRAGMENT Fragment_24
+Function Fragment_24()
 ;BEGIN CODE
-;set when Numinar asks player to follow him outside
+;setstage trigger in Whitehorn01
 
-GuardFREF.MoveTo(guardFLocation)
-AvarriREF.MoveTo(avarriMLocation)
-LlavadosREF.MoveTo(llavLocation)
-SuboriREF.MoveTo(suboriLocation)
-NuminarREF.EvaluatePackage()
 
-if (NuminarREF.GetCurrentPackage() != NumTravel)
-WoL.Log(self, "Numinar package not running! MQ03 stage set to " + (GetStage() as Int) + ", attempting fix...", 2)
-NuminarREF.EvaluatePackage()
-endif
+SetObjectiveCompleted(16)
+SetObjectiveDisplayed(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_22
+Function Fragment_22()
+;BEGIN CODE
+;set in butter script attached to this quest. includes objective completion and display.
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_28
+Function Fragment_28()
+;BEGIN CODE
+;set at the end of Archeron's first conversation with the player.
+;exists for dialogue and package conditioning.
+;Player is exploring whitehorn to find evidence.
+
+Archeron.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_16
+Function Fragment_16()
+;BEGIN CODE
+;Set at the end of Secarius travel to third script
+;Exists for dialogue conditions
+
+introScene.Start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_40
+Function Fragment_40()
+;BEGIN CODE
+;stage set after picking up both key and journal ref aliases
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
+;BEGIN CODE
+;Set in Secarius travel to first marker package
+;Exists for dialogue and package conditions. Secarius traveling to second marker.
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -321,6 +313,17 @@ EndFunction
 Function Fragment_26()
 ;BEGIN CODE
 ;set with _Lull_MerHigh_Trapped trigger in Whitehorn04
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_20
+Function Fragment_20()
+;BEGIN CODE
+;Set after Secarius tells player about archeron. "A few lobotomies..."
+;Exists for package and dialogue conditioning. Secarius is traveling to final marker near archeron.
+
+SecariusREF.evaluatepackage()
 ;END CODE
 EndFunction
 ;END FRAGMENT
