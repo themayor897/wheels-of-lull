@@ -5,7 +5,8 @@ Import Game
 GlobalVariable Property LullVersion Auto
 
 GlobalVariable Property FishingAddonpresent Auto
-
+GlobalVariable Property hasBrhuce auto 
+GlobalVariable Property hasMzark auto 
 GlobalVariable Property FishingAddonVersion Auto
 Int Property sVersion = 50001 Auto Hidden ;translates to 5.0.1, adding an additional 0 before each of the second numbers. 
 int property oldFishVersion = 0 auto hidden 
@@ -35,6 +36,7 @@ Event OnInit()
           ; Debug.Trace("Wheels of Lull: SKSE detected")
     Else
         HasSKSE = False
+        iSKSE.setValue(0)
         WoL.Log(self, "Wheels of Lull: SKSE is not installed")
         ; Debug.Trace("Wheels of Lull: SKSE is not installed.")
     EndIf
@@ -43,6 +45,7 @@ EndEvent
 
 Function CheckLullVersion()
     CheckUserErrors()
+    CheckOtherTrainwizMods()
     Int nVersion = (LullVersion.GetValue() as Int)
     fishVersion = 0
     if FishingAddonpresent.getValue()as int==1
@@ -104,7 +107,27 @@ Function CheckUserErrors()
     ;   EndIf
     EndIf
 EndFunction
-        
+
+Function CheckOtherTrainwizMods()
+    If HasSKSE
+        wol.log(self,"Checking for other Trainwiz mods")
+      ;  wol.Log("Checking for Brhuce.")
+        If IsPluginInstalled("BrhuceLegacy.esp")
+            hasBrhuce.setValue(1)
+            WoL.Log(self, "Found Brhuce")
+        else 
+            hasBrhuce.setValue(0)
+            wol.Log(self, "No Brhuce.")
+        EndIf
+        If IsPluginInstalled("MzarkWonders.esp")
+            hasMzark.setValue(1)
+            WoL.Log(self, "Found Mzark")
+        else 
+            hasMzark.setValue(0)
+            wol.Log(self, "No Mzark.")
+        EndIf
+    EndIf
+EndFunction
 ;this script section uses some of Chesko's general purpose array functions as well as "complete example scripts," both availible on the CK Wiki.
 Function MovePersistentRefs(FormList akFormList)
     ArrayClear(aForceEditorLocation)
