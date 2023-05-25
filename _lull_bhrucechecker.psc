@@ -18,7 +18,9 @@ Function BhruceCheck()
 EndFunction
 
 Event PlayerMetBhruce(Form sender)
+    if !metBrhuce
     metBrhuce==true
     WoL.Log(self, "Player has met Bhruce Hammar, setting dialogue conditioning global...")
     MetBhruce.SetValue(1)
+endif
 EndEvent
