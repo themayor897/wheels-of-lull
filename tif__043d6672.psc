@@ -12,6 +12,7 @@ Game.GetPlayer().AddItem(thomasbook, 1)
 if WailwayQuest.getStage()==10
 WailwayQuest.setObjectiveCompleted(10)
 WailwayQuest.setStage(11)
+wailwayQuest.setObjectiveDisplayed(11)
 endif
 ;END CODE
 EndFunction
