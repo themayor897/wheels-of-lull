@@ -29,8 +29,9 @@ event OnActivate(ObjectReference akActionRef)
             wailwayQuest.setStage(10)
             wailwayQuest.setObjectiveDisplayed(10)
             errorShown=True
-        endif 
             wol.log(self, "wailway quest set to stage 10.")
+        endif 
+
         endif 
     else 
         alreadyOpen.show()
