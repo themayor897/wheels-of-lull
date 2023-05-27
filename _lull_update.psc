@@ -100,11 +100,11 @@ Function CheckUserErrors()
             Installed40.Show()
             WoL.Log(self, "Old start at Level 40 plugin detected! This plugin is incompatible and must be removed immediately.", 2)
         EndIf
-    ;Else
-    ;   If (GetFormFromFile(0x00000000, "WoLStartAt40.esp") != None)
-    ;       Installed40.Show()
-    ;       Debug.Trace("Wheels of Lull: Old start at Level 40 plugin detected! This plugin is incompatible and must be removed immediately.")
-    ;   EndIf
+        ;Else
+        ;If (GetFormFromFile(0x00000000, "WoLStartAt40.esp") != None)
+        ;   Installed40.Show()
+        ; Debug.Trace("Wheels of Lull: Old start at Level 40 plugin detected! This plugin is incompatible and must be removed immediately.")
+        ; EndIf
     EndIf
 EndFunction
 
@@ -126,6 +126,15 @@ Function CheckOtherTrainwizMods()
             hasMzark.setValue(0)
             wol.Log(self, "No Mzark.")
         EndIf
+        
+    else 
+        debug.trace("Lull is scanning for other supported mods, ignore any papyrus errors related to getFormFromFile.")
+        if game.getformFromFile(0x00004E1C, "BrhuceLegacy.esp") != none
+            hasBrhuce.setValue(1)
+            debug.trace("Brhuce installed")
+        else 
+            hasBrhuce.setValue(0)
+        endif 
     EndIf
 EndFunction
 ;this script section uses some of Chesko's general purpose array functions as well as "complete example scripts," both availible on the CK Wiki.
