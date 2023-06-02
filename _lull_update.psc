@@ -22,7 +22,7 @@ actor property playerRef auto
 Quest Property MQ01 Auto
 Message Property QuestStarted Auto
 Bool Fixed510
-perk Property technomanticSmithing auto 
+perk Property ancientKnowledgeLull auto 
 perk Property matchingsetLullHeavy auto 
 perk Property matchingsetLullLight auto 
 ;For version 5.1.1
@@ -74,13 +74,14 @@ Function CheckLullVersion()
 EndFunction
 
 Function Update(Int pNewVersion)
-    if sVersion < 50110 && !perkUpdatedone 
-        wol.log(self, "checking for missing perks")
-       if playerRef.hasPerk(technomanticSmithing)
-           wol.log(self, "Player has technomantic smithing perk, adding armor perks.")
+    if !perkUpdatedone 
+        wol.log(self, "Adding lull-specific perks")
+           playerRef.addPerk(ancientKnowledgeLull)
+           wol.log(self,"Ancient knowledge variant added.")
            playerRef.addPerk(matchingsetLullHeavy)
            playerRef.addperk(matchingsetLullLight)
-       endif 
+           wol.log(self,"Matching set perk variants added.")
+      
         perkUpdatedone =true
     endif 
     If pNewVersion == 50100 || !Fixed510
