@@ -17,15 +17,17 @@ GlobalVariable Property iSKSE Auto
 Bool HasSKSE
 
 Message Property Installed40 Auto
-
+actor property playerRef auto 
 ;For version 5.1.0
 Quest Property MQ01 Auto
 Message Property QuestStarted Auto
 Bool Fixed510
-
+perk Property technomanticSmithing auto 
+perk Property matchingsetLullHeavy auto 
+perk Property matchingsetLullLight auto 
 ;For version 5.1.1
 ;Bool Fixed511
-
+bool perkUpdatedone = false
 bool fishUpdate 
 
 Event OnInit()
@@ -72,7 +74,15 @@ Function CheckLullVersion()
 EndFunction
 
 Function Update(Int pNewVersion)
-    
+    if sVersion < 50110 && !perkUpdatedone 
+        wol.log(self, "checking for missing perks")
+       if playerRef.hasPerk(technomanticSmithing)
+           wol.log(self, "Player has technomantic smithing perk, adding armor perks.")
+           playerRef.addPerk(matchingsetLullHeavy)
+           playerRef.addperk(matchingsetLullLight)
+       endif 
+        perkUpdatedone =true
+    endif 
     If pNewVersion == 50100 || !Fixed510
         aForceEditorLocation = new Form[128]
         MovePersistentRefs(MovedRefs)
