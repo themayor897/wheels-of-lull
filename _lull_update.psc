@@ -22,7 +22,7 @@ actor property playerRef auto
 Quest Property MQ01 Auto
 Message Property QuestStarted Auto
 Bool Fixed510
-;perk Property ancientKnowledgeLull auto 
+perk Property ancientKnowledgeLull auto 
 perk Property matchingsetLullHeavy auto 
 perk Property matchingsetLullLight auto 
 ;For version 5.1.1
@@ -76,8 +76,8 @@ EndFunction
 Function Update(Int pNewVersion)
     if !perkUpdatedone 
         wol.log(self, "Adding lull-specific perks")
-        ; playerRef.addPerk(ancientKnowledgeLull)
-        ;wol.log(self,"Ancient knowledge variant added.")
+        playerRef.addPerk(ancientKnowledgeLull)
+        wol.log(self,"Ancient knowledge variant added.")
            playerRef.addPerk(matchingsetLullHeavy)
            playerRef.addperk(matchingsetLullLight)
            wol.log(self,"Matching set perk variants added.")
