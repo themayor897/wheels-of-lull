@@ -6,10 +6,18 @@ Scriptname TIF__043D666D Extends TopicInfo Hidden
 Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
+if PlayerRef.getItemCount(staff1)<1
 PlayerRef.AddItem(staff1, 1)
+endif
+if PlayerRef.getItemCount(staff2)<1
 PlayerRef.AddItem(staff2, 1)
+endif
+if PlayerRef.getItemCount(staff3)<1
 PlayerRef.AddItem(staff3, 1)
+endif
+if PlayerRef.getItemCount(staff4)<1
 PlayerRef.AddItem(staff4, 1)
+endif
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -21,3 +29,5 @@ Weapon Property staff3 auto
 Weapon Property staff4 auto
 
 Actor Property PlayerRef  Auto  
+
+Bool  doOnce    =false
