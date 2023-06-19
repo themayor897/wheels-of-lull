@@ -3,7 +3,7 @@ Scriptname _Lull_Update extends Quest
 Import Game
 
 GlobalVariable Property LullVersion Auto
-
+weather property lullBlizzardWeather auto 
 GlobalVariable Property FishingAddonpresent Auto
 GlobalVariable Property hasBrhuce auto 
 GlobalVariable Property hasMzark auto 
@@ -15,7 +15,8 @@ Form[] aForceEditorLocation
  int fishVersion 
 GlobalVariable Property iSKSE Auto
 Bool HasSKSE
-
+bool hasSurvival 
+GlobalVariable property survivalInstalled auto 
 Message Property Installed40 Auto
 actor property playerRef auto 
 ;For version 5.1.0
@@ -84,6 +85,12 @@ Function Update(Int pNewVersion)
       
         perkUpdatedone =true
     endif 
+    if hasSurvival
+        formlist survivalBlizzardWeather = game.getFormFromFile(0x000008A9, "ccqdrsse001-survivalmode.esl") as formlist 
+        if !survivalBlizzardWeather.hasForm(LullblizzardWeather)
+            survivalBlizzardWeather.addform(LullBlizzardWeather)
+        EndIf
+    endif 
     If pNewVersion == 50100 || !Fixed510
         aForceEditorLocation = new Form[128]
         MovePersistentRefs(MovedRefs)
@@ -121,7 +128,7 @@ EndFunction
 
 Function CheckOtherTrainwizMods()
     If HasSKSE
-        wol.log(self,"Checking for other Trainwiz mods")
+        wol.log(self,"Checking for other supported mods")
       ;  wol.Log("Checking for Brhuce.")
         If IsPluginInstalled("BrhuceLegacy.esp")
             hasBrhuce.setValue(1)
@@ -137,6 +144,15 @@ Function CheckOtherTrainwizMods()
             hasMzark.setValue(0)
             wol.Log(self, "No Mzark.")
         EndIf
+        if isPluginInstalled("ccqdrsse001-survivalmode.esl")
+            survivalInstalled.setValue(1)
+            hasSurvival=True
+            wol.log(self, "Found survival mode")
+        else 
+            survivalInstalled.setValue(0)
+            hasSurvival=False
+            wol.log(self, "Survival not installed.")
+        endif 
         
     else 
         debug.trace("Lull is scanning for other supported mods, ignore any papyrus errors related to getFormFromFile.")
@@ -145,6 +161,14 @@ Function CheckOtherTrainwizMods()
             debug.trace("Brhuce installed")
         else 
             hasBrhuce.setValue(0)
+        endif 
+        if game.getFormFromFile(0x000008A9, "ccqdrsse001-survivalmode.esl")
+            survivalInstalled.setValue(1)
+            hasSurvival=True
+            debug.trace("Found survival mode")
+        else 
+            survivalInstalled.setValue(0)
+            hasSurvival=False
         endif 
     EndIf
 EndFunction
