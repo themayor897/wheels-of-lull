@@ -36,6 +36,7 @@ Event OnEquipped(Actor akActor)
             WoL.Log(self, "Sending player back to Lull-Mor...")
             if(archeronsMines.IsObjectiveDisplayed(7))
                 archeronsMines.setStage(8)
+                archeronsMines.setObjectiveCompleted(7)
             endif
       else
             if(!archeronsMines.IsCompleted())
