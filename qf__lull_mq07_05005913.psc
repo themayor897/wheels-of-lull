@@ -2,54 +2,21 @@
 ;NEXT FRAGMENT INDEX 10
 Scriptname QF__Lull_MQ07_05005913 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY MQ07_Archeron
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_MQ07_Archeron Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY MQ07_ArcheronTA
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_MQ07_ArcheronTA Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;Conditioned in: MQ07_ForceGreet Package, set via Hammar's MQ07 dialogue.
-SetObjectiveDisplayed(2)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_8
-Function Fragment_8()
-;BEGIN CODE
-;Talked to Numinar, Archeron behind me.
-Numinar.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-blackout.apply()
-collapse.play(PlayerRef)
-Utility.Wait(1)
-ObjectReference ArchSay = PlayerRef.PlaceAtMe(xMarkerActivator)
-ArchSay.Say(ArcheronFinal, Archeron, True)
-collapse.play(PlayerRef)
-Utility.Wait(4)
-Setstage(9)
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY MQ07_Archeron
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_MQ07_Archeron Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_7
 Function Fragment_7()
 ;BEGIN CODE
 ;set when Llavados says goodbye
-
+self.setObjectiveCompleted(7)
 if(usedVariable.GetValue() >= 1)
  PlayerRef.MoveTo(failmarker)
 else
@@ -97,6 +64,15 @@ Game.ShakeCamera(playerRef, 0.75, 20)
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_8
+Function Fragment_8()
+;BEGIN CODE
+;Talked to Numinar, Archeron behind me.
+Numinar.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;BEGIN FRAGMENT Fragment_9
 Function Fragment_9()
 ;BEGIN CODE
@@ -118,6 +94,30 @@ Function Fragment_3()
 ;First stage, set in MQ06 stage 40
 HammarREF.MoveTo(Hammarker)
 HammarREF.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
+;BEGIN CODE
+;Conditioned in: MQ07_ForceGreet Package, set via Hammar's MQ07 dialogue.
+SetObjectiveDisplayed(2)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
+;BEGIN CODE
+blackout.apply()
+collapse.play(PlayerRef)
+Utility.Wait(1)
+ObjectReference ArchSay = PlayerRef.PlaceAtMe(xMarkerActivator)
+ArchSay.Say(ArcheronFinal, Archeron, True)
+collapse.play(PlayerRef)
+Utility.Wait(4)
+Setstage(9)
 ;END CODE
 EndFunction
 ;END FRAGMENT
